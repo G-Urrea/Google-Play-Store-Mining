@@ -1,0 +1,212 @@
+---
+title: "Exploración de Datos"
+output: html_notebook
+---
+
+```{r}
+setwd("C:/Users/faria/OneDrive/Documentos/Tareas/GitHub/Google-Play-Store-Mining")
+```
+```{r}
+#library(reshape)
+library(tidyverse)
+```
+```{r}
+ex_GP<-read.csv("extended_googleplaystore.csv")
+ex_GPur<-read.csv("extended_googleplaystore_user_reviews.csv")
+#GP<-read.csv("googleplaystore.csv")
+#GPur<-read.csv("googleplaystore_user_reviews.csv")
+#ptr<-read.csv("profiled_Translated_Review.csv")
+```
+```{r}
+#summary(ex_GP)
+#summary(ex_GPur)
+```
+
+Extended Google PLaystore:
+
+Contiene 9659 filas, cada una correspondiente a una app distinta que se identifica en la primer columna. Las 22 colunas restantes describen características de la aplicación, tales como el tamaño, género, precio y número de descargas.
+
+Las columnas "Category" y "Genres" contienen valores numéricos, cada uno asociado a una categoría y un género respectivamente, que se especifican el las columnas "Category..categorical." y "Genres..categorical.". Los siguientes dataframes muestran que número corresponde a que categoría y género, además del total de aplicaciones de cada uno.
+
+```{r}
+cat<-aggregate(Category~Category..categorical., ex_GP, FUN=mean)
+gen<-aggregate(Genres~Genres..categorical., ex_GP, FUN=mean)
+
+cat<-merge(cat, aggregate(App~Category..categorical., ex_GP, FUN=length), by="Category..categorical.")
+gen<-merge(gen, aggregate(App~Genres..categorical., ex_GP, FUN=length), by="Genres..categorical.")
+
+cat<-merge(cat, aggregate(Installs~Category..categorical., ex_GP, FUN=sum), by="Category..categorical.")
+gen<-merge(gen, aggregate(Installs~Genres..categorical., ex_GP, FUN=sum), by="Genres..categorical.")
+
+head(cat)
+```
+```{r}
+head(gen)
+```
+
+Existen 33 categoías y 118 géneros
+
+```{r}
+nrow(cat)
+nrow(gen)
+```
+
+
+```{r}
+ggplot(cat[order(cat$App, decreasing=TRUE),][1:15,])+
+  geom_bar(aes(x=Category..categorical.,y=App,fill=Category..categorical.),stat = "identity")+
+  coord_flip()+
+  ylab("Número de aplicaciones")+
+  xlab("Categoría")+
+  ggtitle("15 categorías con\n más aplicaciones")+
+  theme(legend.position = "none")+
+  scale_fill_hue(l=45)
+```
+
+```{r}
+ggplot(cat[order(cat$Installs, decreasing=TRUE),][1:15,])+
+  geom_bar(aes(x=Category..categorical.,y=Installs,fill=Category..categorical.),stat = "identity")+
+  coord_flip()+
+  ylab("Número de descargas")+
+  xlab("Categoría")+
+  ggtitle("15 categorías más descargadas")+
+  theme(legend.position = "none")+
+  scale_fill_hue(l=45)
+```
+
+```{r}
+ggplot(gen[order(gen$App, decreasing=TRUE),][1:15,])+
+  geom_bar(aes(x=Genres..categorical.,y=App,fill=Genres..categorical.),stat = "identity")+
+  coord_flip()+
+  ylab("Número de aplicaciones")+
+  xlab("Género")+
+  ggtitle("15 géneros con más aplicaciones")+
+  theme(legend.position = "none")+
+  scale_fill_hue(l=45)
+```
+
+```{r}
+ggplot(gen[order(gen$Installs, decreasing=TRUE),][1:15,])+
+  geom_bar(aes(x=Genres..categorical.,y=Installs,fill=Genres..categorical.),stat = "identity")+
+  coord_flip()+
+  ylab("Número de descargas")+
+  xlab("Género")+
+  ggtitle("15 géneros más descargados")+
+  theme(legend.position = "none")+
+  scale_fill_hue(l=45)
+```
+
+La columna "Rating" muestra la puntuación, del 1 al 5, de cada aplicación, dada por los usuarios. Tiene un promedio de 4.173, mediana 4.3 y rango intercuartil 0.5. Contiene 1463 valores NA.
+
+```{r}
+ggplot(ex_GP[!is.na(ex_GP$Rating),])+
+  geom_boxplot(aes(y=Rating))
+```
+
+La colunma "Size" muestra el tamaño en MB de las aplicaciones. Tiene un mpinimo de 0.0085, máximo de 100, media 20.39529, mediana 12 y rango intercuartil 23.4. Cortando el 10% de valores extremos la media baja a 16.26433.
+
+```{r}
+mean(ex_GP[!is.na(ex_GP$Size),]$Size,trim=0.1)
+```
+
+```{r}
+ggplot(ex_GP[!is.na(ex_GP$Size),])+
+  geom_boxplot(aes(y=Size))
+```
+
+La columna contiene 1227 valores NA. La intersección de nulos entre "Rating" y "Size" es de tan solo 58 filas.
+
+```{r}
+nrow(ex_GP[is.na(ex_GP$Rating) & is.na(ex_GP$Size),])
+```
+
+La columna "Reviews" muestra el número de reviews que ha resibido cada aplicación. Tiene un mínimo de 0, máximo de 78158306, media 216593, mediana 967, rango inter cuartil 29376 y desviación estandar 1831320.
+
+```{r}
+sd(ex_GP$Reviews)
+```
+
+Extrayendo el 1% de los extremos la media se reduce a 100217.1
+
+```{r}
+mean(ex_GP$Reviews,trim=0.01)
+```
+Extrayendo el 10% se reduce a 19295.5
+
+```{r}
+mean(ex_GP$Reviews,trim=0.1)
+```
+
+La columna "Installas" muestra el número de descargas de cada aplicación. Tiene un míniom de 0, máximo de 10^9, media 7.778*10^6, mediana 10^5, primer cuartil 10^3 y tercer cuartil 10^6.
+
+```{r}
+ggplot(ex_GP[order(ex_GP$Installs, decreasing=TRUE),][1:10,])+
+  geom_bar(aes(x=App,y=Installs,fill=App),stat = "identity")+
+  coord_flip()+
+  ylab("Número de descargas")+
+  xlab("Aplicación")+
+  ggtitle("10 aplicaciones más descargadas")+
+  theme(legend.position = "none")+
+  scale_fill_brewer(palette="Spectral")
+```
+```{r}
+ggplot(ex_GP)+
+  geom_boxplot(aes(y=Installs))
+```
+
+La columna "Type" asigna 0 a las aplicaciones gratis y 1 a las que no lo son. El valor de la fila 8903 es -1, debería ser 0.
+
+```{r}
+ex_GP[8029,"Type"]
+(ex_GP[8029,"Type"]<-0)
+```
+
+Hay 756 aplicaciones pagadas y 8903 gratis.
+
+```{r}
+sum(ex_GP$Type)
+```
+
+La columna "Price" muestra el precio de las aplicacines. Entre las aplicaciones de pago, el mínimo es 0.99, el máximo 400, la media 14.04515, la mediana 2.99 y la desviación estandar 58.74361. Extrayendo el 5% de los valores extremos, la media se reduce a 4.027639.
+
+```{r}
+min(ex_GP[ex_GP$Type==1,]$Price)
+max(ex_GP[ex_GP$Type==1,]$Price)
+mean(ex_GP[ex_GP$Type==1,]$Price)
+median(ex_GP[ex_GP$Type==1,]$Price)
+sd(ex_GP[ex_GP$Type==1,]$Price)
+mean(ex_GP[ex_GP$Type==1,]$Price,trim=0.05)
+```
+
+Extended google Playstore User Review:
+
+Contiene 64295 filas correspondientes a reseñas de los usuarios sobre las aplicaciones. La primera columna indica la aplicación, la segunda contiene el texto de la review y las 31 restantes muestran datos del texto, tales como el número de caracteres o si la reseña es positiva o negativa. 26868 filas no contienen información del texto.
+
+```{r}
+ex_GPur<-ex_GPur[!is.na(ex_GPur$characters_count),]
+```
+
+El dataframe posee 37427 filas útiles.
+
+Las columnas de la 3 a la 17 contienen datos numéricos sobre el texto, del tipo número de caracteres, número de palabras, número de espacios, etc.
+
+La columna "sentiment_polarity_score" contiene valores continuos entre -1 y 1, que representan el grado de negatividad, si es cercano a -1, o positividad, si es cercano a 1, de la review. Tiene media 0.1822 y mediana 0.15. Las columnas "sentiment_polarity" y "sentiment_polarity_summarised" descriven la variable categóricamente.
+
+La columna "sentiment_sunjetivity_score" contiene valores continuos de 0 a 1, que indican el grado de objetividad, si es cercano a 0, o subjetividad, si es cercano a 1, de la review. Tiene media 0.4929 y mediana 0.5143. La columna "sentiment_sunjetivity" descrive la variable categóricamente.
+
+La columna "spelling_quality_score" contiene valores continuos de 0 a 1, que tan mal, si es cercano a 0, o bien, si es cercano a 1, escrita está la review. Tiene media 0.893 y mediana 0.918. Las columnas "spelling_quality" y "spelling_quality_summarised" descriven la variable categóricamente.
+
+La columna "ease_of_reading_score" contiene valores continuos de -1570.79 a 206.84, que tan difícil, si es cercano a 0, o fácil, si es cercano a 1, de leer es la review. Tiene media 74.03 y mediana 74.53. Las columnas "ease_of_reading_quality" y "ease_of_reading_summarised" descriven la variable categóricamente.
+
+La columna "grammar_check_score" cuenta el total de errores gramaticales de la reseña.
+
+La columna "original_Sentiment_Polarity" difiere en en 4790 filas de "sentiment_polarity_score" y comparte las mismas medidas de dispersión.
+
+La columna "original_Sentiment_Subjectivity" difiere en en 2996 filas de "sentiment_subjectivity_score" y comparte las mismas medidas de dispersión.
+
+```{r}
+nrow(ex_GPur[ex_GPur$sentiment_polarity_score!=ex_GPur$original_Sentiment_Polarity, ])
+nrow(ex_GPur[ex_GPur$sentiment_subjectivity_score != ex_GPur$original_Sentiment_Subjectivity,])
+```
+
+

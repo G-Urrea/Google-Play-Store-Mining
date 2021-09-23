@@ -1,0 +1,76 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+setwd("C:/Users/Tomz/Desktop/ProyectoMineria/Google-Play-Store-Mining/dataset")
+library(reshape)
+library(tidyverse)
+```
+```{r}
+ex_GP<-read.csv("C:/Users/Tomz/Desktop/ProyectoMineria/Google-Play-Store-Mining/dataset/extended_googleplaystore.csv", as.is = F)
+ex_GPur<-read.csv("C:/Users/Tomz/Desktop/ProyectoMineria/Google-Play-Store-Mining/dataset_modificado/dataset-usuarios.csv", as.is = F)
+
+ex_GP$App <- as.character(ex_GP$App)
+ex_GPur$App <- as.character(ex_GPur$App)
+ex_GPur$Translated_Review <- as.character(ex_GPur$Translated_Review)
+```
+
+```{r}
+summary(ex_GP)
+#summary(ex_GPur)
+```
+
+```{r}
+par(mar=c(12, 3, 1, 1))
+plot(ex_GP$Category..categorical., ex_GP$Rating, las=3)
+```
+
+```{r}
+#Eliminando las aplicaciones gratis, se nota más la diferencia de ratings por categoria
+
+#par(mar=c(10, 3, 1, 1))
+nofree_GP <- with(ex_GP, ex_GP[Price != 0.00,] )
+plot(nofree_GP$Category..categorical., nofree_GP$Rating, las=3)
+```
+
+```{r}
+#Sin sorpresa, los juegos tienden a ser las apps más pesadas
+
+par(mar=c(10, 3, 1, 1))
+plot(ex_GP$Category..categorical., ex_GP$Size, las=3)
+```
+```{r}
+par(mar=c(10, 3, 1, 1))
+price_GP <- with(ex_GP, ex_GP[Price != 0.00,] )
+plot(price_GP$Category..categorical., price_GP$Price, las=3)
+
+#Sin contar Apps ultra-caras, Apps de FINANCES y MEDICAL tienden a ser las más caras
+price_GP2 <- with(ex_GP, ex_GP[Price != 0.00 & Price <=40.00,] )
+plot(price_GP2$Category..categorical., price_GP2$Price, las=3)
+```
+```{r}
+#Aplicaciones ordenadas por precio/calidad(rating)
+price_GP3 <- with(ex_GP, ex_GP[Price != 0.00 & Price <=40.00,] )
+ggplot(price_GP3, aes(x=Price, y=Rating)) + geom_point()
+
+#Aplicaciones ultra-caras no son necesariamente todas buenas
+price_GP10 <- with(ex_GP, ex_GP[Price != 0.00 & Price >=40.00,] )
+ggplot(price_GP10, aes(x=Price, y=Rating)) + geom_point()
+```
+
+```{r}
+#Tamaño apps vs Ratings
+ggplot(price_GP, aes(x=Size, y=Rating)) + geom_point()
+
+free_GP <- with(ex_GP, ex_GP[Price == 0.00,] )
+ggplot(free_GP, aes(x=Size, y=Rating)) + geom_point()
+```
+```{r}
+installs_GP <- with(ex_GP, ex_GP[Reviews <= 20000,] )
+ggplot(installs_GP, aes(x=Reviews, y=Rating)) + geom_point()
+
+#free_GP <- with(ex_GP, ex_GP[Price == 0.00,] )
+#ggplot(free_GP, aes(x=Size, y=Rating)) + geom_point()
+```

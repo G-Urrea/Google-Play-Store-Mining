@@ -1,0 +1,49 @@
+---
+title: "Exploración dataset de usuarios"
+output: html_notebook
+---
+Librerias:
+
+```{r}
+library(dplyr)
+```
+
+Se carga el dataset:
+```{r}
+users <- read.csv("dataset_modificado/dataset-usuarios.csv", encoding="UTF-8")
+```
+
+Primeras filas del dataset:
+```{r}
+head(users)
+```
+
+Tipo de cada dato:
+```{r}
+str(users[0,])
+```
+Selecciones sólo las variables numéricas
+
+```{r}
+numeric_atr <- users %>% dplyr::select(where(is.numeric))
+head(numeric_atr)
+```
+Veamos si hay alguna correlación lineal entre ellas
+```{r}
+cor(numeric_atr)
+```
+Son de notar las siguientes relaciones lineales:
+
+  - sentiment_polarity_score vs sentiment_subjectivity_score : 0.261587278 Relación lineal directa
+  - spelling_quality_score vs grammar_check_score :-0.102326653 Relación lineal inversa
+  - sentiment_polarity_score vs grammar_check_score: -0.104765855 Relación lineal inversa
+  - ease_of_reading_score vs grammar_check_score : -0.128594206 Relación lineal inversa
+  
+Si bien no son relaciones particularmente fuertes, taampoco son para nada debiles y de hecho tienen algo de sentido:
+  - La polaridad es directamente proporcional a la subjetividad, lo cuál puede indicar que el gusto por una aplicación puede 
+    llevar a la gente a hablar mejor de ella sin tanta objetividad.
+    
+  - Tanto la facilidad de lectura como la calidad de escritura de los comentarios son inversamente proporcionales a los          errores gramaticales, lo cuál tiene sentido, pues entre peor escritas estén las palabras, es menos probable que se pueda     entender el mensaje.
+  
+  - La polaridad es inversamente proporcional a los errores gramaticales, lo que podría indicar que mientras menos le agrade     a un individuo una aplicación, tenderá a escribir su review (tal vez por el enojo)
+  

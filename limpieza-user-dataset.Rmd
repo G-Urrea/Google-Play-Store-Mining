@@ -85,6 +85,63 @@ head(reviews_filter2)
 print(paste("Filas después de la limpieza: ", nrow(reviews_filter2)))
 print(paste("Columnas después de la limpieza: ", ncol(reviews_filter2)))
 ```
+Un vistazo al dataframe nos muestra que aún hay valores vacíos en la columna correspondiente a "ease_of_reading_quality"
+```{r}
+count(reviews_filter2, c("ease_of_reading_quality"))
+```
+
+Por suerte, dado el "ease_of_reading_quality_score" se pueden rellenar los datos faltantes de esa columna, dado que el score es el score de flesch, se puede crear una función para pasar a variable categorica el score 
+
+```{r}
+flesch <- function(score) {
+  # Función que retorna la facilidad de lectura en base al puntaje de flesch
+  calification <-""
+  v <-c("Very Confusing", "Difficult" ,"Fairly Difficult","Standard","Fairly Easy","Easy", "Very Easy")
+  if (score < 30){
+    calification <- v[1]
+    }
+  else if (score<50){
+    calification <- v[2]
+  }
+  else if (score<60){
+    calification <- v[3]
+  }
+  
+  else if(score<70){
+    calification <-v[4]
+  }
+  
+  else if(score<80){
+    calification <- v[5]
+  }
+  
+  else if (score <90){
+    calification <- v[6]
+  }
+  else{
+    calification <-v[7]
+  }
+  return(calification)
+}
+
+flesch(35)
+```
+
+Se procede a rellenar la columna
+```{r}
+head(reviews_filter2[reviews_filter2$ease_of_reading_quality=="",]) # Se muestran los datos faltantes
+head(reviews_filter2)
+
+eorq = reviews_filter2$ease_of_reading_quality
+eorq <- sapply(reviews_filter2$ease_of_reading_score, function(x) flesch(x)[])
+
+reviews_filter2$ease_of_reading_quality<-eorq
+head(reviews_filter2)
+head(reviews_filter2[reviews_filter2$ease_of_reading_quality=="",]) # ver si hay datos faltantes
+```
+
+Con esto el dataset ya está limpio
+
 ```{r}
 write.csv(reviews_filter2,"dataset_modificado\\dataset-usuarios.csv", row.names = FALSE)
 ```

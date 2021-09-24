@@ -1,16 +1,16 @@
 ---
-title: "R Notebook"
+title: "Segunda exploración general de datos"
 output: html_notebook
 ---
 
 ```{r}
-setwd("C:/Users/Tomz/Desktop/ProyectoMineria/Google-Play-Store-Mining/dataset")
 library(reshape)
 library(tidyverse)
 ```
+
 ```{r}
-ex_GP<-read.csv("C:/Users/Tomz/Desktop/ProyectoMineria/Google-Play-Store-Mining/dataset/extended_googleplaystore.csv", as.is = F)
-ex_GPur<-read.csv("C:/Users/Tomz/Desktop/ProyectoMineria/Google-Play-Store-Mining/dataset_modificado/dataset-usuarios.csv", as.is = F)
+ex_GP<-read.csv("dataset/extended_googleplaystore.csv", as.is = F)
+ex_GPur<-read.csv("dataset_modificado/dataset-usuarios.csv", as.is = F)
 
 ex_GP$App <- as.character(ex_GP$App)
 ex_GPur$App <- as.character(ex_GPur$App)
@@ -26,18 +26,16 @@ summary(ex_GP)
 par(mar=c(12, 3, 1, 1))
 plot(ex_GP$Category..categorical., ex_GP$Rating, las=3)
 ```
-
+Eliminando las aplicaciones gratis, se nota más la diferencia de ratings por categoria
 ```{r}
-#Eliminando las aplicaciones gratis, se nota más la diferencia de ratings por categoria
-
 #par(mar=c(10, 3, 1, 1))
 nofree_GP <- with(ex_GP, ex_GP[Price != 0.00,] )
 plot(nofree_GP$Category..categorical., nofree_GP$Rating, las=3)
 ```
 
+
 ```{r}
 #Sin sorpresa, los juegos tienden a ser las apps más pesadas
-
 par(mar=c(10, 3, 1, 1))
 plot(ex_GP$Category..categorical., ex_GP$Size, las=3)
 ```

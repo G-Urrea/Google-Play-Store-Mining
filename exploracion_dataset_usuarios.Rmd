@@ -24,25 +24,49 @@ Tipo de cada dato:
 str(users[0,])
 ```
 
+Resumen de los datos
+```{r}
+summary(users)
+```
+
 A continuación se muestra la frecuencia del tipo de opinión de la reseñas
 ```{r}
-opolarity <- count(reviews_filter2, c("sentiment_polarity")) 
+opolarity <- count(users, c("sentiment_polarity")) 
 op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
-barplot(opolarity$freq, names.arg=opolarity$sentiment_polarity, legend.text = "Frecuencia",las=2, main="Tipo de opiniones y su frecuencia")
+barplot(opolarity$freq, names.arg=opolarity$sentiment_polarity, legend.text = "Frecuencia",las=2, main="Tipo de comentarios")
 par(op) # Se reinicia el tamaño de la ventana
 ```
 Se puede apreciar que la gente suele opinar más cuando le gusta una aplicación y los comentarios suelen ser ligeramente positivos. También es de notar que la mayoría de comentarios negativos muestran un ligero disgusto.
 
 Veamos la objetividad de las opiniones
 ```{r}
-osubjectivity <- count(reviews_filter2, c("sentiment_subjectivity")) 
+osubjectivity <- count(users, c("sentiment_subjectivity")) 
 op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
-barplot(osubjectivity$freq, names.arg=osubjectivity$sentiment_subjectivity, legend.text = "Frecuencia",las=2, main="Objetividad de las opiniones y su frecuencia")
+barplot(osubjectivity$freq, names.arg=osubjectivity$sentiment_subjectivity, legend.text = "Frecuencia",las=2, main="Objetividad de los comentarios")
 par(op) # Se reinicia el tamaño de la ventana
 ```
 Se puede apreciar que la gran mayoría de los comentarios se pueden considerar "neutrales", en el sentido de que no son completamente objetivos ni subjetivos. De hecho si una mira los comentarios que si se pueden considerar objetivos o subjetivos, es posible notar que en su total están relativamente equilibradas la cantidad de comentarios objetivos y subjetivos.
 
-Seleccionemos sólo las variables numéricas
+Veamos la calidad de redacción
+```{r}
+ospelling <- count(users, c("spelling_quality")) 
+op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
+barplot(ospelling$freq, names.arg=ospelling$spelling_quality, ylab="Frecuencia", las=2, main="Calidad de redacción")
+par(op) # Se reinicia el tamaño de la ventana
+```
+Se puede apreciar que hay muchas reseñas cuya calidad de redacción es mala, aunque también es de notar que hay más reseñas bien redactadas que mal redactadas, pues hay una gran cantidad de reseñas bien y muy bien redactadas.
+
+Revisemos ahora la facilidad de lectura
+```{r}
+oreading <- count(users, c("ease_of_reading_quality")) 
+op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
+barplot(oreading$freq, names.arg=oreading$ease_of_reading_quality, ylab="Frecuencia", las=2, main="Facilidad de lectura")
+par(op) # Se reinicia el tamaño de la ventana
+```
+Se puede apreciar que en su mayoría las reseñas no son complicadas de entender.
+
+
+Ahora estudiemos las variables numéricas
 
 ```{r}
 numeric_atr <- users %>% dplyr::select(where(is.numeric))

@@ -5,6 +5,7 @@ output: html_notebook
 Librerias:
 
 ```{r}
+library(plyr)
 library(dplyr)
 ```
 
@@ -22,7 +23,26 @@ Tipo de cada dato:
 ```{r}
 str(users[0,])
 ```
-Selecciones sólo las variables numéricas
+
+A continuación se muestra la frecuencia del tipo de opinión de la reseñas
+```{r}
+opolarity <- count(reviews_filter2, c("sentiment_polarity")) 
+op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
+barplot(opolarity$freq, names.arg=opolarity$sentiment_polarity, legend.text = "Frecuencia",las=2, main="Tipo de opiniones y su frecuencia")
+par(op) # Se reinicia el tamaño de la ventana
+```
+Se puede apreciar que la gente suele opinar más cuando le gusta una aplicación y los comentarios suelen ser ligeramente positivos. También es de notar que la mayoría de comentarios negativos muestran un ligero disgusto.
+
+Veamos la objetividad de las opiniones
+```{r}
+osubjectivity <- count(reviews_filter2, c("sentiment_subjectivity")) 
+op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
+barplot(osubjectivity$freq, names.arg=osubjectivity$sentiment_subjectivity, legend.text = "Frecuencia",las=2, main="Objetividad de las opiniones y su frecuencia")
+par(op) # Se reinicia el tamaño de la ventana
+```
+Se puede apreciar que la gran mayoría de los comentarios se pueden considerar "neutrales", en el sentido de que no son completamente objetivos ni subjetivos. De hecho si una mira los comentarios que si se pueden considerar objetivos o subjetivos, es posible notar que en su total están relativamente equilibradas la cantidad de comentarios objetivos y subjetivos.
+
+Seleccionemos sólo las variables numéricas
 
 ```{r}
 numeric_atr <- users %>% dplyr::select(where(is.numeric))

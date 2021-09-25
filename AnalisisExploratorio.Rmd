@@ -21,6 +21,22 @@ ex_GPur<-read.csv("extended_googleplaystore_user_reviews.csv")
 #summary(ex_GP)
 #summary(ex_GPur)
 ```
+```{r}
+normalize<-function(d){
+  u<-mean(d)
+  s<-sd(d)
+  (d-u)/s
+}
+
+reEscale<-function(d,a,b){
+  M<-max(d)
+  m<-min(d)
+  s<-(b-a)/(M-m)
+  k<-(a*M-b*m)/(M-m)
+  s*d+k
+}
+```
+
 
 Extended Google PLaystore:
 
@@ -137,7 +153,18 @@ Extrayendo el 10% se reduce a 19295.5
 mean(ex_GP$Reviews,trim=0.1)
 ```
 
-La columna "Installas" muestra el número de descargas de cada aplicación. Tiene un míniom de 0, máximo de 10^9, media 7.778*10^6, mediana 10^5, primer cuartil 10^3 y tercer cuartil 10^6.
+```{r}
+ggplot(ex_GP[order(ex_GP$Reviews, decreasing=TRUE),][1:15,])+
+  geom_bar(aes(x=App,y=Reviews,fill=App),stat = "identity")+
+  coord_flip()+
+  ylab("Número de reviews")+
+  xlab("Aplicación")+
+  ggtitle("15 aplicaciones con más reviews")+
+  theme(legend.position = "none")+
+  scale_fill_hue(l=45)
+```
+
+La columna "Installs" muestra el número de descargas de cada aplicación. Tiene un míniom de 0, máximo de 10^9, media 7.778*10^6, mediana 10^5, primer cuartil 10^3 y tercer cuartil 10^6.
 
 ```{r}
 ggplot(ex_GP[order(ex_GP$Installs, decreasing=TRUE),][1:10,])+
@@ -198,6 +225,12 @@ La columna "spelling_quality_score" contiene valores continuos de 0 a 1, que tan
 
 La columna "ease_of_reading_score" contiene valores continuos de -1570.79 a 206.84, que tan difícil, si es cercano a 0, o fácil, si es cercano a 1, de leer es la review. Tiene media 74.03 y mediana 74.53. Las columnas "ease_of_reading_quality" y "ease_of_reading_summarised" descriven la variable categóricamente.
 
+Reescalar "ease_of_reading_score" al rango [-1,1]:
+
+```{r}
+ex_GPur$ease_of_reading_score<-reEscale(ex_GPur$ease_of_reading_score, -1, 1)
+```
+
 La columna "grammar_check_score" cuenta el total de errores gramaticales de la reseña.
 
 La columna "original_Sentiment_Polarity" difiere en en 4790 filas de "sentiment_polarity_score" y comparte las mismas medidas de dispersión.
@@ -208,5 +241,135 @@ La columna "original_Sentiment_Subjectivity" difiere en en 2996 filas de "sentim
 nrow(ex_GPur[ex_GPur$sentiment_polarity_score!=ex_GPur$original_Sentiment_Polarity, ])
 nrow(ex_GPur[ex_GPur$sentiment_subjectivity_score != ex_GPur$original_Sentiment_Subjectivity,])
 ```
+
+Cruce de datos:
+
+En el dataframe "Extended google Playstore User Review" hay 865 apliaciones distintas, de las cuales 816 están en "Extended google Playstore".
+
+```{r}
+cur<-aggregate(sentiment_polarity_score ~ App, ex_GPur, FUN=mean)
+
+cur<-merge(cur, aggregate(ease_of_reading_score ~ App, ex_GPur, FUN=mean), by="App")
+
+cur<-merge(cur, aggregate(sentiment_subjectivity_score ~ App, ex_GPur, FUN=mean), by="App")
+
+cur<-merge(cur, aggregate(spelling_quality_score ~ App, ex_GPur, FUN=mean), by="App")
+
+cur<-merge(cur, ex_GP, by="App")
+
+nrow(cur[cur$App %in% ex_GP$App,])
+```
+
+Se crea un dataframe con la filas y columnas de "Extended Google Playstore" que corresponden a apliciones que están en "Extended Google Playstore User Review", más cuatro columnas con los promedios de "sentiment_polarity_score", "ease_of_reading_score", "sentiment_subjectivity_score" y "spelling_quality_score".
+
+La columna "Rating" no contiene valores NA.
+
+```{r}
+nrow(cur[is.na(cur$Rating),])
+```
+
+La columna "Size" contiene 248 valores NA.
+
+```{r}
+nrow(cur[is.na(cur$Size),])
+```
+Sólo 9 aplicaciones no son gratis.
+
+```{r}
+sum(cur$Type)
+```
+
+No se presenta correlación significativa entre los promedios de "sentiment_polarity_score", "ease_of_reading_score", "sentiment_subjectivity_score" y "spelling_quality_score".
+
+```{r}
+cor(cur[,2:5])
+```
+La correlación de los "scores" con Rating en positiva, mientras que con el número de reviews es negativa, sin embargo ninguna alcanza valores significativos. Las dos correlaciones más altas se dan entre la polaridad y subjetividad con Rating, estas son de 0.2640532 y 0.2154879 respectivamente.
+
+```{r}
+cor(cur[,c(2,7)]) #0.2640532
+cor(cur[,c(3,7)]) #0.07695201
+cor(cur[,c(4,7)]) #0.2154879
+cor(cur[,c(5,7)]) #0.05209052
+cor(cur[,c(2,8)]) #-0.123308
+cor(cur[,c(3,8)]) #-0.03066006
+cor(cur[,c(4,8)]) #-0.001157635
+cor(cur[,c(5,8)]) #-0.02082146
+```
+
+La polaridad tiene un mínimo de -0.5, máximo de 1, media 0.20052, mediana 0.19822 y rango intercuartil 0.21689.
+
+La facilidad de lectura tiene un mínimo de 0.7841, máximo de 0.9037, media 0.8507, mediana 0.8499 y rango intercuartil 0.0157.
+
+La subjetividad tiene un mínimo de 0, máximo de 0.9167, media 0.492, mediana 0.4971 y rango intercuartil 0.0852.
+
+La calidad de escritura tiene un mínimo de 0.6667, máximo de 1, media 0.8913, mediana 0.8968 y rango intercuartil 0.0449.
+
+```{r}
+summary(cur[,2:5])
+```
+
+Se mantienen las 33 categorías y 67 de los 118 géneros de "Extended Google Playstore"
+
+```{r}
+cat2<-aggregate(Category~Category..categorical., cur, FUN=mean)
+gen2<-aggregate(Genres~Genres..categorical., cur, FUN=mean)
+
+cat2<-merge(cat2, aggregate(App~Category..categorical., cur, FUN=length), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(App~Genres..categorical., cur, FUN=length), by="Genres..categorical.")
+
+cat2<-merge(cat2, aggregate(sentiment_polarity_score~Category..categorical., cur, FUN=mean), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(sentiment_polarity_score~Genres..categorical., cur, FUN=mean), by="Genres..categorical.")
+
+cat2<-merge(cat2, aggregate(ease_of_reading_score~Category..categorical., cur, FUN=mean), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(ease_of_reading_score~Genres..categorical., cur, FUN=mean), by="Genres..categorical.")
+
+cat2<-merge(cat2, aggregate(sentiment_subjectivity_score~Category..categorical., cur, FUN=mean), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(sentiment_subjectivity_score~Genres..categorical., cur, FUN=mean), by="Genres..categorical.")
+
+cat2<-merge(cat2, aggregate(spelling_quality_score~Category..categorical., cur, FUN=mean), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(spelling_quality_score~Genres..categorical., cur, FUN=mean), by="Genres..categorical.")
+
+cat2<-merge(cat2, aggregate(Installs~Category..categorical., cur, FUN=sum), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(Installs~Genres..categorical., cur, FUN=sum), by="Genres..categorical.")
+
+head(cat2)
+```
+```{r}
+head(gen2)
+```
+
+```{r}
+ggplot(cur[order(cur$sentiment_polarity_score, decreasing=FALSE),][1:15,])+
+  geom_bar(aes(x=App,y=sentiment_polarity_score,fill=App),stat = "identity")+
+  coord_flip()+
+  ylab("Polaridad")+
+  xlab("Aplicación")+
+  ggtitle("15 aplicaciones con peor\n polaridad en comentarios")+
+  theme(legend.position = "none")+
+  scale_fill_hue(l=45)
+```
+
+```{r}
+ggplot(cur[order(cur$sentiment_polarity_score, decreasing=TRUE),][1:15,])+
+  geom_bar(aes(x=App,y=sentiment_polarity_score,fill=App),stat = "identity")+
+  coord_flip()+
+  ylab("Polaridad")+
+  xlab("Aplicación")+
+  ggtitle("15 aplicaciones con mejor\n polaridad en comentarios")+
+  theme(legend.position = "none")+
+  scale_fill_hue(l=45)
+```
+
+```{r}
+write.csv(ex_GP, "GooglePlaystore.csv", row.names = FALSE)
+write.csv(ex_GPur, "UserReview.csv", row.names = FALSE)
+write.csv(cur, "GPUserReview.csv", row.names = FALSE)
+write.csv(cat, "Categories1.csv", row.names = FALSE)
+write.csv(gen, "Genre1.csv", row.names = FALSE)
+write.csv(cat2, "Categories2.csv", row.names = FALSE)
+write.csv(gen2, "Genre2.csv", row.names = FALSE)
+```
+
 
 

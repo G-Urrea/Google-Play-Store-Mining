@@ -31,16 +31,18 @@ summary(users)
 
 A continuación se muestra la frecuencia del tipo de opinión de la reseñas
 ```{r}
-opolarity <- count(users, c("sentiment_polarity")) 
+opolarity <- users %>% plyr::count(c("sentiment_polarity")) 
 op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
 barplot(opolarity$freq, names.arg=opolarity$sentiment_polarity, legend.text = "Frecuencia",las=2, main="Tipo de comentarios")
 par(op) # Se reinicia el tamaño de la ventana
 ```
+
+
 Se puede apreciar que la gente suele opinar más cuando le gusta una aplicación y los comentarios suelen ser ligeramente positivos. También es de notar que la mayoría de comentarios negativos muestran un ligero disgusto.
 
 Veamos la objetividad de las opiniones
 ```{r}
-osubjectivity <- count(users, c("sentiment_subjectivity")) 
+osubjectivity <- users %>% plyr::count(c("sentiment_subjectivity")) 
 op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
 barplot(osubjectivity$freq, names.arg=osubjectivity$sentiment_subjectivity, legend.text = "Frecuencia",las=2, main="Objetividad de los comentarios")
 par(op) # Se reinicia el tamaño de la ventana
@@ -49,7 +51,7 @@ Se puede apreciar que la gran mayoría de los comentarios se pueden considerar "
 
 Veamos la calidad de redacción
 ```{r}
-ospelling <- count(users, c("spelling_quality")) 
+ospelling <- users %>% plyr::count(c("spelling_quality")) 
 op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
 barplot(ospelling$freq, names.arg=ospelling$spelling_quality, ylab="Frecuencia", las=2, main="Calidad de redacción")
 par(op) # Se reinicia el tamaño de la ventana
@@ -58,7 +60,7 @@ Se puede apreciar que hay muchas reseñas cuya calidad de redacción es mala, au
 
 Revisemos ahora la facilidad de lectura
 ```{r}
-oreading <- count(users, c("ease_of_reading_quality")) 
+oreading <- users %>% plyr :: count(c("ease_of_reading_quality")) 
 op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
 barplot(oreading$freq, names.arg=oreading$ease_of_reading_quality, ylab="Frecuencia", las=2, main="Facilidad de lectura")
 par(op) # Se reinicia el tamaño de la ventana

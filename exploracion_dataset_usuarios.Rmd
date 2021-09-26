@@ -1,0 +1,93 @@
+---
+title: "Exploración dataset de usuarios"
+output: html_notebook
+---
+Librerias:
+
+```{r}
+library(plyr)
+library(dplyr)
+```
+
+Se carga el dataset:
+```{r}
+users <- read.csv("dataset_modificado/dataset-usuarios.csv", encoding="UTF-8")
+```
+
+Primeras filas del dataset:
+```{r}
+head(users)
+```
+
+Tipo de cada dato:
+```{r}
+str(users[0,])
+```
+
+Resumen de los datos
+```{r}
+summary(users)
+```
+
+A continuación se muestra la frecuencia del tipo de opinión de la reseñas
+```{r}
+opolarity <- count(users, c("sentiment_polarity")) 
+op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
+barplot(opolarity$freq, names.arg=opolarity$sentiment_polarity, legend.text = "Frecuencia",las=2, main="Tipo de comentarios")
+par(op) # Se reinicia el tamaño de la ventana
+```
+Se puede apreciar que la gente suele opinar más cuando le gusta una aplicación y los comentarios suelen ser ligeramente positivos. También es de notar que la mayoría de comentarios negativos muestran un ligero disgusto.
+
+Veamos la objetividad de las opiniones
+```{r}
+osubjectivity <- count(users, c("sentiment_subjectivity")) 
+op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
+barplot(osubjectivity$freq, names.arg=osubjectivity$sentiment_subjectivity, legend.text = "Frecuencia",las=2, main="Objetividad de los comentarios")
+par(op) # Se reinicia el tamaño de la ventana
+```
+Se puede apreciar que la gran mayoría de los comentarios se pueden considerar "neutrales", en el sentido de que no son completamente objetivos ni subjetivos. De hecho si una mira los comentarios que si se pueden considerar objetivos o subjetivos, es posible notar que en su total están relativamente equilibradas la cantidad de comentarios objetivos y subjetivos.
+
+Veamos la calidad de redacción
+```{r}
+ospelling <- count(users, c("spelling_quality")) 
+op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
+barplot(ospelling$freq, names.arg=ospelling$spelling_quality, ylab="Frecuencia", las=2, main="Calidad de redacción")
+par(op) # Se reinicia el tamaño de la ventana
+```
+Se puede apreciar que hay muchas reseñas cuya calidad de redacción es mala, aunque también es de notar que hay más reseñas bien redactadas que mal redactadas, pues hay una gran cantidad de reseñas bien y muy bien redactadas.
+
+Revisemos ahora la facilidad de lectura
+```{r}
+oreading <- count(users, c("ease_of_reading_quality")) 
+op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
+barplot(oreading$freq, names.arg=oreading$ease_of_reading_quality, ylab="Frecuencia", las=2, main="Facilidad de lectura")
+par(op) # Se reinicia el tamaño de la ventana
+```
+Se puede apreciar que en su mayoría las reseñas no son complicadas de entender.
+
+
+Ahora estudiemos las variables numéricas
+
+```{r}
+numeric_atr <- users %>% dplyr::select(where(is.numeric))
+head(numeric_atr)
+```
+Veamos si hay alguna correlación lineal entre ellas
+```{r}
+cor(numeric_atr)
+```
+Son de notar las siguientes relaciones lineales:
+
+  - sentiment_polarity_score vs sentiment_subjectivity_score : 0.261587278 Relación lineal directa
+  - spelling_quality_score vs grammar_check_score :-0.102326653 Relación lineal inversa
+  - sentiment_polarity_score vs grammar_check_score: -0.104765855 Relación lineal inversa
+  - ease_of_reading_score vs grammar_check_score : -0.128594206 Relación lineal inversa
+  
+Si bien no son relaciones particularmente fuertes, taampoco son para nada debiles y de hecho tienen algo de sentido:
+  - La polaridad es directamente proporcional a la subjetividad, lo cuál puede indicar que el gusto por una aplicación puede 
+    llevar a la gente a hablar mejor de ella sin tanta objetividad.
+    
+  - Tanto la facilidad de lectura como la calidad de escritura de los comentarios son inversamente proporcionales a los          errores gramaticales, lo cuál tiene sentido, pues entre peor escritas estén las palabras, es menos probable que se pueda     entender el mensaje.
+  
+  - La polaridad es inversamente proporcional a los errores gramaticales, lo que podría indicar que mientras menos le agrade     a un individuo una aplicación, tenderá a escribir su review (tal vez por el enojo)
+  

@@ -1,0 +1,168 @@
+---
+title: "CC5206 Introducción a la Minería de Datos: Reporte Hito 1"
+author: "Integrantes: Benjamín uwu, Tomás Calderón, Diego León, Joaquín Moraga, Germán Urrea"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Motivacion
+
+Durante los últimos años debido a la tecnología se han desarrollados miles de aplicaciones para los dispositivos emergentes por lo que distintas empresas han fijado sus ojo en esta nueva oportunidad de mercado, por ejemplo, durante el periodo de pandemia del COVID-19, la app store de la empresa apple a tenido un crecimiento en sus descargas de un 7% registrando 218 billones de descargas totales. Con este nuevo comportamiento las personas están pasando aproximadamente 4 horas al día en aplicaciones dentro de sus dispositivos móviles, independientemente de su rango de edad, generando así un crecimiento en este mercado, pues el 26% de los dólares generados globalmente están ligados a negocios que ofrecen algún tipo de aplicación móvil. 
+
+Si bien este mercado presenta una oportunidad de negocio tentativa, si es que se presenta el capital necesario, primero se debe realizar un estudio de mercado, pues aproximadamente entre un 80 a 90% de las aplicaciones recién lanzadas al mercado son abandonadas en su primera etapa debido a la mala percepción popular, es por esta razón que se deben explorar puntos claves en el estudio de mercado.
+
+En base a lo anterior, es de interés estudiar las relaciones existentes entre las aplicaciones, tales como las aplicaciones más utilizadas y mejor calificadas, aplicaciones con mayor número de instalaciones, aplicaciones con mejores (o peores) comentarios, etc. Dichas relaciones, podrían dar indicios del porqué una ciertas aplicaciones son las más descargadas (importancia de tales aplicaciones en la vida de hoy, y que tan necesarias son para las personas), o revelar, en base a las aplicaciones más utilizadas, conductas inducidas en las personas por las mismas. 
+
+Al interés de estudiar datos del mercado de aplicaciones se suma, la preponderancia que tienen los smartphones y sus aplicaciones, en la vida cotidiana de las personas. Con el pasar del tiempo, las empresas desarrolladoras de aplicaciones han logrado vincularse con distintas costumbres y culturas humanas, teniendo una inmensa variedad de funcionalidades accesibles por las aplicaciones, que influyen en la vida de personas de formas muy variadas. Tales hábitos revelan factores importantes en los contextos sociales, económicos, políticos y culturales de los distintos países del mundo. 
+Con los puntos a estudiar ya fijos, se tomó la decisión de estudiar un conjunto de datos recolectados de la tienda de aplicaciones Google Play, disponible en Kaggle. El dataset consiste básicamente de 2 tablas, la primera presenta información sobre las aplicaciones, como atributos de categoría, clasificación, cantidad de reseñas y tamaño aproximado. La segunda tabla contiene datos de las 100 reseñas más representativas de un conjunto de aplicaciones, en esta se encuentra información sobre la reseña, el carácter positivo, negativo o neutral de la reseña, que tan objetiva o subjetiva es y la calidad de redacción de esta.
+
+
+
+## Exploracion de Datos
+
+
+```{r}
+
+
+
+#setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) Comando que setea el directorio de trabajo a la carpeta donde se mantiene este archivo, desmarcarlo para ejecutar codigo, casua error para generar el html
+
+
+#library(reshape)
+library(tidyverse)
+ex_GP<-read.csv("~/Downloads/Google-Play-Store-Mining-Benj/extended_googleplaystore.csv")
+ex_GPur<-read.csv("~/Downloads/Google-Play-Store-Mining-Benj/extended_googleplaystore_user_reviews.csv")
+#GP<-read.csv("googleplaystore.csv")
+#GPur<-read.csv("googleplaystore_user_reviews.csv")
+#ptr<-read.csv("profiled_Translated_Review.csv")
+```
+
+
+Para iniciar la exploración de datos, se seleccionan las tablas más relevantes. Originalmente el dataset contenía 5 tablas, sin embargo 2 de estas corresponden a versiones extendidas del resto, por lo que el contenido útil se reduce a 2 dataframes, uno con información de las aplicaciones y otro de las reseñas. En adelante nos referiremos a estas como ‘Apps’ y ‘Reviews’.
+
+La tabla ‘Apps’ consta de 9659 filas, cada una correspondiente a una aplicación distinta y 23 columnas con los atributos de las mismas. Las aplicaciones se identifican por la primera columna, ‘App’, que contiene el nombre de las mismas.
+
+Las columnas "Category" y "Genres" contienen valores numéricos, cada uno asociado a una categoría y un género respectivamente, que se especifican en las columnas "Category..categorical." y "Genres..categorical.". Se construyeron 2 dataframes: ‘Cat’ con una fila asociada a cada categoría y ‘Gen’ con una fila asociada a cada género, además incluyen columnas con el número que corresponde a las distintas categorías o género, y el total de aplicaciones y descargas de cada uno. En total hay 33 categorías y 118 géneros 
+
+```{r}
+cat<-aggregate(Category~Category..categorical., ex_GP, FUN=mean)
+gen<-aggregate(Genres~Genres..categorical., ex_GP, FUN=mean)
+cat<-merge(cat, aggregate(App~Category..categorical., ex_GP, FUN=length), by="Category..categorical.")
+gen<-merge(gen, aggregate(App~Genres..categorical., ex_GP, FUN=length), by="Genres..categorical.")
+cat<-merge(cat, aggregate(Installs~Category..categorical., ex_GP, FUN=sum), by="Category..categorical.")
+gen<-merge(gen, aggregate(Installs~Genres..categorical., ex_GP, FUN=sum), by="Genres..categorical.")
+head(cat)
+
+```
+
+La columna "Rating" muestra la puntuación del 1 al 5 dada por los usuarios para cada aplicación. Tiene un promedio de 4.173, mediana 4.3 y rango intercuartil 0.5. Contiene 1463 valores faltantes.
+
+```{r}
+ggplot(ex_GP[!is.na(ex_GP$Rating),])+
+  geom_boxplot(aes(y=Rating))
+```
+
+La columna "Size" muestra el tamaño en MB de las aplicaciones. Tiene un mínimo de 0.0085, máximo de 100, media 20.39529, mediana 12 y rango intercuartil 23.4. Contiene 1227 valores faltantes. Cortando el 10% de valores extremos la media baja a 16.26433.
+
+```{r}
+mean(ex_GP[!is.na(ex_GP$Size),]$Size,trim=0.1)
+ggplot(ex_GP[!is.na(ex_GP$Size),])+
+  geom_boxplot(aes(y=Size))
+```
+
+La intersección de valores faltantes entre “Rating” y “Size” es de 58 filas.
+
+```{r}
+nrow(ex_GP[is.na(ex_GP$Rating) & is.na(ex_GP$Size),])
+```
+
+La columna "Reviews" muestra el número de reviews que ha recibido cada aplicación. Tiene un mínimo de 0, máximo de 78158306, media 216593, mediana 967, rango inter cuartil 29376 y desviación estándar 1831320. Extrayendo el 1% de los valores extremos la media se reduce a 100217.1. Extrayendo el 10% se reduce 19295.5.
+
+```{r}
+sd(ex_GP$Reviews)
+mean(ex_GP$Reviews,trim=0.01)
+mean(ex_GP$Reviews,trim=0.1)
+ggplot(ex_GP[order(ex_GP$Reviews, decreasing=TRUE),][1:15,])+
+  geom_bar(aes(x=App,y=Reviews,fill=App),stat = "identity")+
+  coord_flip()+
+  ylab("Número de reviews")+
+  xlab("Aplicación")+
+  ggtitle("15 aplicaciones con más reviews")+
+  theme(legend.position = "none")+
+  scale_fill_hue(l=45)
+```
+
+La columna "Installs" muestra el número de descargas de cada aplicación. Tiene un mínimo de 0, máximo de 10^9, media 7.778*10^6, mediana 10^5, primer cuartil 10^3 y tercer cuartil 10^6.
+
+```{r}
+ggplot(ex_GP[order(ex_GP$Installs, decreasing=TRUE),][1:10,])+
+  geom_bar(aes(x=App,y=Installs,fill=App),stat = "identity")+
+  coord_flip()+
+  ylab("Número de descargas")+
+  xlab("Aplicación")+
+  ggtitle("10 aplicaciones más descargadas")+
+  theme(legend.position = "none")+
+  scale_fill_brewer(palette="Spectral")
+```
+
+```{r}
+ggplot(ex_GP)+
+  geom_boxplot(aes(y=Installs))
+```
+
+La columna "Type" asigna 0 a las aplicaciones gratis y 1 a las que no lo son, esto también se indica de forma categórica en la columna “Type..categorical.”. En total hay 756 aplicaciones de pago y 8903 gratis. El valor de la fila 8903 es -1, debería ser 0.
+
+```{r}
+sum(ex_GP$Type)
+ex_GP[8029,"Type"]
+(ex_GP[8029,"Type"]<-0)
+```
+
+La columna "Price" muestra el precio de las aplicaciones. Entre las aplicaciones de pago, el mínimo es 0.99, el máximo 400, la media 14.04515, la mediana 2.99 y la desviación estándar 58.74361. Extrayendo el 5% de los valores extremos, la media se reduce a 4.027639.
+
+```{r}
+min(ex_GP[ex_GP$Type==1,]$Price)
+max(ex_GP[ex_GP$Type==1,]$Price)
+mean(ex_GP[ex_GP$Type==1,]$Price)
+median(ex_GP[ex_GP$Type==1,]$Price)
+sd(ex_GP[ex_GP$Type==1,]$Price)
+mean(ex_GP[ex_GP$Type==1,]$Price,trim=0.05)
+```
+
+
+## Preguntas y problemas
+
+Basado en lo explicado en las secciones de motivación y análisis exploratorio surgen las siguientes preguntas/problemas que se podrían responder usando la refactorización de los datos para poder entender de mejor manera el comportamiento de las descargas de aplicaciones. Las preguntas son las siguientes:
+
+¿Es posible predecir la cantidad de descargas de una aplicación, en base al público dirigido y las funcionalidades que la aplicación le ofrece a tal público?
+
+¿Se puede extraer información del tipo de usuario de cada aplicación en base a la categoría e información de los reviews de esta?
+
+¿Existen características específicas de las aplicaciones que permitan tener mejor o peor aprobación del público?
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+

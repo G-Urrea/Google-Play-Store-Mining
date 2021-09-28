@@ -276,14 +276,17 @@ sum(cur$Type)
 La correlación de los "scores" con “Rating” es positiva, mientras que con el número de reviews es negativa, sin embargo ninguna alcanza valores significativos. Las dos correlaciones más altas se dan entre la polaridad y subjetividad con Rating, estas son de 0.2640532 y 0.2154879 respectivamente.
 
 ```{r}
-cor(cur[,c(2,7)]) #0.2640532
-cor(cur[,c(3,7)]) #0.07695201
-cor(cur[,c(4,7)]) #0.2154879
-cor(cur[,c(5,7)]) #0.05209052
-cor(cur[,c(2,8)]) #-0.123308
-cor(cur[,c(3,8)]) #-0.03066006
-cor(cur[,c(4,8)]) #-0.001157635
-cor(cur[,c(5,8)]) #-0.02082146
+numeric <- cur[, c(2,3,4,5,7,8)]
+```
+
+```{r}
+print("Correlación con variable Rating")
+apply(numeric,2, function(col) cor(col, numeric$Rating))
+```
+
+```{r}
+print("Correlación con variable Reviews")
+apply(numeric,2, function(col) cor(col, numeric$Reviews))
 ```
 
 

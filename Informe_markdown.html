@@ -409,38 +409,25 @@ nrow(cur[cur$App %in% ex_GP$App,])</code></pre>
 <pre class="r"><code>sum(cur$Type)</code></pre>
 <pre><code>## [1] 9</code></pre>
 <p>La correlación de los “scores” con “Rating” es positiva, mientras que con el número de reviews es negativa, sin embargo ninguna alcanza valores significativos. Las dos correlaciones más altas se dan entre la polaridad y subjetividad con Rating, estas son de 0.2640532 y 0.2154879 respectivamente.</p>
-<pre class="r"><code>cor(cur[,c(2,7)]) #0.2640532</code></pre>
-<pre><code>##                          sentiment_polarity_score    Rating
-## sentiment_polarity_score                1.0000000 0.2640532
-## Rating                                  0.2640532 1.0000000</code></pre>
-<pre class="r"><code>cor(cur[,c(3,7)]) #0.07695201</code></pre>
-<pre><code>##                       ease_of_reading_score     Rating
-## ease_of_reading_score            1.00000000 0.07695201
-## Rating                           0.07695201 1.00000000</code></pre>
-<pre class="r"><code>cor(cur[,c(4,7)]) #0.2154879</code></pre>
-<pre><code>##                              sentiment_subjectivity_score    Rating
-## sentiment_subjectivity_score                    1.0000000 0.2154879
-## Rating                                          0.2154879 1.0000000</code></pre>
-<pre class="r"><code>cor(cur[,c(5,7)]) #0.05209052</code></pre>
-<pre><code>##                        spelling_quality_score     Rating
-## spelling_quality_score             1.00000000 0.05209052
-## Rating                             0.05209052 1.00000000</code></pre>
-<pre class="r"><code>cor(cur[,c(2,8)]) #-0.123308</code></pre>
-<pre><code>##                          sentiment_polarity_score   Reviews
-## sentiment_polarity_score                 1.000000 -0.123308
-## Reviews                                 -0.123308  1.000000</code></pre>
-<pre class="r"><code>cor(cur[,c(3,8)]) #-0.03066006</code></pre>
-<pre><code>##                       ease_of_reading_score     Reviews
-## ease_of_reading_score            1.00000000 -0.03066006
-## Reviews                         -0.03066006  1.00000000</code></pre>
-<pre class="r"><code>cor(cur[,c(4,8)]) #-0.001157635</code></pre>
-<pre><code>##                              sentiment_subjectivity_score      Reviews
-## sentiment_subjectivity_score                  1.000000000 -0.001157635
-## Reviews                                      -0.001157635  1.000000000</code></pre>
-<pre class="r"><code>cor(cur[,c(5,8)]) #-0.02082146</code></pre>
-<pre><code>##                        spelling_quality_score     Reviews
-## spelling_quality_score             1.00000000 -0.02082146
-## Reviews                           -0.02082146  1.00000000</code></pre>
+<pre class="r"><code>numeric &lt;- cur[, c(2,3,4,5,7,8)]</code></pre>
+<pre class="r"><code>print(&quot;Correlación con variable Rating&quot;)</code></pre>
+<pre><code>## [1] &quot;Correlación con variable Rating&quot;</code></pre>
+<pre class="r"><code>apply(numeric,2, function(col) cor(col, numeric$Rating))</code></pre>
+<pre><code>##     sentiment_polarity_score        ease_of_reading_score 
+##                   0.26405321                   0.07695201 
+## sentiment_subjectivity_score       spelling_quality_score 
+##                   0.21548787                   0.05209052 
+##                       Rating                      Reviews 
+##                   1.00000000                   0.07681589</code></pre>
+<pre class="r"><code>print(&quot;Correlación con variable Reviews&quot;)</code></pre>
+<pre><code>## [1] &quot;Correlación con variable Reviews&quot;</code></pre>
+<pre class="r"><code>apply(numeric,2, function(col) cor(col, numeric$Reviews))</code></pre>
+<pre><code>##     sentiment_polarity_score        ease_of_reading_score 
+##                 -0.123308031                 -0.030660060 
+## sentiment_subjectivity_score       spelling_quality_score 
+##                 -0.001157635                 -0.020821461 
+##                       Rating                      Reviews 
+##                  0.076815891                  1.000000000</code></pre>
 </div>
 <div id="preguntas-y-problemas" class="section level2">
 <h2>Preguntas y problemas</h2>

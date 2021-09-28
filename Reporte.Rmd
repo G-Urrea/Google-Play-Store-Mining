@@ -1,0 +1,293 @@
+---
+title: "CC5206 Introducción a la Minería de Datos: Reporte Hito 1"
+author: "Integrantes: Benjamín Farías, Tomás Calderón, Diego León, Joaquín Moraga, Germán Urrea"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Motivacion
+
+Durante los últimos años debido a la tecnología se han desarrollados miles de aplicaciones para los dispositivos emergentes por lo que distintas empresas han fijado sus ojo en esta nueva oportunidad de mercado, por ejemplo, durante el periodo de pandemia del COVID-19, la app store de la empresa apple a tenido un crecimiento en sus descargas de un 7% registrando 218 billones de descargas totales. Con este nuevo comportamiento las personas están pasando aproximadamente 4 horas al día en aplicaciones dentro de sus dispositivos móviles, independientemente de su rango de edad, generando así un crecimiento en este mercado, pues el 26% de los dólares generados globalmente están ligados a negocios que ofrecen algún tipo de aplicación móvil. 
+
+Si bien este mercado presenta una oportunidad de negocio tentativa, si es que se presenta el capital necesario, primero se debe realizar un estudio de mercado, pues aproximadamente entre un 80 a 90% de las aplicaciones recién lanzadas al mercado son abandonadas en su primera etapa debido a la mala percepción popular, es por esta razón que se deben explorar puntos claves en el estudio de mercado.
+
+En base a lo anterior, es de interés estudiar las relaciones existentes entre las aplicaciones, tales como las aplicaciones más utilizadas y mejor calificadas, aplicaciones con mayor número de instalaciones, aplicaciones con mejores (o peores) comentarios, etc. Dichas relaciones, podrían dar indicios del porqué una ciertas aplicaciones son las más descargadas (importancia de tales aplicaciones en la vida de hoy, y que tan necesarias son para las personas), o revelar, en base a las aplicaciones más utilizadas, conductas inducidas en las personas por las mismas. 
+
+Al interés de estudiar datos del mercado de aplicaciones se suma, la preponderancia que tienen los smartphones y sus aplicaciones, en la vida cotidiana de las personas. Con el pasar del tiempo, las empresas desarrolladoras de aplicaciones han logrado vincularse con distintas costumbres y culturas humanas, teniendo una inmensa variedad de funcionalidades accesibles por las aplicaciones, que influyen en la vida de personas de formas muy variadas. Tales hábitos revelan factores importantes en los contextos sociales, económicos, políticos y culturales de los distintos países del mundo. 
+Con los puntos a estudiar ya fijos, se tomó la decisión de estudiar un conjunto de datos recolectados de la tienda de aplicaciones Google Play, disponible en Kaggle. El dataset consiste básicamente de 2 tablas, la primera presenta información sobre las aplicaciones, como atributos de categoría, clasificación, cantidad de reseñas y tamaño aproximado. La segunda tabla contiene datos de las 100 reseñas más representativas de un conjunto de aplicaciones, en esta se encuentra información sobre la reseña, el carácter positivo, negativo o neutral de la reseña, que tan objetiva o subjetiva es y la calidad de redacción de esta.
+
+
+## Exploracion de Datos
+
+```{r echo=FALSE, message=FALSE}
+# Se importan librerias y dataframes
+library(tidyverse)
+library(plyr)
+library(dplyr)
+ex_GP<-read.csv("dataset/extended_googleplaystore.csv", as.is =F , encoding="UTF-8")
+ex_GPur<-read.csv("dataset/extended_googleplaystore_user_reviews.csv", encoding = "UTF-8")
+
+# Se remueven filas nulas
+ex_GPur<-ex_GPur[!is.na(ex_GPur$characters_count),]
+```
+
+Originalmente el dataset contenía 5 tablas, sin embargo 2 de estas corresponden a versiones extendidas del resto, por lo que el contenido útil se reduce a 2 dataframes, uno con información de las aplicaciones y otro de las reseñas. En adelante nos referiremos a estas como ‘Apps’ y ‘Reviews’.
+
+### Apps
+
+La tabla ‘Apps’ consta de 9659 filas, cada una correspondiente a una aplicación distinta y 23 columnas con los atributos de las mismas. Las aplicaciones se identifican por la primera columna, ‘App’, que contiene el nombre de las mismas.
+
+Las columnas "Category" y "Genres" contienen valores numéricos, cada uno asociado a una categoría y un género respectivamente, que se especifican en las columnas "Category..categorical." y "Genres..categorical.". Se construyeron 2 dataframes: ‘Cat’ con una fila asociada a cada categoría y ‘Gen’ con una fila asociada a cada género, además incluyen columnas con el número que corresponde a las distintas categorías o género, y el total de aplicaciones y descargas de cada uno. En total hay 33 categorías y 118 géneros 
+
+La columna "Rating" muestra la puntuación del 1 al 5 dada por los usuarios para cada aplicación. Tiene un promedio de 4.173, mediana 4.3 y rango intercuartil 0.5. Contiene 1463 valores faltantes.
+
+La columna "Size" muestra el tamaño en MB de las aplicaciones. Tiene un mínimo de 0.0085, máximo de 100, media 20.39529, mediana 12 y rango intercuartil 23.4. Contiene 1227 valores faltantes. Cortando el 10% de valores extremos la media baja a 16.26433.
+
+ - La intersección de valores faltantes entre “Rating” y “Size” es de 58 filas.
+
+La columna "Reviews" muestra el número de reviews que ha recibido cada aplicación. Tiene un mínimo de 0, máximo de 78158306, media 216593, mediana 967, rango inter cuartil 29376 y desviación estándar 1831320. Extrayendo el 1% de los valores extremos la media se reduce a 100217.1. Extrayendo el 10% se reduce 19295.5.
+
+La columna "Installs" muestra el número de descargas de cada aplicación. Tiene un mínimo de 0, máximo de 10^9, media 7.778*10^6, mediana 10^5, primer cuartil 10^3 y tercer cuartil 10^6.
+
+La columna "Type" asigna 0 a las aplicaciones gratis y 1 a las que no lo son, esto también se indica de forma categórica en la columna “Type..categorical.”. En total hay 756 aplicaciones de pago y 8903 gratis. El valor de la fila 8903 es -1, debería ser 0.
+
+La columna "Price" muestra el precio de las aplicaciones. Entre las aplicaciones de pago, el mínimo es 0.99, el máximo 400, la media 14.04515, la mediana 2.99 y la desviación estándar 58.74361. Extrayendo el 5% de los valores extremos, la media se reduce a 4.027639.
+
+Se analizó la distrobución de Ratings, Precios y Tamaños de las aplicaciones de pago através de a las distintas categorías. Se encontró que:
+ - Las aplicaciones que son juegos son los más pesados en temas de tamaño de aplicación.
+ - Respecto al precio, las aplicaciones de las categorías de medicina y finanzas tienden a ser las más caras.
+
+Además de esto, se visualiza por separado la correlación de los ratings de las aplicaciones en comparación con su precio y tamaño. Separando aquellas aplicaciones con precios extremadamente altos, en específico, sobre 50 USD (existen apps cuyo único propósito es ser caras. Ej: Apps “Im Rich”). Se observa que:
+
+ - Hasta un cierto punto, las aplicaciones más caras tienden a tener un mayor mínimo de ratings. Las aplicaciones más caras no son necesariamente las mejores, pero en general el su peor rating no baja de 3* a partir de cierto precio.
+ - Existe una tendencia similar respecto al tamaño de las aplicaciones, las cuales al tener mayor tamaño deberían (en teoría) tener mayor contenido, con lo que apps de mayor tamaño (hasta un cierto punto) tienden a tener un mejor “rating mínimo”.
+
+
+### Reviews
+
+La tabla ‘Reviews’ cuenta originalmente con 64295 filas correspondientes a reseñas de distintas aplicaciones y 33 columnas. La primera columna identifica a la aplicación, la segunda muestra la reseña traducida al inglés, y el resto contiene información del texto tales como el numéro de palabras, carácteres, emojis, espacios, puntuación, etc. o la subjetividad y polaridad de la reseña.
+
+Para poder estudiar la tabla "Reviews" en condiciones óptimas se le realizó una limpieza. 26868 filas sin información, por lo que se se eliminaron. También se rellenaron datos faltantes de la columna que describe la facilidad de comprensión de una reseña de forma categórica y se normalizó la columna "ease_of_reading_score" al rango [-1,1].
+
+Frecuencia de reseñas positivas/negativas:
+
+```{r}
+# Gráfico de frecuencias de polaridad.
+
+opolarity <- ex_GPur %>% plyr::count(c("sentiment_polarity"))
+op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
+barplot(opolarity$freq, names.arg=opolarity$sentiment_polarity, legend.text = "Frecuencia",las=2, main="Tipo de comentarios")
+par(op)
+```
+
+Se apreciar que existe mayor número de comentarios ligeramente positivos. También es de notar que la mayoría de comentarios negativos muestran un ligero disgusto.
+
+La frecuencia de reseñas objetivas/subjetivas:
+
+```{r}
+# Gráfico de frecuencias de subjetividad.
+
+osubjectivity <- ex_GPur %>% plyr::count(c("sentiment_subjectivity"))
+op <- par(mar = c(10,4,4,2) + 0.1) # Para que se vean los labels completos
+barplot(osubjectivity$freq, names.arg=osubjectivity$sentiment_subjectivity, legend.text = "Frecuencia",las=2, main="Objetividad de los comentarios")
+par(op)
+```
+
+La gran mayoría de los comentarios se pueden considerar "neutrales", en el sentido de que no son completamente objetivos ni subjetivos. Al comparar la cantidad de comentarios que se consideran objetivos o subjetivos, se ve que están relativamente equilibrados.
+
+Se calculó la correlación lineal entre las variables numéricas que miden la polaridad, subjetividad, calidad de escritura y falcilidad de lectura.
+
+Son de notar las siguientes relaciones lineales:
+
+ - sentiment_polarity_score vs sentiment_subjectivity_score : 0.261587278 Relación lineal directa
+ - spelling_quality_score vs grammar_check_score :-0.102326653 Relación lineal inversa
+ - sentiment_polarity_score vs grammar_check_score: -0.104765855 Relación lineal inversa
+ - ease_of_reading_score vs grammar_check_score : -0.128594206 Relación lineal inversa
+  
+Si bien no son relaciones particularmente fuertes, su contenido se mantiene relevante pues:
+
+  - La polaridad es directamente proporcional a la subjetividad, lo cuál puede indicar que el gusto por una aplicación puede llevar a la gente a hablar mejor de ella sin tanta objetividad
+ - Tanto la facilidad de lectura como la calidad de escritura de los comentarios son inversamente proporcionales a los errores gramaticales, lo cuál tiene sentido, pues entre peor escritas estén las palabras, es menos probable que se pueda entender el mensaje.
+  - La polaridad es inversamente proporcional a los errores gramaticales, lo que podría indicar que mientras menos le agrade a un individuo una aplicación, tenderá a escribir peor su review.
+
+###Cruze de Tablas
+
+La tabla ‘Reviews’ contempla 865 aplicaciones distintas, de las cuales 816 están en ‘Apps’. Se creó un dataframe ‘Apps/Reviews’ con la filas y columnas de ‘Apps’ que correspondientes a aplicaciones que están en ‘Reviews’, más cuatro columnas con los promedios de "sentiment_polarity_score", "ease_of_reading_score", "sentiment_subjectivity_score" y "spelling_quality_score".
+
+La polaridad tiene un mínimo de -0.5, máximo de 1, media 0.20052, mediana 0.19822 y rango intercuartil 0.21689.
+
+La facilidad de lectura tiene un mínimo de 0.7841, máximo de 0.9037, media 0.8507, mediana 0.8499 y rango intercuartil 0.0157.
+
+La subjetividad tiene un mínimo de 0, máximo de 0.9167, media 0.492, mediana 0.4971 y rango intercuartil 0.0852.
+
+La calidad de escritura tiene un mínimo de 0.6667, máximo de 1, media 0.8913, mediana 0.8968 y rango intercuartil 0.0449.
+
+La columna “Rating” de ‘Apps/Reviews’  no tiene valores faltantes. En “Size” faltan 248.
+
+La columna "Size" contiene 248 valores NA.
+
+Sólo 9 aplicaciones de ‘Apps/Reviews’ son de pago.
+
+La correlación de los "scores" con “Rating” es positiva, mientras que con el número de reviews es negativa, sin embargo ninguna alcanza valores significativos. Las dos correlaciones más altas se dan entre la polaridad y subjetividad con Rating, estas son de 0.2640532 y 0.2154879 respectivamente.
+
+## Preguntas y problemas
+
+Basado en lo explicado en las secciones de motivación y análisis exploratorio surgen las siguientes preguntas/problemas que se podrían responder usando la refactorización de los datos para poder entender de mejor manera el comportamiento de las descargas de aplicaciones. Las preguntas son las siguientes:
+
+¿Es posible predecir la cantidad de descargas de una aplicación, en base al público dirigido y las funcionalidades que la aplicación le ofrece a tal público?
+
+¿Se puede extraer información del tipo de usuario de cada aplicación en base a la categoría e información de los reviews de esta?
+
+¿Existen características específicas de las aplicaciones que permitan tener mejor o peor aprobación del público?
+
+
+```{r}
+# Mínimos, máximos, media, cuartiles y datos faltantes de
+# las columnas de 'Apps'.
+summary(ex_GP)
+```
+
+```{r}
+# Creación de los dataframes por categoría y género.
+cat<-aggregate(Category~Category..categorical., ex_GP, FUN=mean)
+gen<-aggregate(Genres~Genres..categorical., ex_GP, FUN=mean)
+cat<-merge(cat, aggregate(App~Category..categorical., ex_GP, FUN=length), by="Category..categorical.")
+gen<-merge(gen, aggregate(App~Genres..categorical., ex_GP, FUN=length), by="Genres..categorical.")
+cat<-merge(cat, aggregate(Installs~Category..categorical., ex_GP, FUN=sum), by="Category..categorical.")
+gen<-merge(gen, aggregate(Installs~Genres..categorical., ex_GP, FUN=sum), by="Genres..categorical.")
+#head(cat)
+#head(gen)
+```
+
+```{r}
+# Media del tamaño excluyendo valores extremos
+mean(ex_GP[!is.na(ex_GP$Size),]$Size,trim=0.1)
+# Falores faltantes tanto en Size como en Rating.
+nrow(ex_GP[is.na(ex_GP$Rating) & is.na(ex_GP$Size),])
+```
+
+```{r}
+# Desvianción estándar del número de reviews.
+sd(ex_GP$Reviews)
+# Media del número de reviews excluyendo 1% de valores extremos.
+mean(ex_GP$Reviews,trim=0.01)
+# Media del número de reviews excluyendo 10% de valores extremos.
+mean(ex_GP$Reviews,trim=0.1)
+```
+
+```{r}
+# Corrección del valor de Type en la fila 8029.
+ex_GP[8029,"Type"]
+(ex_GP[8029,"Type"]<-0)
+# Total de aplicaciiones de pago.
+sum(ex_GP$Type)
+```
+
+```{r}
+# Mínimos, máximos, media, cuartiles y datos faltantes de
+# los precios de las aplicaciones depago.
+summary(ex_GP[ex_GP$Type==1,]$Price)
+# Desviación estándar de los precios de las aplicaciones de pago.
+sd(ex_GP[ex_GP$Type==1,]$Price)
+# Media de los precios de las aplicaciones de pago excluyendo 5% de valores extremos.
+mean(ex_GP[ex_GP$Type==1,]$Price,trim=0.05)
+```
+
+```{r}
+
+price_GP <- with(ex_GP, ex_GP[Price != 0.00,])
+#plot(price_GP$Category..categorical., price_GP$Price, las=3)
+#Sin contar Apps ultra-caras, Apps de FINANCES y MEDICAL tienden a ser las más caras
+price_GP2 <- with(ex_GP, ex_GP[Price != 0.00 & Price <=40.00,] )
+#plot(price_GP2$Category..categorical., price_GP2$Price, las=3)
+```
+
+```{r}
+# Aplicaciones ordenadas por precio/calidad(rating)
+ 
+#ggplot(with(ex_GP, ex_GP[Price != 0.00 & Price <=40.00,]), aes(x=Price, y=Rating)) + geom_point()
+#Aplicaciones ultra-caras no son necesariamente todas buenas
+ 
+#ggplot(with(ex_GP, ex_GP[Price != 0.00 & Price >=40.00,]), aes(x=Price, y=Rating)) + geom_point()
+```
+
+```{r}
+# Tamaño apps vs Ratings
+
+#ggplot(with(ex_GP, ex_GP[Price != 0.00,] ), aes(x=Size, y=Rating)) + geom_point()
+
+#ggplot(with(ex_GP, ex_GP[Price == 0.00,]), aes(x=Size, y=Rating)) + geom_point()
+```
+
+```{r}
+#ggplot(with(ex_GP, ex_GP[Reviews <= 20000,] ), aes(x=Reviews, y=Rating)) + geom_point()
+```
+
+```{r}
+# Mínimos, máximos, media, cuartiles y datos faltantes de
+# las columnas de 'Reviews'.
+summary(ex_GPur)
+
+
+reEscale<-function(d,a,b){
+  M<-max(d)
+  m<-min(d)
+  s<-(b-a)/(M-m)
+  k<-(a*M-b*m)/(M-m)
+  s*d+k
+}
+
+# Normalizar columna "ease_of_reading_score" al rango [-1,1].
+
+ex_GPur$ease_of_reading_score<-reEscale(ex_GPur$ease_of_reading_score, -1, 1)
+```
+
+
+
+```{r}
+# Correlación de los "score".
+cor(ex_GPur[c("sentiment_polarity_score","sentiment_subjectivity_score","spelling_quality_score","ease_of_reading_score")])
+```
+
+```{r}
+# Dataframe con información condensada de las aplicaciones contempladas en 'Reviews'.
+cur<-aggregate(sentiment_polarity_score ~ App, ex_GPur, FUN=mean)
+cur<-merge(cur, aggregate(ease_of_reading_score ~ App, ex_GPur, FUN=mean), by="App")
+cur<-merge(cur, aggregate(sentiment_subjectivity_score ~ App, ex_GPur, FUN=mean), by="App")
+cur<-merge(cur, aggregate(spelling_quality_score ~ App, ex_GPur, FUN=mean), by="App")
+cur<-merge(cur, ex_GP, by="App")
+nrow(cur[cur$App %in% ex_GP$App,])
+```
+
+```{r}
+# Datos faltantes en "Rating" de "Apps/Reviews".
+nrow(cur[is.na(cur$Rating),])
+
+# Datos faltantes en "Size" de "Apps/Reviews".
+nrow(cur[is.na(cur$Size),])
+
+# Total de aplicaciones de pago en "Apps/Reviews".
+sum(cur$Type)
+```
+
+```{r}
+# Correlación de los "score" con el rating
+cor(cur[,c(2,7)]) #0.2640532
+cor(cur[,c(3,7)]) #0.07695201
+cor(cur[,c(4,7)]) #0.2154879
+cor(cur[,c(5,7)]) #0.05209052
+
+# Correlación de los "scores" con el número de reviews.
+cor(cur[,c(2,8)]) #-0.123308
+cor(cur[,c(3,8)]) #-0.03066006
+cor(cur[,c(4,8)]) #-0.001157635
+cor(cur[,c(5,8)]) #-0.02082146
+```
+
+
+

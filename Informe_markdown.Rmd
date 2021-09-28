@@ -164,6 +164,7 @@ cor(numeric_atr)
 ```
 
 Son de notar las siguientes relaciones lineales:
+
  - sentiment_polarity_score vs sentiment_subjectivity_score : 0.261587278 Relación lineal directa
  - spelling_quality_score vs grammar_check_score :-0.102326653 Relación lineal inversa
  - sentiment_polarity_score vs grammar_check_score: -0.104765855 Relación lineal inversa

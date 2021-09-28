@@ -31,18 +31,10 @@ Con los puntos a estudiar ya fijos, se tomó la decisión de estudiar un conjunt
 
 ```{r}
 
-
-
-#setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) Comando que setea el directorio de trabajo a la carpeta donde se mantiene este archivo, desmarcarlo para ejecutar codigo, casua error para generar el html
-
-
 #library(reshape)
 library(tidyverse)
-ex_GP<-read.csv("~/Downloads/Google-Play-Store-Mining-Benj/extended_googleplaystore.csv")
-ex_GPur<-read.csv("~/Downloads/Google-Play-Store-Mining-Benj/extended_googleplaystore_user_reviews.csv")
-#GP<-read.csv("googleplaystore.csv")
-#GPur<-read.csv("googleplaystore_user_reviews.csv")
-#ptr<-read.csv("profiled_Translated_Review.csv")
+ex_GP<-read.csv("dataset/extended_googleplaystore.csv", encoding="UTF-8")
+ex_GPur<-read.csv("dataset/extended_googleplaystore_user_reviews.csv", encoding = "UTF-8")
 ```
 
 
@@ -129,12 +121,9 @@ ex_GP[8029,"Type"]
 La columna "Price" muestra el precio de las aplicaciones. Entre las aplicaciones de pago, el mínimo es 0.99, el máximo 400, la media 14.04515, la mediana 2.99 y la desviación estándar 58.74361. Extrayendo el 5% de los valores extremos, la media se reduce a 4.027639.
 
 ```{r}
-min(ex_GP[ex_GP$Type==1,]$Price)
-max(ex_GP[ex_GP$Type==1,]$Price)
-mean(ex_GP[ex_GP$Type==1,]$Price)
-median(ex_GP[ex_GP$Type==1,]$Price)
-sd(ex_GP[ex_GP$Type==1,]$Price)
-mean(ex_GP[ex_GP$Type==1,]$Price,trim=0.05)
+summary(ex_GP[ex_GP$Type==1,]$Price)
+print(paste("Desviación estandar:",sd(ex_GP[ex_GP$Type==1,]$Price)))
+print(paste("Media luego de extraer el 5% :",mean(ex_GP[ex_GP$Type==1,]$Price,trim=0.05)))
 ```
 
 

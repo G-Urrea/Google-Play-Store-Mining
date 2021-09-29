@@ -80,12 +80,19 @@ cor(numeric_atr)
 ```
 Son de notar las siguientes relaciones lineales:
 
+  - sentences_count vs characters_count : 0.82228639
+  - grammar_check_score vs characters_count : 0.58309298
+  - grammar_check_score vs sentences_count :  0.45407041
   - sentiment_polarity_score vs sentiment_subjectivity_score : 0.261587278 Relación lineal directa
   - spelling_quality_score vs grammar_check_score :-0.102326653 Relación lineal inversa
   - sentiment_polarity_score vs grammar_check_score: -0.104765855 Relación lineal inversa
   - ease_of_reading_score vs grammar_check_score : -0.128594206 Relación lineal inversa
+  - sentiment_polarity_score vs characters_count: -0.16166778
+  - sentiment_polarity_score vs sentences_count : -0.13117839
+  - ease_of_reading_score vs characters_count : -0.22157195 
   
-Si bien no son relaciones particularmente fuertes, taampoco son para nada debiles y de hecho tienen algo de sentido:
+  
+Si bien no son relaciones particularmente fuertes, tampoco son para nada débiles y de hecho tienen algo de sentido:
   - La polaridad es directamente proporcional a la subjetividad, lo cuál puede indicar que el gusto por una aplicación puede 
     llevar a la gente a hablar mejor de ella sin tanta objetividad.
     

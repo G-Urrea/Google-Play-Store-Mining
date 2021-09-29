@@ -206,8 +206,8 @@ plot(price_GP2$Category..categorical., price_GP2$Price, las=3)
 ```
 
 Debido a la gran cantidad de aplicaciones gratis, se realizan gráficos solo para aplicaciones que tengan algún precio, con lo que se observa de mejor manera la distribución de estos atributos a través de las distintas categorías. 
- - Como era de esperarse, las aplicaciones que son juegos son los más pesados en temas de tamaño de aplicación
- - Respecto al precio, las aplicaciones de las categorías de medicina y finanzas tienden a ser las más caras
+ - Como era de esperarse, las aplicaciones que son juegos son los más pesados en temas de tamaño de aplicación, seguidas de aplicaciones de categoria "familia", teniendo luego como categorias notables la de "autos y vehiculos", "deportes" y "travel" como categorias que tienden a tener aplicaciones con mayor peso.
+ - Respecto al precio, las aplicaciones de las categoria finanzas tienden a ser las más caras, seguido de las aplicaciones en categorias de "business" y "medicina"
 
 
 Además de esto, se visualiza por separado la correlación de los ratings de las aplicaciones en comparación con su precio y tamaño. Se separa además aquellas aplicaciones con precios extremadamente altos (sobre 50 USD) ya que estas Apps tienden a ser intencionalmente caras solo con el objetivo de ser caras (existen apps cuyo único propósito es ser caras. Ej: Apps “Im Rich”).
@@ -221,19 +221,24 @@ price_GP10 <- with(ex_GP, ex_GP[Price != 0.00 & Price >=40.00,] )
 ggplot(price_GP10, aes(x=Price, y=Rating)) + geom_point()
 ```
 
+	- Se observa cómo hasta un cierto punto, las aplicaciones más caras tienden a tener un mayor minimo de ratings. Las aplicaciones más caras no son necesariamente las mejores, pero en general el su peor rating no baja de 3* a partir de cierto precio
+
 ```{r}
 #Tamaño apps vs Ratings
 ggplot(price_GP, aes(x=Size, y=Rating)) + geom_point()
 free_GP <- with(ex_GP, ex_GP[Price == 0.00,] )
 ggplot(free_GP, aes(x=Size, y=Rating)) + geom_point()
 ```
+
+
+  - Se observa una tendencia similar respecto al tamaño de las aplicaciones, las cuales al tener mayor tamaño deberían (en teoría) tener mayor contenido, con lo que apps de mayor tamaño (hasta un cierto punto) tienden a tener un mejor “rating mínimo”. Esta tendencia esta menos marcada sobre las aplicaciones gratis, debido a la enorme cantidad de aplicaciones gratis de todo tipo.
+  
 ```{r}
 installs_GP <- with(ex_GP, ex_GP[Reviews <= 20000,] )
 ggplot(installs_GP, aes(x=Reviews, y=Rating)) + geom_point()
 ```
 
-	- Se observa cómo hasta un cierto punto, las aplicaciones más caras tienden a tener un mayor minimo de ratings. Las aplicaciones más caras no son necesariamente las mejores, pero en general el su peor rating no baja de 3* a partir de cierto precio
-  - Se observa una tendencia similar respecto al tamaño de las aplicaciones, las cuales al tener mayor tamaño deberían (en teoría) tener mayor contenido, con lo que apps de mayor tamaño (hasta un cierto punto) tienden a tener un mejor “rating mínimo”.
+Tambien se observa como, aunque en general no existe una correlación muy marcada entre la cantidad de reviews de una aplicación y su rating final, se observa como las aplicaciones consideradas más malas tienden a tener mucho menos cantidad de reviews totales
 
 La tabla ‘Reviews’ contempla 865 aplicaciones distintas, de las cuales 816 están en ‘Apps’. Se creó un dataframe ‘Apps/Reviews’ con la filas y columnas de ‘Apps’ que correspondientes a aplicaciones que están en ‘Reviews’, más cuatro columnas con los promedios de "sentiment_polarity_score", "ease_of_reading_score", "sentiment_subjectivity_score" y "spelling_quality_score".
 ```{r}
@@ -276,14 +281,17 @@ sum(cur$Type)
 La correlación de los "scores" con “Rating” es positiva, mientras que con el número de reviews es negativa, sin embargo ninguna alcanza valores significativos. Las dos correlaciones más altas se dan entre la polaridad y subjetividad con Rating, estas son de 0.2640532 y 0.2154879 respectivamente.
 
 ```{r}
-cor(cur[,c(2,7)]) #0.2640532
-cor(cur[,c(3,7)]) #0.07695201
-cor(cur[,c(4,7)]) #0.2154879
-cor(cur[,c(5,7)]) #0.05209052
-cor(cur[,c(2,8)]) #-0.123308
-cor(cur[,c(3,8)]) #-0.03066006
-cor(cur[,c(4,8)]) #-0.001157635
-cor(cur[,c(5,8)]) #-0.02082146
+numeric <- cur[, c(2,3,4,5,7,8)]
+```
+
+```{r}
+print("Correlación con variable Rating")
+apply(numeric,2, function(col) cor(col, numeric$Rating))
+```
+
+```{r}
+print("Correlación con variable Reviews")
+apply(numeric,2, function(col) cor(col, numeric$Reviews))
 ```
 
 

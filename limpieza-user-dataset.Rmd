@@ -24,15 +24,15 @@ La primera columna indica la aplicación, la segunda contiene el texto de la rev
 colnames(reviews)
 ```
 
-Las columnas de la 3 a la 16 contienen datos numéricos sobre el texto, del tipo número de caracteres, número de palabras, número de espacios, etc.
+Las columnas de la 3 a la 16 contienen datos numéricos sobre el texto, del número de caracteres, número de palabras, número de espacios, etc.
 
 Las columnas de la 17 a la 33 contienen distintas estadísticas sobre la clasificación, la calidad de la reseña, etc
 
 
-Se empieza filtrando las columnas que no son de interés, en este caso, de la 3 a la 17.
+Se empieza filtrando las columnas que no son de interés, en este caso, de la 5 a la 17.
 
 ```{r}
-reviews_filter1 <-reviews[,c(1:2,17:33)]
+reviews_filter1 <-reviews[,c(1:4,17:33)]
 ```
 Las columnas restantes son
 ```{r}
@@ -145,4 +145,3 @@ Con esto el dataset ya está limpio
 ```{r}
 write.csv(reviews_filter2,"dataset_modificado\\dataset-usuarios.csv", row.names = FALSE)
 ```
-

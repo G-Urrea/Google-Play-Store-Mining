@@ -27,10 +27,10 @@ par(mar=c(12, 3, 1, 1))
 plot(ex_GP$Category..categorical., ex_GP$Rating, las=3)
 ```
 
-```{r}
+```{r fig.width=8, fig.height=7}
 #Eliminando las aplicaciones gratis, se nota más la diferencia de ratings por categoria
 
-#par(mar=c(10, 3, 1, 1))
+par(mar=c(13, 3, 1, 1))
 nofree_GP <- with(ex_GP, ex_GP[Price != 0.00,] )
 plot(nofree_GP$Category..categorical., nofree_GP$Rating, las=3)
 ```

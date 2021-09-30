@@ -31,12 +31,13 @@ library(plyr)
 library(dplyr)
 ex_GP<-read.csv("dataset/extended_googleplaystore.csv", as.is =F , encoding="UTF-8")
 ex_GPur<-read.csv("dataset/extended_googleplaystore_user_reviews.csv", encoding = "UTF-8")
+users <- read.csv("dataset_modificado/dataset-usuarios.csv", encoding="UTF-8")
 
 # Se remueven filas nulas
 ex_GPur<-ex_GPur[!is.na(ex_GPur$characters_count),]
 ```
 
-Originalmente el dataset contenía 5 tablas, sin embargo 2 de estas corresponden a versiones extendidas del resto, por lo que el contenido útil se reduce a 2 dataframes, uno con información de las aplicaciones y otro de las reseñas. En adelante nos referiremos a estas como ‘Apps’ y ‘Reviews’.
+Originalmente el dataset contenía 5 tablas, sin embargo 2 de estas corresponden a versiones extendidas del resto, por lo que el contenido útil se reduce a 2 dataframes, uno con información de las aplicaciones y otro de las reseñas. En adelante nos referiremos a estas como "Apps" y "Reviews".
 
 ### Apps
 
@@ -67,16 +68,15 @@ La columna "Price" muestra el precio de las aplicaciones. Entre las aplicaciones
 
 Esto se puede ver mas detalladamente en el siguiente resumen:
 
-```{r}
-
-
+```{r echo=FALSE}
 #summary(ex_GP[c(2,3,4,5,6,7)])
-summary(ex_GPur[c])
+#summary(ex_GPur[c])
 
 ```
 
 
-Se analizó la distrobución de Ratings, Precios y Tamaños de las aplicaciones de pago através de a las distintas categorías. Se encontró que:
+Se analizó la distribución de Ratings, Precios y Tamaños de las aplicaciones de pago através de a las distintas categorías. Se encontró que:
+
  - Las aplicaciones que son juegos son los más pesados en temas de tamaño de aplicación.
  - Respecto al precio, las aplicaciones de las categorías de medicina y finanzas tienden a ser las más caras.
 
@@ -88,10 +88,11 @@ Además de esto, se visualiza por separado la correlación de los ratings de las
 
 ### Reviews
 
-La tabla ‘Reviews’ cuenta originalmente con 64295 filas correspondientes a reseñas de distintas aplicaciones y 33 columnas. La primera columna identifica a la aplicación, la segunda muestra la reseña traducida al inglés, y el resto contiene información del texto tales como el numéro de palabras, carácteres, emojis, espacios, puntuación, etc. o la subjetividad y polaridad de la reseña.
+La tabla "Reviews" cuenta originalmente con 64295 filas correspondientes a reseñas de distintas aplicaciones y 33 columnas. La primera columna identifica a la aplicación, la segunda muestra la reseña traducida al inglés, y el resto contiene información del texto tales como el numéro de palabras, carácteres, emojis, espacios, puntuación, etc. o la subjetividad y polaridad de la reseña.
 
-Para poder estudiar la tabla "Reviews" en condiciones óptimas se le realizó una limpieza. 26868 filas sin información, por lo que se se eliminaron. También se rellenaron datos faltantes de la columna que describe la facilidad de comprensión de una reseña de forma categórica y se normalizó la columna "ease_of_reading_score" al rango [-1,1].
+Para poder estudiar la tabla "Reviews" en condiciones óptimas se le realizó una limpieza. Esta limpieza consistió en eliminar columnas que no fueran consideradas de interés para el estudio del dataset, tales como el conteo de espacios, puntos, emojis, etc. Además se eliminan las filas que poseían reseñas vacías, también se rellenaron datos faltantes de la columna que describe la facilidad de comprensión de una reseña de forma categórica.
 
+Una vez hecha la limpieza de la tabla se procede con la exploración de datos. A continuación se encuentra la información más relevante.
 Frecuencia de reseñas positivas/negativas:
 
 ```{r}
@@ -120,18 +121,13 @@ La gran mayoría de los comentarios se pueden considerar "neutrales", en el sent
 
 Se calculó la correlación lineal entre las variables numéricas que miden la polaridad, subjetividad, calidad de escritura y falcilidad de lectura.
 
-Son de notar las siguientes relaciones lineales:
+Las relaciones más fuertes fueron las siguientes
 
- - sentiment_polarity_score vs sentiment_subjectivity_score : 0.261587278 Relación lineal directa
- - spelling_quality_score vs grammar_check_score :-0.102326653 Relación lineal inversa
- - sentiment_polarity_score vs grammar_check_score: -0.104765855 Relación lineal inversa
- - ease_of_reading_score vs grammar_check_score : -0.128594206 Relación lineal inversa
-  
-Si bien no son relaciones particularmente fuertes, su contenido se mantiene relevante pues:
-
-  - La polaridad es directamente proporcional a la subjetividad, lo cuál puede indicar que el gusto por una aplicación puede llevar a la gente a hablar mejor de ella sin tanta objetividad
- - Tanto la facilidad de lectura como la calidad de escritura de los comentarios son inversamente proporcionales a los errores gramaticales, lo cuál tiene sentido, pues entre peor escritas estén las palabras, es menos probable que se pueda entender el mensaje.
-  - La polaridad es inversamente proporcional a los errores gramaticales, lo que podría indicar que mientras menos le agrade a un individuo una aplicación, tenderá a escribir peor su review.
+  - sentences_count/characters_count : 0.82228639. Como es de esperarse, el número de caracteres crece junto al número de palabras
+  - grammar_check_score/characters_count : 0.58309298. 
+  - grammar_check_score/sentences_count :  0.45407041. También esperable, el número de caracteres/palabras y la cantidad de errores gramaticales están directamente relacionados
+  - sentiment_polarity_score/sentiment_subjectivity_score : 0.261587278. Puede indicar que el gusto por una aplicación puede llevar a escribir reseñas más subjetivas
+  - ease_of_reading_score/characters_count : -0.22157195 . Entre más caracteres, puede llegar a ser más complicado entender una reseña
 
 ### Cruce de Tablas
 
@@ -163,8 +159,19 @@ Basado en lo explicado en las secciones de motivación y análisis exploratorio 
 
 ¿Existen características específicas de las aplicaciones que permitan tener mejor o peor aprobación del público?
 
+## Contribucion
 
-## Anexo codigo fuente
+- Benjamin Farias: Exploración de datos, limpieza, creación de tablas por genero y categoría, y cruce de tablas
+- Diego León: Motivación, Preguntas, Aporte de presentación e informe.
+- Tomás Letelier: Exploración de datos con boxplots y scatterplots, preguntas; (presentación) Presentar ejemplos de graficos y las preguntas (editado)
+- Joaquin Moraga: Motivación, Aporte a informe y presentación, Presentación slides de motivación y exploración de datos - apps
+- Germán Urrea: Exploración y limpieza de tabla reviews, escribir y presentar sobre esto mismo
+
+## Anexo
+
+Link github del proyecto = https://github.com/G-Urrea/Google-Play-Store-Mining
+
+### Código
 
 ```{r}
 # Mínimos, máximos, media, cuartiles y datos faltantes de
@@ -262,16 +269,14 @@ reEscale<-function(d,a,b){
   s*d+k
 }
 
-# Normalizar columna "ease_of_reading_score" al rango [-1,1].
-
-ex_GPur$ease_of_reading_score<-reEscale(ex_GPur$ease_of_reading_score, -1, 1)
 ```
 
 
 
 ```{r}
 # Correlación de los "score".
-cor(ex_GPur[c("sentiment_polarity_score","sentiment_subjectivity_score","spelling_quality_score","ease_of_reading_score")])
+numeric_atr <- users %>% dplyr::select(where(is.numeric))
+cor(numeric_atr)
 ```
 
 ```{r}
@@ -309,8 +314,7 @@ cor(cur[,c(4,8)]) #-0.001157635
 cor(cur[,c(5,8)]) #-0.02082146
 ```
 
-Link github del proyecto = https://github.com/G-Urrea/Google-Play-Store-Mining
 
 
-## Contribucion
+
 

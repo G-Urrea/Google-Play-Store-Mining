@@ -40,9 +40,9 @@ reEscale<-function(d,a,b){
 
 Extended Google PLaystore:
 
-Contiene 9659 filas, cada una correspondiente a una app distinta que se identifica en la primer columna. Las 22 colunas restantes describen características de la aplicación, tales como el tamaño, género, precio y número de descargas.
+Contiene 9659 filas, cada una correspondiente a una app distinta que se identifica en la primer columna. Las 22 columnas restantes describen características de la aplicación, tales como el tamaño, género, precio y número de descargas.
 
-Las columnas "Category" y "Genres" contienen valores numéricos, cada uno asociado a una categoría y un género respectivamente, que se especifican el las columnas "Category..categorical." y "Genres..categorical.". Los siguientes dataframes muestran que número corresponde a que categoría y género, además del total de aplicaciones de cada uno.
+Las columnas "Category" y "Genres" contienen valores numéricos, cada uno asociado a una categoría y un género respectivamente, que se especifican en las columnas "Category..categorical." y "Genres..categorical.". Los siguientes dataframes muestran que número corresponde a que categoría y género, además del total de aplicaciones de cada uno.
 
 ```{r}
 cat<-aggregate(Category~Category..categorical., ex_GP, FUN=mean)
@@ -282,7 +282,7 @@ sum(cur$Type)
 No se presenta correlación significativa entre los promedios de "sentiment_polarity_score", "ease_of_reading_score", "sentiment_subjectivity_score" y "spelling_quality_score".
 
 ```{r}
-cor(cur[,2:5])
+(cor(cur[,2:5]))
 ```
 La correlación de los "scores" con Rating en positiva, mientras que con el número de reviews es negativa, sin embargo ninguna alcanza valores significativos. Las dos correlaciones más altas se dan entre la polaridad y subjetividad con Rating, estas son de 0.2640532 y 0.2154879 respectivamente.
 
@@ -371,5 +371,8 @@ write.csv(cat2, "Categories2.csv", row.names = FALSE)
 write.csv(gen2, "Genre2.csv", row.names = FALSE)
 ```
 
-
+```{r}
+customers <- read.csv("C:/Users/faria/OneDrive/Documentos/Tareas/Batos/olist_order_reviews_dataset.csv")
+orders<-read.csv("C:/Users/faria/OneDrive/Documentos/Tareas/Batos/olist_sellers_dataset.csv")
+```
 

@@ -284,6 +284,7 @@ No se presenta correlación significativa entre los promedios de "sentiment_pola
 ```{r}
 (cor(cur[,2:5]))
 ```
+
 La correlación de los "scores" con Rating en positiva, mientras que con el número de reviews es negativa, sin embargo ninguna alcanza valores significativos. Las dos correlaciones más altas se dan entre la polaridad y subjetividad con Rating, estas son de 0.2640532 y 0.2154879 respectivamente.
 
 ```{r}

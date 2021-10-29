@@ -155,6 +155,91 @@ sd(ex_GP[ex_GP$Type==1,]$Price)
 mean(ex_GP[ex_GP$Type==1,]$Price,trim=0.05)
 ```
 
+
+```{r fig.width=4.5, fig.height=3.9, echo=FALSE, warning=FALSE, results='hide'}
+
+ggplot(ex_GP)+
+  geom_boxplot(aes(y=Rating, x=Category..categorical., fill=Category..categorical.))+
+  coord_flip()+
+  theme(legend.position = "none")+
+  xlab("Categoría")+
+  ggtitle("Todas las aplicaciones")
+
+ggplot(ex_GP[ex_GP$Type == 1, ])+
+  geom_boxplot(aes(y=Rating, x=Category..categorical., fill=Category..categorical.))+
+  coord_flip()+
+  theme(legend.position = "none")+
+  xlab("Categoría")+
+  ggtitle("Aplicaciones de pago")
+
+ggplot(ex_GP)+
+  geom_boxplot(aes(y=Size, x=Category..categorical., fill=Category..categorical.))+
+  coord_flip()+
+  theme(legend.position = "none")+
+  xlab("Categoría")+
+  ylab("Peso")+
+  ggtitle("Todas las aplicaciones")
+
+ggplot(ex_GP[ex_GP$Type == 1, ])+
+  geom_boxplot(aes(y=Price, x=Category..categorical., fill=Category..categorical.))+
+  coord_flip()+
+  theme(legend.position = "none")+
+  xlab("Categoría")+
+  ylab("Precio")+
+  ggtitle("Aplicaciones de pago")
+
+ggplot(ex_GP[ex_GP$Type == 1 & ex_GP$Price <= 40.0, ])+
+  geom_boxplot(aes(y=Price, x=Category..categorical., fill=Category..categorical.))+
+  coord_flip()+
+  theme(legend.position = "none")+
+  xlab("Categoría")+
+  ylab("Precio")+
+  ggtitle("Aplicaciones de pago con\nprecio menor a $40")
+```
+
+Las aplicaciones que son juegos son los más pesados en temas de tamaño de aplicación, seguidas de aplicaciones de categoria "familia", teniendo luego como categorias notables la de "autos y vehiculos", "deportes" y "travel" como categorias que tienden a tener aplicaciones con mayor peso.
+
+Respecto al precio, las aplicaciones de las categoria finanzas tienden a ser las más caras, seguido de las aplicaciones en categorias de "business" y "medicina"
+
+Además de esto, se visualiza por separado la correlación de los ratings de las aplicaciones en comparación con su precio y tamaño. Se separa además aquellas aplicaciones con precios extremadamente altos (sobre 50 USD) ya que estas Apps tienden a ser intencionalmente caras solo con el objetivo de ser caras (existen apps cuyo único propósito es ser caras. Ej: Apps “Im Rich”).
+
+```{r fig.width=4, fig.height=2.5, echo=FALSE, warning=FALSE}
+
+ggplot(ex_GP[ex_GP$Type==1 & ex_GP$Price<=40.0, ])+
+  geom_point(aes(x=Price, y=Rating, color=Category..categorical.))+
+  theme(legend.position = "none")+
+  xlab("Precio")+
+  ylab("Rating")+
+  ggtitle("Aplicaciones de pago con precio menor a $40")
+
+ggplot(ex_GP[ex_GP$Type==1 & ex_GP$Price>=40.0, ])+
+  geom_point(aes(x=Price, y=Rating, color=Category..categorical.))+
+  theme(legend.position = "none")+
+  xlab("Precio")+
+  ylab("Rating")+
+  ggtitle("Aplicaciones de pago con precio mayor a $40")
+```
+
+Se observa cómo hasta un cierto punto, las aplicaciones más caras tienden a tener un mayor minimo de ratings. Las aplicaciones más caras no son necesariamente las mejores, pero en general el su peor rating no baja de 3* a partir de cierto precio.
+
+```{r fig.width=4.5, fig.height=3, echo=FALSE, warning=FALSE}
+ggplot(ex_GP)+
+  geom_point(aes(x=Size, y=Rating, color=Category..categorical.))+
+  theme(legend.position = "none")+
+  xlab("Peso")+
+  ylab("Rating")
+
+ggplot(ex_GP)+
+  geom_point(aes(x=Reviews, y=Rating, color=Category..categorical.))+
+  theme(legend.position = "none")+
+  xlab("Reviews")+
+  ylab("Rating")
+```
+
+Se observa una tendencia similar respecto al tamaño de las aplicaciones, las cuales al tener mayor tamaño deberían (en teoría) tener mayor contenido, con lo que apps de mayor tamaño (hasta un cierto punto) tienden a tener un mejor “rating mínimo”. Esta tendencia esta menos marcada sobre las aplicaciones gratis, debido a la enorme cantidad de aplicaciones gratis de todo tipo.
+
+También se observa como, aunque en general no existe una correlación muy marcada entre la cantidad de reviews de una aplicación y su rating final, se observa como las aplicaciones consideradas más malas tienden a tener mucho menos cantidad de reviews totales.
+
 ### Reviews
 
 La tabla 'Reviews' contiene 64295 y 33 columnas. Cada fila corresponde a una reseña de los usuarios sobre las aplicaciones. La primera columna indica la aplicación, la segunda contiene el texto de la review y las 31 restantes muestran datos del texto, tales como el número de caracteres o si la reseña es positiva o negativa.
@@ -236,84 +321,26 @@ unname(cor(numeric_atr))
 - 4: ease_of_reading_score
 - 5: grammar_check_score
   
-Si bien no son relaciones particularmente fuertes, su contenido se mantiene relevante pues:
+De la matriz de correlación se puede observar que:
 
-  - La polaridad es directamente proporcional a la subjetividad, lo cuál puede indicar que el gusto por una aplicación puede llevar a la gente a hablar mejor de ella sin tanta objetividad
- - Tanto la facilidad de lectura como la calidad de escritura de los comentarios son inversamente proporcionales a los errores gramaticales, lo cuál tiene sentido, pues entre peor escritas estén las palabras, es menos probable que se pueda entender el mensaje.
-  - La polaridad es inversamente proporcional a los errores gramaticales, lo que podría indicar que mientras menos le agrade a un individuo una aplicación, tenderá a escribir peor su review (tal vez por el enojo)
+  - Todas las correlaciones, menos entre subjetividad y polaridad, tienen magnitudes menores a 0.13.
+  - La mayor correlación se ve entre polaridad y subjetividad.
+  - La polaridad es directamente proporcional a la subjetividad, lo cuál puede indicar que el gusto por una aplicación puede llevar a la gente a hablar mejor de ella sin tanta objetividad.
+ - Tanto la facilidad de lectura como la calidad de escritura de los comentarios son inversamente proporcionales a los errores gramaticales, lo cuál tiene sentido, pues mientras peor escritas estén las palabras, menor es la probabilidad de lograr entender el mensaje.
+  - La polaridad es inversamente proporcional a los errores gramaticales, lo que podría indicar que mientras menos le agrade a un individuo una aplicación, tenderá a escribir peor su review.
 
-
-En conjunto a lo anterior, se realiza una exploración de la información de las distintas aplicaciones, con tal de observar la tendencia de las distintas categorías respecto a sus Ratings, Precios y Tamaños.
-
-```{r}
-par(mar=c(12, 3, 1, 1))
-plot(ex_GP$Category..categorical., ex_GP$Rating, las=3)
-```
-
-```{r}
-#Eliminando las aplicaciones gratis, se nota más la diferencia de ratings por categoria
-#par(mar=c(10, 3, 1, 1))
-nofree_GP <- with(ex_GP, ex_GP[Price != 0.00,] )
-plot(nofree_GP$Category..categorical., nofree_GP$Rating, las=3)
-```
-
-```{r}
-#Sin sorpresa, los juegos tienden a ser las apps más pesadas
-par(mar=c(10, 3, 1, 1))
-plot(ex_GP$Category..categorical., ex_GP$Size, las=3)
-```
-```{r}
-par(mar=c(10, 3, 1, 1))
-price_GP <- with(ex_GP, ex_GP[Price != 0.00,] )
-plot(price_GP$Category..categorical., price_GP$Price, las=3)
-#Sin contar Apps ultra-caras, Apps de FINANCES y MEDICAL tienden a ser las más caras
-price_GP2 <- with(ex_GP, ex_GP[Price != 0.00 & Price <=40.00,] )
-plot(price_GP2$Category..categorical., price_GP2$Price, las=3)
-```
-
-Debido a la gran cantidad de aplicaciones gratis, se realizan gráficos solo para aplicaciones que tengan algún precio, con lo que se observa de mejor manera la distribución de estos atributos a través de las distintas categorías. 
- - Como era de esperarse, las aplicaciones que son juegos son los más pesados en temas de tamaño de aplicación, seguidas de aplicaciones de categoria "familia", teniendo luego como categorias notables la de "autos y vehiculos", "deportes" y "travel" como categorias que tienden a tener aplicaciones con mayor peso.
- - Respecto al precio, las aplicaciones de las categoria finanzas tienden a ser las más caras, seguido de las aplicaciones en categorias de "business" y "medicina"
-
-
-Además de esto, se visualiza por separado la correlación de los ratings de las aplicaciones en comparación con su precio y tamaño. Se separa además aquellas aplicaciones con precios extremadamente altos (sobre 50 USD) ya que estas Apps tienden a ser intencionalmente caras solo con el objetivo de ser caras (existen apps cuyo único propósito es ser caras. Ej: Apps “Im Rich”).
-
-```{r}
-#Aplicaciones ordenadas por precio/calidad(rating)
-price_GP3 <- with(ex_GP, ex_GP[Price != 0.00 & Price <=40.00,] )
-ggplot(price_GP3, aes(x=Price, y=Rating)) + geom_point()
-#Aplicaciones ultra-caras no son necesariamente todas buenas
-price_GP10 <- with(ex_GP, ex_GP[Price != 0.00 & Price >=40.00,] )
-ggplot(price_GP10, aes(x=Price, y=Rating)) + geom_point()
-```
-
-	- Se observa cómo hasta un cierto punto, las aplicaciones más caras tienden a tener un mayor minimo de ratings. Las aplicaciones más caras no son necesariamente las mejores, pero en general el su peor rating no baja de 3* a partir de cierto precio
-
-```{r}
-#Tamaño apps vs Ratings
-ggplot(price_GP, aes(x=Size, y=Rating)) + geom_point()
-free_GP <- with(ex_GP, ex_GP[Price == 0.00,] )
-ggplot(free_GP, aes(x=Size, y=Rating)) + geom_point()
-```
-
-
-  - Se observa una tendencia similar respecto al tamaño de las aplicaciones, las cuales al tener mayor tamaño deberían (en teoría) tener mayor contenido, con lo que apps de mayor tamaño (hasta un cierto punto) tienden a tener un mejor “rating mínimo”. Esta tendencia esta menos marcada sobre las aplicaciones gratis, debido a la enorme cantidad de aplicaciones gratis de todo tipo.
-  
-```{r}
-installs_GP <- with(ex_GP, ex_GP[Reviews <= 20000,] )
-ggplot(installs_GP, aes(x=Reviews, y=Rating)) + geom_point()
-```
-
-Tambien se observa como, aunque en general no existe una correlación muy marcada entre la cantidad de reviews de una aplicación y su rating final, se observa como las aplicaciones consideradas más malas tienden a tener mucho menos cantidad de reviews totales
+### Cruce de Tablas
 
 La tabla ‘Reviews’ contempla 865 aplicaciones distintas, de las cuales 816 están en ‘Apps’. Se creó un dataframe ‘Apps/Reviews’ con la filas y columnas de ‘Apps’ que correspondientes a aplicaciones que están en ‘Reviews’, más cuatro columnas con los promedios de "sentiment_polarity_score", "ease_of_reading_score", "sentiment_subjectivity_score" y "spelling_quality_score".
-```{r}
+
+```{r, echo=FALSE}
 cur<-aggregate(sentiment_polarity_score ~ App, ex_GPur, FUN=mean)
 cur<-merge(cur, aggregate(ease_of_reading_score ~ App, ex_GPur, FUN=mean), by="App")
 cur<-merge(cur, aggregate(sentiment_subjectivity_score ~ App, ex_GPur, FUN=mean), by="App")
 cur<-merge(cur, aggregate(spelling_quality_score ~ App, ex_GPur, FUN=mean), by="App")
 cur<-merge(cur, ex_GP, by="App")
-nrow(cur[cur$App %in% ex_GP$App,])
+
+#nrow(cur[cur$App %in% ex_GP$App,])
 ```
 
 La polaridad tiene un mínimo de -0.5, máximo de 1, media 0.20052, mediana 0.19822 y rango intercuartil 0.21689.
@@ -326,40 +353,90 @@ La calidad de escritura tiene un mínimo de 0.6667, máximo de 1, media 0.8913, 
 
 La columna “Rating” de ‘Apps/Reviews’  no tiene valores faltantes. En “Size” faltan 248.
 
-```{r}
+```{r, echo=FALSE, results='hide'}
 nrow(cur[is.na(cur$Rating),])
 ```
 
 La columna "Size" contiene 248 valores NA.
 
-```{r}
+```{r, echo=FALSE, results='hide'}
 nrow(cur[is.na(cur$Size),])
 ```
 Sólo 9 aplicaciones no son gratis.
 
-
-9 aplicaciones de ‘Apps/Reviews’ son de pago.
-
-```{r}
+```{r, echo=FALSE, results='hide'}
 sum(cur$Type)
 ```
 
+```{r, echo=FALSE}
+unname(cor(cur[,c(2:5, 7, 8)]))
+```
+
+- sentiment_polarity_score
+- ease_of_reading_score
+- sentiment_subjectivity_score
+- spelling_quality_score
+- Rating
+- Reviews
+
 La correlación de los "scores" con “Rating” es positiva, mientras que con el número de reviews es negativa, sin embargo ninguna alcanza valores significativos. Las dos correlaciones más altas se dan entre la polaridad y subjetividad con Rating, estas son de 0.2640532 y 0.2154879 respectivamente.
 
-```{r}
-numeric <- cur[, c(2,3,4,5,7,8)]
+La polaridad tiene un mínimo de -0.5, máximo de 1, media 0.20052, mediana 0.19822 y rango intercuartil 0.21689.
+
+La facilidad de lectura tiene un mínimo de 0.7841, máximo de 0.9037, media 0.8507, mediana 0.8499 y rango intercuartil 0.0157.
+
+La subjetividad tiene un mínimo de 0, máximo de 0.9167, media 0.492, mediana 0.4971 y rango intercuartil 0.0852.
+
+La calidad de escritura tiene un mínimo de 0.6667, máximo de 1, media 0.8913, mediana 0.8968 y rango intercuartil 0.0449.
+
+```{r, echo=FALSE, results='hide'}
+summary(cur[,2:5])
 ```
 
-```{r}
-print("Correlación con variable Rating")
-apply(numeric,2, function(col) cor(col, numeric$Rating))
+Se mantienen las 33 categorías y 67 de los 118 géneros de "Extended Google Playstore"
+
+```{r, echo=FALSE}
+cat2<-aggregate(Category~Category..categorical., cur, FUN=mean)
+gen2<-aggregate(Genres~Genres..categorical., cur, FUN=mean)
+
+cat2<-merge(cat2, aggregate(App~Category..categorical., cur, FUN=length), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(App~Genres..categorical., cur, FUN=length), by="Genres..categorical.")
+
+cat2<-merge(cat2, aggregate(sentiment_polarity_score~Category..categorical., cur, FUN=mean), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(sentiment_polarity_score~Genres..categorical., cur, FUN=mean), by="Genres..categorical.")
+
+cat2<-merge(cat2, aggregate(ease_of_reading_score~Category..categorical., cur, FUN=mean), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(ease_of_reading_score~Genres..categorical., cur, FUN=mean), by="Genres..categorical.")
+
+cat2<-merge(cat2, aggregate(sentiment_subjectivity_score~Category..categorical., cur, FUN=mean), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(sentiment_subjectivity_score~Genres..categorical., cur, FUN=mean), by="Genres..categorical.")
+
+cat2<-merge(cat2, aggregate(spelling_quality_score~Category..categorical., cur, FUN=mean), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(spelling_quality_score~Genres..categorical., cur, FUN=mean), by="Genres..categorical.")
+
+cat2<-merge(cat2, aggregate(Installs~Category..categorical., cur, FUN=sum), by="Category..categorical.")
+gen2<-merge(gen2, aggregate(Installs~Genres..categorical., cur, FUN=sum), by="Genres..categorical.")
 ```
 
-```{r}
-print("Correlación con variable Reviews")
-apply(numeric,2, function(col) cor(col, numeric$Reviews))
-```
+```{r fig.width=5.45, fig.height=2.5, echo=FALSE, results='hide'}
+ggplot(cur[order(cur$sentiment_polarity_score, decreasing=FALSE),][1:15,])+
+  geom_bar(aes(x=App,y=sentiment_polarity_score,fill=App),stat = "identity")+
+  coord_flip()+
+  ylab("Polaridad")+
+  xlab("Aplicación")+
+  ggtitle("15 aplicaciones con peor\n polaridad en comentarios")+
+  theme(legend.position = "none")+
+  scale_fill_hue(l=45)
 
+ggplot(cur[order(cur$sentiment_polarity_score, decreasing=TRUE),][1:15,])+
+  geom_bar(aes(x=App,y=sentiment_polarity_score,fill=App),stat = "identity")+
+  coord_flip()+
+  ylab("Polaridad")+
+  xlab("Aplicación")+
+  ggtitle("15 aplicaciones con mejor\n polaridad en comentarios")+
+  theme(legend.position = "none")+
+  scale_fill_hue(l=45)
+```
 
 ## Preguntas y problemas
 

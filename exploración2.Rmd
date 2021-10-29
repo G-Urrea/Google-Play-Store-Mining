@@ -65,10 +65,47 @@ ggplot(price_GP, aes(x=Size, y=Rating)) + geom_point()
 free_GP <- with(ex_GP, ex_GP[Price == 0.00,] )
 ggplot(free_GP, aes(x=Size, y=Rating)) + geom_point()
 ```
+
+
+
+
+
+
+Nuevo-------------
+
 ```{r}
-installs_GP <- with(ex_GP, ex_GP[Reviews <= 20000,] )
+#reviews vs ratings
+ggplot(ex_GP, aes(x=Reviews, y=Rating)) + geom_point()
+
+#eliminando outliers...
+#se considera 20000000 como un buen punto de separacion. Se puede notar en la tabla de más abajo donde se cuentan los top reviews por aplicacion
+installs_GP <- with(ex_GP, ex_GP[Reviews <= 20000000,] )
 ggplot(installs_GP, aes(x=Reviews, y=Rating)) + geom_point()
+
+
+#Se podria bajar aun más el limite para tener datos más legibles
+installs_GP2 <- with(ex_GP, ex_GP[Reviews <= 200000,] )
+ggplot(installs_GP2, aes(x=Reviews, y=Rating)) + geom_point()
 
 #free_GP <- with(ex_GP, ex_GP[Price == 0.00,] )
 #ggplot(free_GP, aes(x=Size, y=Rating)) + geom_point()
 ```
+
+```{r}
+#reviews por categoria
+reviewSum_GP <- aggregate(Reviews ~ Category..categorical., installs_GP, FUN=sum)
+plot(reviewSum_GP$Category..categorical., reviewSum_GP$Reviews, las=3)
+```
+
+
+```{r}
+#categorias con mas reviews
+reviewSum_GP_order <- reviewSum_GP[order(-reviewSum_GP$Reviews),]
+head(as.matrix(reviewSum_GP_order), 20)
+```
+```{r}
+#categorias con mas reviews
+ex_GP_categoryOrder <- ex_GP[order(-ex_GP$Reviews),c('App', 'Reviews')]
+head(as.matrix(ex_GP_categoryOrder), 30)
+```
+

@@ -41,15 +41,20 @@ La columna "Rating" muestra la puntuación del 1 al 5 dada por los usuarios para
 La columna "Size" muestra el tamaño en MB de las aplicaciones. Tiene un mínimo de 0.0085, máximo de 100, media 20.39529, mediana 12 y rango intercuartil 23.4. Contiene 1227 valores faltantes. Cortando el 10% de valores extremos la media baja a 16.26433.
 
 ```{r fig.width=2, fig.height=2, echo=FALSE, results='hide'}
-mean(ex_GP[!is.na(ex_GP$Size),]$Size,trim=0.1)
+mean(ex_GP[!is.na(ex_GP$Size),]$Size)
 ggplot(ex_GP[!is.na(ex_GP$Size),])+
-  geom_boxplot(aes(y=Size))
+  geom_boxplot(aes(y=Size))+
+  ylab("Peso")
 
 ggplot(ex_GP[!is.na(ex_GP$Rating),])+
   geom_boxplot(aes(y=Rating))
 
 ggplot(ex_GP)+
-  geom_boxplot(aes(y=Installs))
+  geom_boxplot(aes(y=Installs))+
+  ylab("Descargas")
+
+ggplot(ex_GP)+
+  geom_boxplot(aes(y=Reviews))
 ```
 
 La intersección de valores faltantes entre “Rating” y “Size” es de 58 filas.
@@ -263,6 +268,22 @@ ggplot(ex_GP[ex_GP$Type==1 & ex_GP$Price>=40.0, ])+
   xlab("Precio")+
   ylab("Rating")+
   ggtitle("Aplicaciones de pago con precio mayor a $40")
+
+ggplot(ex_GP[ex_GP$Type==1 & ex_GP$Price<=40.0 & ex_GP$Reviews > 25, ])+
+  geom_point(aes(x=Price, y=Rating, color=Category..categorical.))+
+  theme(legend.position = "none")+
+  xlab("Precio")+
+  ylab("Rating")+
+  ggtitle("Aplicaciones de pago con precio menor a $40\n
+          Reviews por sobre el primer cuartil")
+
+ggplot(ex_GP[ex_GP$Type==1 & ex_GP$Price>=40.0 & ex_GP$Reviews > 25, ])+
+  geom_point(aes(x=Price, y=Rating, color=Category..categorical.))+
+  theme(legend.position = "none")+
+  xlab("Precio")+
+  ylab("Rating")+
+  ggtitle("Aplicaciones de pago con precio mayor a $40\n
+          Reviews por sobre el primer cuartil")
 ```
 
 Se observa cómo hasta un cierto punto, las aplicaciones más caras tienden a tener un mayor minimo de ratings. Las aplicaciones más caras no son necesariamente las mejores, pero en general el su peor rating no baja de 3* a partir de cierto precio.
@@ -526,6 +547,8 @@ La subjetividad tiene un mínimo de 0, máximo de 0.9167, media 0.492, mediana 0
 
 La calidad de escritura tiene un mínimo de 0.6667, máximo de 1, media 0.8913, mediana 0.8968 y rango intercuartil 0.0449.
 
+La cantidad de reviews tiene un mínimo de 114, máximo de 78158306, media 711392, mediana 40650 y rango intercuartil 190567.
+
 La columna “Rating” de ‘Apps/Reviews’  no tiene valores faltantes. En “Size” faltan 248.
 
 ```{r, echo=FALSE, results='hide'}
@@ -539,9 +562,29 @@ nrow(cur[is.na(cur$Size),])
 ```
 Sólo 9 aplicaciones no son gratis.
 
+```{r fig.width=2, fig.height=2, echo=FALSE, results='hide'}
+mean(ex_GP[!is.na(ex_GP$Size),]$Size)
+ggplot(ex_GP[!is.na(ex_GP$Size),])+
+  geom_boxplot(aes(y=Size))+
+  ylab("Peso")
+
+ggplot(ex_GP[!is.na(ex_GP$Rating),])+
+  geom_boxplot(aes(y=Rating))
+
+ggplot(ex_GP)+
+  geom_boxplot(aes(y=Installs))+
+  ylab("Descargas")
+
+ggplot(ex_GP)+
+  geom_boxplot(aes(y=Reviews))+
+  ylab("Reviews")
+```
+
 ```{r, echo=FALSE, results='hide'}
 sum(cur$Type)
 ```
+
+Matriz de correlación:
 
 ```{r, echo=FALSE}
 unname(cor(cur[,c(2:5, 7, 8)]))
@@ -554,18 +597,14 @@ unname(cor(cur[,c(2:5, 7, 8)]))
 - Rating
 - Reviews
 
+```{r, echo=FALSE}
+#unname(cor(cur[cur$Reviews >= 7778,c(2:5, 7, 8)]))
+```
+
 La correlación de los "scores" con “Rating” es positiva, mientras que con el número de reviews es negativa, sin embargo ninguna alcanza valores significativos. Las dos correlaciones más altas se dan entre la polaridad y subjetividad con Rating, estas son de 0.2640532 y 0.2154879 respectivamente.
 
-La polaridad tiene un mínimo de -0.5, máximo de 1, media 0.20052, mediana 0.19822 y rango intercuartil 0.21689.
-
-La facilidad de lectura tiene un mínimo de 0.7841, máximo de 0.9037, media 0.8507, mediana 0.8499 y rango intercuartil 0.0157.
-
-La subjetividad tiene un mínimo de 0, máximo de 0.9167, media 0.492, mediana 0.4971 y rango intercuartil 0.0852.
-
-La calidad de escritura tiene un mínimo de 0.6667, máximo de 1, media 0.8913, mediana 0.8968 y rango intercuartil 0.0449.
-
 ```{r, echo=FALSE, results='hide'}
-summary(cur[,2:5])
+summary(cur)
 ```
 
 Se mantienen las 33 categorías y 67 de los 118 géneros de "Extended Google Playstore"

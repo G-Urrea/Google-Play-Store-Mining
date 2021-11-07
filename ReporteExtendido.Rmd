@@ -23,7 +23,6 @@ ex_GP<-read.csv("dataset/extended_googleplaystore.csv", as.is =F , encoding="UTF
 ex_GPur<-read.csv("dataset/extended_googleplaystore_user_reviews.csv", encoding = "UTF-8")
 ```
 
-
 Para iniciar la exploración de datos, se seleccionan las tablas más relevantes. Originalmente el dataset contenía 5 tablas, sin embargo 2 de estas corresponden a versiones extendidas del resto, por lo que el contenido útil se reduce a 2 dataframes, uno con información de las aplicaciones y otro de las reseñas. En adelante nos referiremos a estas como ‘Apps’ y ‘Reviews’ respectivamente.
 
 ### Apps
@@ -361,6 +360,7 @@ remove(cou)
 library(plyr)
 library(dplyr)
 users <- read.csv("dataset_modificado/dataset-usuarios.csv", as.is=F, encoding="UTF-8")
+#remove(users)
 ```
 
 La columna "sentiment_polarity_score" contiene valores continuos entre -1 y 1, que representan el grado de negatividad, si es cercano a -1, o positividad, si es cercano a 1, de la review. Tiene media 0.1822 y mediana 0.15. Las columnas "sentiment_polarity" y "sentiment_polarity_summarised" descriven la variable categóricamente.
@@ -396,8 +396,7 @@ ggplot(opolarity)+
   geom_bar(aes(x=sentiment_polarity, y=freq, fill=sentiment_polarity), stat="identity")+
   coord_flip()+
   ylab("Frecuencia")+
-  xlab("Tipo de comentario")+
-  ggtitle("Frecuencia de polaridad en reseñas")+
+  ggtitle("Frecuencia de polaridad")+
   theme(legend.position = "none")+
   scale_fill_manual(values=pcolors)
 
@@ -407,8 +406,7 @@ ggplot(osubjectivity)+
   geom_bar(aes(x=sentiment_subjectivity, y=freq, fill=sentiment_subjectivity), stat="identity")+
   coord_flip()+
   ylab("Frecuencia")+
-  xlab("Onjetividad del comentario")+
-  ggtitle("Frecuencia de polaridad en reseñas")+
+  ggtitle("Frecuencia de subjetividad")+
   theme(legend.position = "none")+
   scale_fill_manual(values=scolors)
 ```
@@ -593,14 +591,12 @@ La columna “Rating” de ‘Apps/Reviews’  no tiene valores faltantes. En �
 nrow(cur[is.na(cur$Rating),])
 ```
 
-La columna "Size" contiene 248 valores NA.
-
 ```{r, echo=FALSE, results='hide'}
 nrow(cur[is.na(cur$Size),])
 ```
 Sólo 9 aplicaciones no son gratis.
 
-```{r fig.width=2, fig.height=2, echo=FALSE, results='hide'}
+```{r fig.width=2, fig.height=2, echo=FALSE, results='hide', warning=FALSE}
 mean(cur[!is.na(cur$Size),]$Size)
 ggplot(cur[!is.na(ex_GP$Size),])+
   geom_boxplot(aes(y=Size))+
@@ -707,15 +703,19 @@ Basado en lo explicado en las secciones de motivación y análisis exploratorio 
 
 ```{r, echo=FALSE, results='hide'}
 contonum <- function(cr) {
-  if (cr == 'Everyone') return(0)
-  if (cr == 'Everyone 10+') return(0.5)
-  if (cr == 'Teen') return(1)
-  if (cr == 'Mature 17+') return(1.5)
-  if (cr == 'Adults only 18+') return(2)
+  cr2 <- rep(0, length(cr))
+  for (c in seq(1, length(cr), by=1)) {
+    #if (cr[c] == "Everyone") cr[c] <- 0
+    if (cr[c] == "Everyone 10+") cr2[c] <- 0.5
+    if (cr[c] == "Teen") cr2[c] <- 1
+    if (cr[c] == "Mature 17+") cr2[c] <- 1.5
+    if (cr[c] == "Adults only 18+") cr2[c] <- 2
+  }
+  return(cr2)
 }
 
 pex_GP <- ex_GP[ex_GP$Content.Rating != 'Unrated' & !is.na(ex_GP$Size) & !is.na(ex_GP$Rating),]
-pex_GP$Content.Rating <- map(pex_GP$Content.Rating, contonum)
+pex_GP$Content.Rating <- contonum(pex_GP$Content.Rating)
 
 video_players <- pex_GP[pex_GP$Category==31,]
 travel <- pex_GP[pex_GP$Category==30,]
@@ -781,6 +781,22 @@ photogrphy <- addQD(photogrphy)
 productivity <- addQD(productivity)
 social <- addQD(social)
 travel <- addQD(travel)
+
+write.csv(travel, "dataset_modificado/travel.csv", row.names = FALSE)
+write.csv(social, "dataset_modificado/social.csv", row.names = FALSE)
+write.csv(productivity, "dataset_modificado/productivity.csv", row.names = FALSE)
+write.csv(photogrphy, "dataset_modificado/photo.csv", row.names = FALSE)
+write.csv(games, "dataset_modificado/games.csv", row.names = FALSE)
+write.csv(tools, "dataset_modificado/tools.csv", row.names = FALSE)
+write.csv(magazines, "dataset_modificado/magazines.csv", row.names = FALSE)
+write.csv(family, "dataset_modificado/family.csv", row.names = FALSE)
+write.csv(communication, "dataset_modificado/communication.csv", row.names = FALSE)
+write.csv(video_players, "dataset_modificado/video.csv", row.names = FALSE)
+```
+
+```{r, echo=FALSE, results='hide'}
+ex_GPur <- ex_GPur[ex_GPur$App %in% ex_GP$App,]
+write.csv(ex_GPur, "dataset_modificado/UserReview.csv", row.names = FALSE)
 ```
 
 ```{r, echo=FALSE, results='hide'}
@@ -794,6 +810,32 @@ clusdt$characters_count <- reEscale(clusdt$characters_count, 0, 1)
 clusdt$sentences_count <- reEscale(clusdt$sentences_count, 0, 1)
 clusdt$noun_phase_count <- reEscale(clusdt$noun_phase_count, 0, 1)
 clusdt$count_words <- reEscale(clusdt$count_words, 0, 1)
+
+addQ13 <- function(x, y) {
+  Q1 <- rep(0,nrow(x))
+  QQ <- data.frame(App = x$App, SPQ1 = Q1, SPQ3 = Q1, SSQ1 = Q1, SSQ3 = Q1, ERQ1 = Q1, ERQ3 = Q1, SQQ1 = Q1, SQQ3 = Q1)
+  for (app in x$App) {
+    sp <- y[y$App == app, "sentiment_polarity_score"]
+    ss <- y[y$App == app, "sentiment_subjectivity_score"]
+    er <- y[y$App == app, "ease_of_reading_score"]
+    sq <- y[y$App == app, "spelling_quality_score"]
+    qsp <- quantile(sp)
+    qss <- quantile(ss)
+    qer <- quantile(er)
+    qsq <- quantile(sq)
+    QQ[QQ$App==app, "SPQ1"] <- qsp["25%"]
+    QQ[QQ$App==app, "SPQ3"] <- qsp["75%"]
+    QQ[QQ$App==app, "SSQ1"] <- qss["25%"]
+    QQ[QQ$App==app, "SSQ3"] <- qss["75%"]
+    QQ[QQ$App==app, "ERQ1"] <- qer["25%"]
+    QQ[QQ$App==app, "ERQ3"] <- qer["75%"]
+    QQ[QQ$App==app, "SQQ1"] <- qsq["25%"]
+    QQ[QQ$App==app, "SQQ3"] <- qsq["75%"]
+  }
+  merge(x, QQ, by="App")
+}
+
+clusdt <- addQ13(clusdt, ex_GPur)
 
 write.csv(clusdt, "dataset_modificado/DataPregunta2_1.csv", row.names = FALSE)
 ```
@@ -841,7 +883,7 @@ Se busca caracterizar a las aplicaciones a través de sus reviews, lo cual se pu
 
 Los resultados se evaluan en base a cohesión (SSE), separació (BSS) y coeficiente de Silhouette. Para visualizar los resultados se reduce la dimensionalidad con el método _principal component analisys_, de modo que sea posible crear un gráfico de disperción. También se estudia la distribución de loss atributos en los clusters resultantes, en específico las medias y cuartiles.
 
-La segunda opción es evaluar la posibilidad de que, por medio de sus reviews, se logre caracterizar las aplicaciones según datos externos a esta, como lo son la categoría o el rating. En este caso se evaluan los resultados comprobando las diferencias y similitudes de las aplicaciones de los clusters resultantes, según sus atributos en el dataframe 'Apps'. __[Isertar método para evualuar similitud y diferencia]__
+La segunda opción es evaluar la posibilidad de que, por medio de sus reviews, se logre caracterizar las aplicaciones según datos externos a esta, como lo son la categoría o el rating. En este caso se evaluan los resultados comprobando las diferencias y similitudes de las aplicaciones de los clusters resultantes, según sus atributos en el dataframe 'Apps'. __[Insertar método para evualuar similitud y diferencia]__
 
 
 

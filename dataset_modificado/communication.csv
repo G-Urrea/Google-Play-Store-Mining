@@ -1,182 +1,182 @@
-"App","Category","Rating","Reviews","Size","Installs","Type","Price","Content.Rating","Genres","Last.Updated","Current.Ver","Android.Ver","Last.Updated..Year.","Last.Updated..Year.Month.","Category..categorical.","Type..categorical.","Genres..categorical.","Current.Ver..categorical.","Android.Ver..categorical.","Last.Updated..Year.Month...categorical.","No_reviews_count","Reviews_present_count"
-"Messenger for SMS",6,4.3,125257,17,1e+07,0,0,1,35,"2018-06-06",789,17,2018,85,"COMMUNICATION","Free","Communication","1.8.9","4.1 and up","2018-06",0,0
-"My Tele2",6,4.3,158679,8.8,5e+06,0,0,0,35,"2018-08-03",1301,20,2018,87,"COMMUNICATION","Free","Communication","2.4.1","4.4 and up","2018-08",0,0
-"Call Free – Free Call",6,4.3,30209,15,5e+06,0,0,0,35,"2018-07-28",557,17,2018,86,"COMMUNICATION","Free","Communication","1.3.4","4.1 and up","2018-07",40,0
-"Web Browser & Explorer",6,4,36901,6.6,5e+06,0,0,0,35,"2018-07-04",905,14,2018,86,"COMMUNICATION","Free","Communication","11.8.6","4.0.3 - 7.1.1","2018-07",0,0
-"Browser 4G",6,4.3,192948,6.6,1e+07,0,0,0,35,"2018-06-19",1506,14,2018,85,"COMMUNICATION","Free","Communication","24.6.6","4.0.3 - 7.1.1","2018-06",6,34
-"Cricket Visual Voicemail",6,3.9,13698,5.1,1e+07,0,0,0,35,"2018-07-02",1651,17,2018,86,"COMMUNICATION","Free","Communication","3.2.0.100171","4.1 and up","2018-07",0,40
-"TracFone My Account",6,3.6,20769,18,1e+06,0,0,0,35,"2018-07-11",2736,17,2018,86,"COMMUNICATION","Free","Communication","R6.0.3","4.1 and up","2018-07",0,0
-"Firefox Focus: The privacy browser",6,4.4,36880,4,1e+06,0,0,0,35,"2018-07-06",2218,25,2018,86,"COMMUNICATION","Free","Communication","5.2","5.0 and up","2018-07",16,64
-"TouchPal Keyboard - Fun Emoji & Android Keyboard",6,4.4,615381,37,1e+07,0,0,1.5,35,"2018-08-02",2462,15,2018,87,"COMMUNICATION","Free","Communication","6.7.9.1","4.0.3 and up","2018-08",0,0
-"Skype Lite - Free Video Call & Chat",6,4.2,33053,22,5e+06,0,0,0,35,"2018-07-31",710,15,2018,86,"COMMUNICATION","Free","Communication","1.60.0.31354-release","4.0.3 and up","2018-07",0,0
-"WhatsApp Business",6,4.4,136662,32,1e+07,0,0,0,35,"2018-07-30",1183,15,2018,86,"COMMUNICATION","Free","Communication","2.18.116","4.0.3 and up","2018-07",0,0
-"My magenta",6,3.9,42370,37,1e+06,0,0,0,35,"2018-06-25",2547,25,2018,85,"COMMUNICATION","Free","Communication","7.5.1","5.0 and up","2018-06",0,0
-"Antillean Gold Telegram (original version)",6,4.4,2939,17,1e+05,0,0,0,35,"2018-07-16",1088,17,2018,86,"COMMUNICATION","Free","Communication","2.1","4.1 and up","2018-07",0,0
-"Omlet Chat",6,3.9,40751,35,1e+07,0,0,1,35,"2016-11-04",1227,15,2016,66,"COMMUNICATION","Free","Communication","2.2.7600","4.0.3 and up","2016-11",0,0
-"My Vodacom SA",6,3.7,25021,61,5e+06,0,0,0,35,"2018-06-26",2689,19,2018,85,"COMMUNICATION","Free","Communication","9.9.0","4.3 and up","2018-06",0,0
-"Microsoft Edge",6,4.3,27187,66,5e+06,0,0,0,35,"2018-07-28",2144,20,2018,86,"COMMUNICATION","Free","Communication","42.0.0.2059","4.4 and up","2018-07",0,0
-"Hangouts Dialer - Call Phones",6,4,122498,0.079,1e+07,0,0,0,35,"2015-09-02",20,15,2015,52,"COMMUNICATION","Free","Communication","0.1.100944346","4.0.3 and up","2015-09",40,0
-"Talkatone: Free Texts, Calls & Phone Number",6,4.1,132014,25,1e+07,0,0,0,35,"2018-07-18",2372,18,2018,86,"COMMUNICATION","Free","Communication","6.1","4.2 and up","2018-07",0,0
-"Calls & Text by Mo+",6,4.2,83239,14,5e+06,0,0,0,35,"2018-04-19",1552,13,2018,83,"COMMUNICATION","Free","Communication","3.0.4","4.0 and up","2018-04",74,6
-"Messaging+ SMS, MMS Free",6,4.1,28238,17,1e+06,0,0,0,35,"2018-08-02",2138,8,2018,87,"COMMUNICATION","Free","Communication","4.98","2.3 and up","2018-08",0,0
-"chomp SMS",6,4.3,335646,8.3,1e+07,0,0,0,35,"2018-07-26",2524,8,2018,86,"COMMUNICATION","Free","Communication","7.21","2.3 and up","2018-07",0,0
-"Text SMS",6,4.5,349384,8.2,1e+07,0,0,0,35,"2018-07-24",1755,15,2018,86,"COMMUNICATION","Free","Communication","3.47","4.0.3 and up","2018-07",0,0
-"mysms SMS Text Messaging Sync",6,4.3,37320,8.4,1e+06,0,0,0,35,"2018-07-30",2436,15,2018,86,"COMMUNICATION","Free","Communication","6.5.1","4.0.3 and up","2018-07",0,0
-"2ndLine - Second Phone Number",6,4.2,15880,32,1e+06,0,0,0,35,"2018-08-03",2310,13,2018,87,"COMMUNICATION","Free","Communication","5.65.0","4.0 and up","2018-08",0,40
-"Ninesky Browser",6,4.2,42925,2.8,1e+06,0,0,0,35,"2017-08-27",2372,8,2017,75,"COMMUNICATION","Free","Communication","6.1","2.3 and up","2017-08",0,0
-"Ghostery Privacy Browser",6,4.1,13100,2.2,1e+06,0,0,0,35,"2018-03-20",601,15,2018,82,"COMMUNICATION","Free","Communication","1.4.1.0","4.0.3 and up","2018-03",40,0
-"Web Browser for Android",6,4.1,55098,4.3,1e+06,0,0,0,35,"2018-06-20",1192,13,2018,85,"COMMUNICATION","Free","Communication","2.2","4.0 and up","2018-06",0,0
-"DU Browser—Browse fast & fun",6,4.3,1133501,4.7,1e+07,0,0,0,35,"2016-04-01",2425,13,2016,59,"COMMUNICATION","Free","Communication","6.4.0.4","4.0 and up","2016-04",0,40
-"Lightning Web Browser",6,4.1,12578,2.3,5e+05,0,0,0,35,"2017-07-10",2047,13,2017,74,"COMMUNICATION","Free","Communication","4.5.1","4.0 and up","2017-07",0,0
-"Web Browser",6,4.2,10965,2.3,5e+05,0,0,0,35,"2015-02-02",1014,10,2015,45,"COMMUNICATION","Free","Communication","2.0","3.0 and up","2015-02",0,0
-"Contacts+",6,4.2,190613,11,1e+07,0,0,0,35,"2018-07-31",2328,15,2018,86,"COMMUNICATION","Free","Communication","5.85.1","4.0.3 and up","2018-07",2,38
-"ExDialer - Dialer & Contacts",6,4.2,125232,2.7,1e+07,0,0,0,35,"2017-03-05",1011,5,2017,70,"COMMUNICATION","Free","Communication","196","2.1 and up","2017-03",11,29
-"PHONE for Google Voice & GTalk",6,4.3,72065,13,1e+06,0,0,0,35,"2018-04-18",1562,13,2018,83,"COMMUNICATION","Free","Communication","3.0.7","4.0 and up","2018-04",0,0
-"Safest Call Blocker",6,4.4,27540,3.7,1e+06,0,0,0,35,"2018-01-05",512,13,2018,80,"COMMUNICATION","Free","Communication","1.26.001","4.0 and up","2018-01",0,0
-"Full Screen Caller ID",6,4.2,104990,10,5e+06,0,0,0,35,"2018-05-15",1760,15,2018,84,"COMMUNICATION","Free","Communication","3.5.0","4.0.3 and up","2018-05",9,31
-"Hiya - Caller ID & Block",6,4.4,177703,13,1e+07,0,0,1.5,35,"2018-07-25",2597,25,2018,86,"COMMUNICATION","Free","Communication","8.1.2-6310","5.0 and up","2018-07",40,0
-"Mr. Number-Block calls & spam",6,4.2,177263,13,1e+07,0,0,1.5,35,"2018-07-13",2186,25,2018,86,"COMMUNICATION","Free","Communication","5.1.2-6310","5.0 and up","2018-07",0,0
-"Should I Answer?",6,4.8,237468,8.8,1e+06,0,0,0,35,"2018-07-26",1482,13,2018,86,"COMMUNICATION","Free","Communication","2018.1.715","4.0 and up","2018-07",0,0
-"RocketDial Dialer & Contacts",6,4.4,32254,5.5,1e+06,0,0,0,35,"2017-12-04",1839,5,2017,79,"COMMUNICATION","Free","Communication","3.9.7","2.1 and up","2017-12",0,0
-"CallApp: Caller ID, Blocker & Phone Call Recorder",6,4.4,483565,20,1e+07,0,0,0,35,"2018-07-29",527,17,2018,86,"COMMUNICATION","Free","Communication","1.286","4.1 and up","2018-07",39,1
-"Whoscall - Caller ID & Block",6,4.4,552441,29,1e+07,0,0,0,35,"2018-08-01",2391,17,2018,87,"COMMUNICATION","Free","Communication","6.19.1","4.1 and up","2018-08",0,0
-"Call Control - Call Blocker",6,4.4,93825,11,5e+06,0,0,0,35,"2018-07-05",1180,17,2018,86,"COMMUNICATION","Free","Communication","2.17.3","4.1 and up","2018-07",37,3
-"Video Caller Id",6,4.2,15287,17,1e+06,0,0,0,35,"2018-01-24",1214,15,2018,80,"COMMUNICATION","Free","Communication","2.2.245","4.0.3 and up","2018-01",0,0
-"Sync.ME – Caller ID & Block",6,4.5,205739,17,5e+06,0,0,0,35,"2018-07-26",2059,17,2018,86,"COMMUNICATION","Free","Communication","4.5.4","4.1 and up","2018-07",0,0
-"Caller ID +",6,4,9498,0.118,1e+06,0,0,0,35,"2016-06-07",2246,8,2016,61,"COMMUNICATION","Free","Communication","5.28.0","2.3 and up","2016-06",39,1
-"K-9 Mail",6,4.2,88427,5.1,5e+06,0,0,0,35,"2018-01-06",2283,15,2018,80,"COMMUNICATION","Free","Communication","5.403","4.0.3 and up","2018-01",0,0
-"Email TypeApp - Mail App",6,4.6,183374,44,1e+06,0,0,0,35,"2018-08-01",813,17,2018,87,"COMMUNICATION","Free","Communication","1.9.4.74","4.1 and up","2018-08",40,0
-"All Email Providers",6,4.1,20901,7.3,1e+06,0,0,0,35,"2018-04-03",2173,17,2018,83,"COMMUNICATION","Free","Communication","5.0.9","4.1 and up","2018-04",35,5
-"Newton Mail - Email App for Gmail, Outlook, IMAP",6,4,122595,30,1e+06,0,0,0,35,"2018-07-19",2688,25,2018,86,"COMMUNICATION","Free","Communication","9.8.376","5.0 and up","2018-07",0,0
-"GO Notifier",6,4.2,124346,0.695,1e+07,0,0,0,35,"2014-07-06",1423,3,2014,38,"COMMUNICATION","Free","Communication","2.8","2.0 and up","2014-07",6,34
-"Mail1Click - Secure Mail",6,4.1,255,1.6,10000,0,0,0,35,"2017-04-11",1260,7,2017,71,"COMMUNICATION","Free","Communication","2.3","2.2 and up","2017-04",0,0
-"Daum Mail - Next Mail",6,4.3,41420,19,5e+06,0,0,0,35,"2018-06-21",1650,13,2018,85,"COMMUNICATION","Free","Communication","3.2.0","4.0 and up","2018-06",0,0
-"Vonage Mobile® Call Video Text",6,4.1,29208,23,1e+06,0,0,0,35,"2016-09-28",1456,9,2016,64,"COMMUNICATION","Free","Communication","2.9.8","2.3.3 and up","2016-09",0,0
-"JusTalk - Free Video Calls and Fun Video Chat",6,4.6,191032,26,5e+06,0,0,0,35,"2018-08-04",2519,15,2018,87,"COMMUNICATION","Free","Communication","7.2.29","4.0.3 and up","2018-08",0,0
-"LokLok: Draw on a Lock Screen",6,4.1,14766,16,5e+05,0,0,1,35,"2017-09-20",88,15,2017,76,"COMMUNICATION","Free","Communication","0.81 beta","4.0.3 and up","2017-09",0,0
-"Discord - Chat for Gamers",6,4.5,305347,39,1e+07,0,0,1,35,"2018-07-27",2506,17,2018,86,"COMMUNICATION","Free","Communication","7.1.8","4.1 and up","2018-07",0,0
-"Deaf - Hearing chat device H",6,4.4,9,0.051,500,1,3.99,0,35,"2017-02-08",1782,7,2017,69,"COMMUNICATION","Paid","Communication","3.6","2.2 and up","2017-02",0,0
-"AntennaPict ß",6,4.3,15439,2.2,1e+06,0,0,0,35,"2016-11-07",1015,8,2016,66,"COMMUNICATION","Free","Communication","2.0.0","2.3 and up","2016-11",0,0
-"K-9 Material (unofficial)",6,4.4,64,4.5,5000,0,0,1,35,"2017-03-27",2238,25,2017,70,"COMMUNICATION","Free","Communication","5.206","5.0 and up","2017-03",0,0
-"M star Dialer",6,3.5,400,4.2,1e+05,0,0,0,35,"2017-03-20",1827,7,2017,70,"COMMUNICATION","Free","Communication","3.8.8","2.2 and up","2017-03",0,0
-"Free WiFi Connect",6,3.9,167229,9.7,1e+07,0,0,0,35,"2018-03-31",2591,17,2018,82,"COMMUNICATION","Free","Communication","8.1","4.1 and up","2018-03",0,0
-"m:go BiH",6,3.2,559,6,10000,0,0,0,35,"2018-07-25",1725,10,2018,86,"COMMUNICATION","Free","Communication","3.4","3.0 and up","2018-07",0,0
-"N-Com Wizard",6,3.3,960,3.8,50000,0,0,0,35,"2017-09-21",1107,9,2017,76,"COMMUNICATION","Free","Communication","2.1.2","2.3.3 and up","2017-09",0,0
-"pretty Easy privacy p=p",6,3.7,21,20,500,1,0.99,0,35,"2018-07-30",147,25,2018,86,"COMMUNICATION","Paid","Communication","1.0.100rc1.withoutKeysync","5.0 and up","2018-07",0,0
-"T-Mobile DIGITS",6,3,1820,33,1e+05,0,0,0,35,"2018-02-15",319,20,2018,81,"COMMUNICATION","Free","Communication","1.1.50","4.4 and up","2018-02",0,0
-"Portable Wi-Fi hotspot",6,3.9,138129,2.1,1e+07,0,0,0,35,"2018-05-06",660,8,2018,84,"COMMUNICATION","Free","Communication","1.5.2.4-23","2.3 and up","2018-05",0,0
-"AT&T Call Protect",6,4.2,6454,15,5e+06,0,0,0,35,"2018-05-03",653,25,2018,84,"COMMUNICATION","Free","Communication","1.5.13-3598","5.0 and up","2018-05",0,0
-"U - Webinars, Meetings & Messenger",6,4.1,6601,31,5e+05,0,0,0,35,"2018-07-02",2086,17,2018,86,"COMMUNICATION","Free","Communication","4.7.0","4.1 and up","2018-07",0,0
-"/u/app",6,4.7,573,53,10000,0,0,1.5,35,"2018-07-03",1988,17,2018,86,"COMMUNICATION","Free","Communication","4.2.4","4.1 and up","2018-07",0,0
-"[verify-U] VideoIdent",6,2.9,83,13,10000,0,0,0,35,"2018-04-26",1299,25,2018,83,"COMMUNICATION","Free","Communication","2.4.0","5.0 and up","2018-04",0,0
-"WhatsCall Free Global Phone Call App & Cheap Calls",6,4.6,1130966,27,1e+07,0,0,0,35,"2018-06-06",800,13,2018,85,"COMMUNICATION","Free","Communication","1.9.1.013","4.0 and up","2018-06",0,0
-"X Browser",6,4,142,2.5,50000,0,0,0,35,"2017-12-31",287,13,2017,79,"COMMUNICATION","Free","Communication","1.1.1","4.0 and up","2017-12",0,0
-"Adblock Browser for Android",6,4.1,121113,39,1e+07,0,0,0,35,"2018-07-11",593,17,2018,86,"COMMUNICATION","Free","Communication","1.4.0","4.1 and up","2018-07",0,0
-"Adblock Plus for Samsung Internet - Browse safe.",6,4,8769,2.1,1e+06,0,0,0,35,"2018-04-05",309,25,2018,83,"COMMUNICATION","Free","Communication","1.1.4","5.0 and up","2018-04",0,0
-"Ad Blocker Turbo - Adblocker Browser",6,3.9,107,44,10000,0,0,0,35,"2018-01-29",207,17,2018,80,"COMMUNICATION","Free","Communication","1.0.5","4.1 and up","2018-01",0,0
-"AG Contacts, Premium edition",6,4.5,88,3.7,500,1,4.99,0,35,"2018-05-18",2587,15,2018,84,"COMMUNICATION","Paid","Communication","8.05.18.14250","4.0.3 and up","2018-05",0,0
-"AG Contacts, Lite edition",6,4.5,185,3.7,5000,0,0,0,35,"2018-05-18",2587,15,2018,84,"COMMUNICATION","Free","Communication","8.05.18.14250","4.0.3 and up","2018-05",0,0
-"Bee'ah Employee App",6,4,4,5.4,100,0,0,1,35,"2017-12-24",1250,25,2017,79,"COMMUNICATION","Free","Communication","2.26.5.0","5.0 and up","2017-12",0,0
-"AK Phone",6,4.4,9,4.2,5000,0,0,0,35,"2017-05-29",1827,7,2017,72,"COMMUNICATION","Free","Communication","3.8.8","2.2 and up","2017-05",0,0
-"PlacarTv Futebol Ao Vivo",6,4.1,2063,4.5,1e+05,0,0,0,35,"2018-06-03",189,13,2018,85,"COMMUNICATION","Free","Communication","1.0.3","4.0 and up","2018-06",0,0
-"WiFi Access Point (hotspot)",6,3.9,684,0.061,1e+05,0,0,0,35,"2015-05-14",300,8,2015,48,"COMMUNICATION","Free","Communication","1.1.2","2.3 and up","2015-05",0,0
-"Access Point Names",6,4,138,2.4,10000,0,0,0,35,"2014-08-12",113,9,2014,39,"COMMUNICATION","Free","Communication","1.0","2.3.3 and up","2014-08",0,0
-"ClanHQ",6,2.7,560,37,10000,0,0,0,35,"2018-07-25",182,20,2018,86,"COMMUNICATION","Free","Communication","1.0.21","4.4 and up","2018-07",0,0
-"AU Call Blocker - Block Unwanted Calls Texts 2018",6,4.2,16,3.3,1000,0,0,0,35,"2018-04-24",201,17,2018,83,"COMMUNICATION","Free","Communication","1.0.4","4.1 and up","2018-04",0,0
-"Baby Monitor AV",6,3.3,1434,9.5,1e+05,0,0,0,35,"2014-03-06",466,8,2014,34,"COMMUNICATION","Free","Communication","1.2.5","2.3 and up","2014-03",0,0
-"AZ Browser. Private & Download",6,4.4,1520,5.2,1e+05,0,0,0,35,"2016-12-31",592,20,2016,67,"COMMUNICATION","Free","Communication","1.4","4.4 and up","2016-12",0,0
-"BD Data Plan (3G & 4G)",6,4.4,10341,6.9,5e+05,0,0,0,35,"2018-07-05",2230,17,2018,86,"COMMUNICATION","Free","Communication","5.2.4","4.1 and up","2018-07",0,0
-"BD Internet Packages (Updated)",6,4,474,3,50000,0,0,0,35,"2016-08-05",8,13,2016,63,"COMMUNICATION","Free","Communication","0.0.5","4.0 and up","2016-08",0,0
-"BD Dialer",6,4.1,29,13,10000,0,0,0,35,"2018-07-09",777,17,2018,86,"COMMUNICATION","Free","Communication","1.8.3","4.1 and up","2018-07",0,0
-"BD Live Call",6,4.4,7,0.308,5000,0,0,0,35,"2016-09-06",250,3,2016,64,"COMMUNICATION","Free","Communication","1.01","2.0 and up","2016-09",0,0
-"Best Browser BD social networking",6,4.8,6,21,10,0,0,0,35,"2018-07-04",1014,17,2018,86,"COMMUNICATION","Free","Communication","2.0","4.1 and up","2018-07",0,0
-"Traffic signs BD",6,4.4,7,5.3,500,0,0,0,35,"2015-10-08",113,17,2015,53,"COMMUNICATION","Free","Communication","1.0","4.1 and up","2015-10",0,0
-"BF Browser by Betfilter - Stop Gambling Today!",6,3,39,4.6,10000,0,0,0,35,"2017-09-04",592,15,2017,76,"COMMUNICATION","Free","Communication","1.4","4.0.3 and up","2017-09",0,0
-"My BF App",6,4.1,141,9.9,50000,0,0,0,35,"2017-12-19",1014,13,2017,79,"COMMUNICATION","Free","Communication","2.0","4.0 and up","2017-12",0,0
-"BH Mail",6,3.4,7,6,1000,0,0,0,35,"2018-04-03",2283,15,2018,83,"COMMUNICATION","Free","Communication","5.403","4.0.3 and up","2018-04",0,0
-"DMR BrandMeister Tool",6,3.3,78,2.5,10000,0,0,0,35,"2018-03-31",2044,27,2018,82,"COMMUNICATION","Free","Communication","4.5","6.0 and up","2018-03",0,0
-"BS-Mobile",6,5,1,0.683,50,0,0,0,35,"2015-09-03",16,8,2015,52,"COMMUNICATION","Free","Communication","0.1","2.3 and up","2015-09",0,0
-"BT One Voice mobile access",6,4,32,0.437,5000,0,0,0,35,"2015-07-30",2753,2,2015,50,"COMMUNICATION","Free","Communication","Version 1.6","1.6 and up","2015-07",0,0
-"BT Messenger",6,3.9,97,0.598,50000,0,0,0,35,"2015-05-15",113,7,2015,48,"COMMUNICATION","Free","Communication","1.0","2.2 and up","2015-05",0,0
-"BT One Phone Mobile App",6,3.5,33,2.7,10000,0,0,0,35,"2017-09-18",1224,17,2017,76,"COMMUNICATION","Free","Communication","2.2.6","4.1 and up","2017-09",0,0
-"SW-100.tch by Callstel",6,4,1926,0.716,1e+06,0,0,0,35,"2015-12-16",547,7,2015,55,"COMMUNICATION","Free","Communication","1.3.20","2.2 and up","2015-12",0,0
-"BT MeetMe with Dolby Voice",6,3.6,437,12,1e+05,0,0,0,35,"2018-07-13",1399,25,2018,86,"COMMUNICATION","Free","Communication","2.66.5","5.0 and up","2018-07",0,0
-"Bluetooth Auto Connect",6,3.9,20829,1.9,5e+06,0,0,0,35,"2017-11-17",2059,10,2017,78,"COMMUNICATION","Free","Communication","4.5.4","3.0 and up","2017-11",0,0
-"AudioBT: BT audio GPS/SMS/Text",6,3.4,198,0.219,50000,0,0,0,35,"2017-02-21",1655,13,2017,69,"COMMUNICATION","Free","Communication","3.2.1","4.0 and up","2017-02",0,0
-"BV",6,5,3,1.6,100,0,0,0,35,"2016-08-04",111,10,2016,63,"COMMUNICATION","Free","Communication","1,01","3.0 and up","2016-08",0,0
-"Feel Performer",6,2.2,62,34,10000,0,0,0,35,"2018-04-09",1048,17,2018,83,"COMMUNICATION","Free","Communication","2.0.3","4.1 and up","2018-04",0,0
-"Tiny Call Confirm",6,4.1,22782,0.351,1e+06,0,0,0,35,"2015-03-25",1975,7,2015,46,"COMMUNICATION","Free","Communication","4.2.0","2.2 and up","2015-03",0,0
-"CB Radio Chat - for friends!",6,4,17998,7.9,1e+06,0,0,1,35,"2018-03-27",1389,13,2018,82,"COMMUNICATION","Free","Communication","2.6.3","4.0 and up","2018-03",0,0
-"CB On Mobile",6,4.1,901,0.323,1e+05,0,0,1,35,"2017-04-26",207,13,2017,71,"COMMUNICATION","Free","Communication","1.0.5","4.0 and up","2017-04",0,0
-"Virtual Walkie Talkie",6,3.8,21785,2.5,1e+06,0,0,0,35,"2015-08-13",627,8,2015,51,"COMMUNICATION","Free","Communication","1.41","2.3 and up","2015-08",0,0
-"Channel 19",6,3.7,916,12,1e+05,0,0,1.5,35,"2018-07-13",1224,17,2018,86,"COMMUNICATION","Free","Communication","2.2.6","4.1 and up","2018-07",0,0
-"Cb browser",6,5,5,3.7,50,0,0,0,35,"2018-04-02",113,13,2018,83,"COMMUNICATION","Free","Communication","1.0","4.0 and up","2018-04",0,0
-"CF Chat: Connecting Friends",6,3.4,5,2.4,100,0,0,1,35,"2016-04-27",592,8,2016,59,"COMMUNICATION","Free","Communication","1.4","2.3 and up","2016-04",0,0
-"CJ Browser - Fast & Private",6,4.2,5,15,100,0,0,0,35,"2017-11-07",113,13,2017,78,"COMMUNICATION","Free","Communication","1.0","4.0 and up","2017-11",0,0
-"CJ DVD Rentals",6,1,5,13,100,0,0,0,35,"2017-10-06",113,17,2017,77,"COMMUNICATION","Free","Communication","1.0","4.1 and up","2017-10",0,0
-"CM Transfer - Share any files with friends nearby",6,4.6,71740,5.8,5e+06,0,0,0,35,"2018-06-27",1062,13,2018,85,"COMMUNICATION","Free","Communication","2.0.7.0014","4.0 and up","2018-06",0,0
-"mail.co.uk Mail",6,4.2,21,8.7,5000,0,0,0,35,"2018-07-24",280,15,2018,86,"COMMUNICATION","Free","Communication","1.1.0","4.0.3 and up","2018-07",0,0
-"ClanPlay: Community and Tools for Gamers",6,4.8,34443,27,1e+06,0,0,1,35,"2018-06-28",386,25,2018,85,"COMMUNICATION","Free","Communication","1.14.3","5.0 and up","2018-06",0,0
-"QRZ Assistant",6,4.2,1044,3.5,1e+05,0,0,0,35,"2018-05-30",1014,20,2018,84,"COMMUNICATION","Free","Communication","2.0","4.4 and up","2018-05",0,0
-"Pocket Prefix Plus",6,4.5,192,15,10000,0,0,0,35,"2018-02-12",2790,10,2018,81,"COMMUNICATION","Free","Communication","v2.6.0","3.0 and up","2018-02",0,0
-"10 WPM Amateur ham radio CW Morse code trainer",6,3.5,10,3.8,100,1,1.49,0,35,"2018-05-12",1117,5,2018,84,"COMMUNICATION","Paid","Communication","2.1.4","2.1 and up","2018-05",0,0
-"Ham Radio Prefixes",6,3.7,218,3.7,10000,0,0,0,35,"2014-07-12",362,8,2014,38,"COMMUNICATION","Free","Communication","1.12","2.3 and up","2014-07",0,0
-"CS Customizer",6,3.7,25,3.7,1000,0,0,0,35,"2017-02-06",438,10,2017,69,"COMMUNICATION","Free","Communication","1.2.11","3.0 and up","2017-02",0,0
-"CS Browser | #1 & BEST BROWSER",6,3.8,52,2.1,1000,0,0,0,35,"2015-08-28",1014,10,2015,51,"COMMUNICATION","Free","Communication","2.0","3.0 and up","2015-08",0,0
-"CS Browser Beta",6,4.3,125,53,5000,0,0,0,35,"2017-10-16",2474,17,2017,77,"COMMUNICATION","Free","Communication","60.0.3112.3046279","4.1 and up","2017-10",0,0
-"My Vodafone (GR)",6,3.8,12667,34,1e+06,0,0,0,35,"2018-08-01",2061,19,2018,87,"COMMUNICATION","Free","Communication","4.5.5.1-2090AL-REL","4.3 and up","2018-08",0,0
-"CV-RECORD Pro",6,2.3,42,6,1000,1,0.99,0,35,"2017-01-12",207,17,2017,68,"COMMUNICATION","Paid","Communication","1.0.5","4.1 and up","2017-01",0,0
-"2 Amateur ham radio CW Morse code practice keys TX",6,4.8,6,3.5,100,1,1.49,0,35,"2018-03-05",234,2,2018,82,"COMMUNICATION","Paid","Communication","1.0.9","1.6 and up","2018-03",0,0
-"CW Beacon for Ham Radio",6,4.8,10,0.516,100,1,1.49,0,35,"2015-01-22",2726,2,2015,44,"COMMUNICATION","Paid","Communication","KM","1.6 and up","2015-01",0,0
-"IZ2UUF Morse Koch CW",6,4.6,649,0.837,50000,0,0,0,35,"2013-08-08",134,5,2013,27,"COMMUNICATION","Free","Communication","1.0.013","2.1 and up","2013-08",0,0
-"Morse Decoder for Ham Radio",6,3.7,166,2,5000,1,4.99,0,35,"2017-03-14",677,8,2017,70,"COMMUNICATION","Paid","Communication","1.52","2.3 and up","2017-03",0,0
-"C W Browser",6,4.4,14,17,100,0,0,0,35,"2017-10-28",113,13,2017,77,"COMMUNICATION","Free","Communication","1.0","4.0 and up","2017-10",0,0
-"CW Studio ®",6,3.8,9,0.78,100,1,0.99,0,35,"2015-05-19",424,9,2015,48,"COMMUNICATION","Paid","Communication","1.2","2.3.3 and up","2015-05",0,0
-"20WPM Amateur ham radio Koch CW Morse code trainer",6,4.3,12,3.7,100,1,1.49,0,35,"2018-05-22",1552,5,2018,84,"COMMUNICATION","Paid","Communication","3.0.4","2.1 and up","2018-05",0,0
-"Morse Trainer for Ham Radio",6,4.6,265,2.6,10000,1,2.99,0,35,"2018-01-06",1254,8,2018,80,"COMMUNICATION","Paid","Communication","2.28","2.3 and up","2018-01",0,0
-"Morse Machine for Ham Radio",6,4.8,341,9.6,5000,1,0.99,0,35,"2015-02-20",2766,3,2015,45,"COMMUNICATION","Paid","Communication","iu4","2.0 and up","2015-02",0,0
-"Koch Morse Trainer Pro",6,4.6,94,1.1,1000,1,2.49,0,35,"2015-02-14",1099,7,2015,45,"COMMUNICATION","Paid","Communication","2.1.1","2.2 and up","2015-02",0,0
-"Morse Code Reader",6,3.9,1436,0.02,1e+05,0,0,0,35,"2013-08-26",113,2,2013,27,"COMMUNICATION","Free","Communication","1.0","1.6 and up","2013-08",0,0
-"Learn Morse Code - G0HYN Learn Morse",6,4,27,0.6,5000,0,0,0,35,"2018-05-08",2152,7,2018,84,"COMMUNICATION","Free","Communication","5.0","2.2 and up","2018-05",0,0
-"Ring",6,3.9,517,35,10000,0,0,0,35,"2018-08-06",1492,20,2018,87,"COMMUNICATION","Free","Communication","20180805","4.4 and up","2018-08",0,0
-"Cy Messenger",6,4.5,4,8.1,100,0,0,0,35,"2014-08-30",534,9,2014,39,"COMMUNICATION","Free","Communication","1.3.0","2.3.3 and up","2014-08",0,0
-"Your Freedom VPN Client",6,4,74497,5.3,5e+06,0,0,0,35,"2018-05-19",1488,13,2018,84,"COMMUNICATION","Free","Communication","20180518-01","4.0 and up","2018-05",0,0
-"DK Browser",6,4,1,2.4,10,0,0,0,35,"2017-04-25",113,18,2017,71,"COMMUNICATION","Free","Communication","1.0","4.2 and up","2017-04",0,0
-"DM for WhatsApp",6,4.4,25,2.9,5000,0,0,0,35,"2018-06-03",53,20,2018,85,"COMMUNICATION","Free","Communication","0.3.7","4.4 and up","2018-06",0,0
-"DM Tracker",6,3.5,11,5.2,1000,0,0,0,35,"2018-07-26",1023,19,2018,86,"COMMUNICATION","Free","Communication","2.0.1","4.3 and up","2018-07",0,0
-"Call Blocker & Blacklist",6,4,6,4.2,1000,0,0,0,35,"2018-07-13",1581,13,2018,86,"COMMUNICATION","Free","Communication","3.1.0","4.0 and up","2018-07",0,0
-"ReadyOp DT",6,4.6,8,1.1,1000,0,0,0,35,"2018-07-06",211,9,2018,86,"COMMUNICATION","Free","Communication","1.0.56","2.3.3 and up","2018-07",0,0
-"Caller ID & Call Block - DU Caller",6,4.6,93930,14,5e+06,0,0,0,35,"2018-08-01",1916,18,2018,87,"COMMUNICATION","Free","Communication","4.0.8","4.2 and up","2018-08",0,0
-"DW Contacts & Phone & Dialer",6,4.3,21186,10,1e+06,0,0,0,35,"2018-08-04",2750,32,2018,87,"COMMUNICATION","Free","Communication","Varies with device","Varies with device","2018-08",0,0
-"Ham DX Cluster & Spots Finder",6,4.5,115,2.8,5000,0,0,0,35,"2016-07-15",613,17,2016,62,"COMMUNICATION","Free","Communication","1.4.4","4.1 and up","2016-07",0,0
-"Mircules DX Cluster Lite",6,4.5,51,21,5000,0,0,0,35,"2016-05-10",1522,17,2016,60,"COMMUNICATION","Free","Communication","3.0","4.1 and up","2016-05",0,0
-"3G DZ Configuration",6,4.3,488,2.5,50000,0,0,0,35,"2015-11-19",2401,10,2015,54,"COMMUNICATION","Free","Communication","6.2.3","3.0 and up","2015-11",0,0
-"chat dz",6,5,8,29,100,0,0,1,35,"2018-03-14",113,17,2018,82,"COMMUNICATION","Free","Communication","1.0","4.1 and up","2018-03",0,0
-"love sms good morning",6,4.2,10,3.1,5000,0,0,0,35,"2016-04-28",113,8,2016,59,"COMMUNICATION","Free","Communication","1.0","2.3 and up","2016-04",0,0
-"Call Blocker - Blacklist, SMS Blocker",6,4.2,30350,3.7,1e+06,0,0,0,35,"2018-01-16",840,17,2018,80,"COMMUNICATION","Free","Communication","10.0.0","4.1 and up","2018-01",0,0
-"Eg Call",6,4.2,91,6,10000,0,0,0,35,"2017-02-26",1825,7,2017,69,"COMMUNICATION","Free","Communication","3.8.6","2.2 and up","2017-02",0,0
-"EJ messenger",6,5,1,25,10,0,0,1,35,"2017-10-18",113,13,2017,77,"COMMUNICATION","Free","Communication","1.0","4.0 and up","2017-10",0,0
-"WiFi Tether Router",6,4.2,5599,1.3,1e+05,1,2.9,0,35,"2018-07-02",2404,2,2018,86,"COMMUNICATION","Paid","Communication","6.2.7","1.6 and up","2018-07",0,0
-"Orfox: Tor Browser for Android",6,4.2,44233,31,1e+07,0,0,0,35,"2018-07-02",2716,15,2018,86,"COMMUNICATION","Free","Communication","Fennec-52.9.0esr/TorBrowser-7.5-1/Orfox-1.5.4-RC-1","4.0.3 and up","2018-07",0,0
-"EP RSS Reader",6,3.8,4,0.892,100,0,0,0,35,"2018-07-16",101,15,2018,86,"COMMUNICATION","Free","Communication","0.99","4.0.3 and up","2018-07",0,0
-"Council Voting Calculator",6,3.9,33,3.4,5000,0,0,0,35,"2017-01-06",1261,17,2017,68,"COMMUNICATION","Free","Communication","2.3.0","4.1 and up","2017-01",0,0
-"Have your say on Europe",6,3.8,19,21,500,0,0,0,35,"2018-04-19",280,17,2018,83,"COMMUNICATION","Free","Communication","1.1.0","4.1 and up","2018-04",0,0
-"Inbox.eu",6,3.7,98,9.7,10000,0,0,0,35,"2018-07-11",2432,19,2018,86,"COMMUNICATION","Free","Communication","6.4.7","4.3 and up","2018-07",0,0
-"Remote EX for NISSAN",6,2.3,223,1,5000,1,1.49,0,35,"2014-07-26",532,10,2014,38,"COMMUNICATION","Paid","Communication","1.3","3.0 and up","2014-07",0,0
-"ExDialer PRO Key",6,4.5,5474,0.017,1e+05,1,3.99,0,35,"2014-01-15",2642,5,2014,32,"COMMUNICATION","Paid","Communication","81","2.1 and up","2014-01",0,0
-"Everbridge",6,3.1,497,36,1e+05,0,0,0,35,"2018-07-17",2629,20,2018,86,"COMMUNICATION","Free","Communication","8.6.2","4.4 and up","2018-07",0,0
-"Best Auto Call Recorder Free",6,3.7,7,4.3,500,0,0,0,35,"2017-10-02",1088,17,2017,77,"COMMUNICATION","Free","Communication","2.1","4.1 and up","2017-10",0,0
-"EZ Wifi Notification",6,4.3,260,0.193,10000,0,0,0,35,"2014-08-11",756,7,2014,39,"COMMUNICATION","Free","Communication","1.8","2.2 and up","2014-08",0,0
-"Lite for Facebook Messenger",6,4.3,76498,4.3,1e+06,0,0,1,35,"2018-06-20",2415,32,2018,85,"COMMUNICATION","Free","Communication","6.3.2","Varies with device","2018-06",0,0
-"FC Browser - Focus Privacy Browser",6,4.1,26,4.6,1000,0,0,0,35,"2017-11-24",113,25,2017,78,"COMMUNICATION","Free","Communication","1.0","5.0 and up","2017-11",0,0
-"Wi-Fi Auto-connect",6,3.8,15036,0.253,1e+06,0,0,0,35,"2015-08-01",426,2,2015,51,"COMMUNICATION","Free","Communication","1.2.0","1.6 and up","2015-08",0,0
-"Smart Wi-Fi Hotspot PRO",6,3.7,197,0.957,10000,1,2.99,0,35,"2016-02-10",113,7,2016,57,"COMMUNICATION","Paid","Communication","1.0","2.2 and up","2016-02",0,0
-"Portable Wi-Fi hotspot Premium",6,3.7,481,0.42,10000,1,0.99,0,35,"2015-12-16",596,8,2015,55,"COMMUNICATION","Paid","Communication","1.4.0.2","2.3 and up","2015-12",0,0
-"WeFi - Free Fast WiFi Connect & Find Wi-Fi Map",6,4,13469,5.1,1e+06,0,0,0,35,"2018-06-05",2088,13,2018,85,"COMMUNICATION","Free","Communication","4.7.0.2200000","4.0 and up","2018-06",0,0
-"Portable Wi-Fi hotspot Free",6,4,1711,2.1,1e+05,0,0,0,35,"2018-01-11",467,8,2018,80,"COMMUNICATION","Free","Communication","1.2.5.4-11","2.3 and up","2018-01",0,0
-"TownWiFi | Wi-Fi Everywhere",6,3.9,2372,58,5e+05,0,0,0,35,"2018-08-02",1978,18,2018,87,"COMMUNICATION","Free","Communication","4.2.1","4.2 and up","2018-08",0,0
-"Jazz Wi-Fi",6,3.4,49,4,10000,0,0,0,35,"2017-02-10",16,8,2017,69,"COMMUNICATION","Free","Communication","0.1","2.3 and up","2017-02",0,0
-"Sat-Fi Voice",6,3.4,37,14,1000,0,0,0,35,"2014-11-21",1203,7,2014,42,"COMMUNICATION","Free","Communication","2.2.1.5","2.2 and up","2014-11",0,0
-"Free Wi-fi HotspoT",6,4.1,382,2.3,50000,0,0,0,35,"2018-07-20",1335,13,2018,86,"COMMUNICATION","Free","Communication","2.5","4.0 and up","2018-07",0,0
-"FreedomPop Messaging Phone/SIM",6,3.6,9894,39,5e+05,0,0,0,35,"2018-07-26",1500,17,2018,86,"COMMUNICATION","Free","Communication","23.01.1265.0712","4.1 and up","2018-07",0,0
-"HipChat - beta version",6,4.1,1035,20,50000,0,0,0,35,"2018-08-07",1675,17,2018,87,"COMMUNICATION","Free","Communication","3.20.001","4.1 and up","2018-08",0,0
+"App","Category","Rating","Reviews","Size","Installs","Type","Price","Content.Rating","Genres","Last.Updated","Current.Ver","Android.Ver","Last.Updated..Year.","Last.Updated..Year.Month.","Category..categorical.","Type..categorical.","Genres..categorical.","Current.Ver..categorical.","Android.Ver..categorical.","Last.Updated..Year.Month...categorical.","No_reviews_count","Reviews_present_count","Rating_Q","Installs_D"
+"/u/app",6,4.7,573,53,10000,0,0,1.5,35,"2018-07-03",1988,17,2018,86,"COMMUNICATION","Free","Communication","4.2.4","4.1 and up","2018-07",0,0,3,4
+"[verify-U] VideoIdent",6,2.9,83,13,10000,0,0,0,35,"2018-04-26",1299,25,2018,83,"COMMUNICATION","Free","Communication","2.4.0","5.0 and up","2018-04",0,0,0,4
+"10 WPM Amateur ham radio CW Morse code trainer",6,3.5,10,3.8,100,1,1.49,0,35,"2018-05-12",1117,5,2018,84,"COMMUNICATION","Paid","Communication","2.1.4","2.1 and up","2018-05",0,0,0,1
+"2 Amateur ham radio CW Morse code practice keys TX",6,4.8,6,3.5,100,1,1.49,0,35,"2018-03-05",234,2,2018,82,"COMMUNICATION","Paid","Communication","1.0.9","1.6 and up","2018-03",0,0,3,1
+"20WPM Amateur ham radio Koch CW Morse code trainer",6,4.3,12,3.7,100,1,1.49,0,35,"2018-05-22",1552,5,2018,84,"COMMUNICATION","Paid","Communication","3.0.4","2.1 and up","2018-05",0,0,2,1
+"2ndLine - Second Phone Number",6,4.2,15880,32,1e+06,0,0,0,35,"2018-08-03",2310,13,2018,87,"COMMUNICATION","Free","Communication","5.65.0","4.0 and up","2018-08",0,40,2,7
+"3G DZ Configuration",6,4.3,488,2.5,50000,0,0,0,35,"2015-11-19",2401,10,2015,54,"COMMUNICATION","Free","Communication","6.2.3","3.0 and up","2015-11",0,0,2,4
+"Access Point Names",6,4,138,2.4,10000,0,0,0,35,"2014-08-12",113,9,2014,39,"COMMUNICATION","Free","Communication","1.0","2.3.3 and up","2014-08",0,0,1,4
+"Ad Blocker Turbo - Adblocker Browser",6,3.9,107,44,10000,0,0,0,35,"2018-01-29",207,17,2018,80,"COMMUNICATION","Free","Communication","1.0.5","4.1 and up","2018-01",0,0,1,4
+"Adblock Browser for Android",6,4.1,121113,39,1e+07,0,0,0,35,"2018-07-11",593,17,2018,86,"COMMUNICATION","Free","Communication","1.4.0","4.1 and up","2018-07",0,0,2,9
+"Adblock Plus for Samsung Internet - Browse safe.",6,4,8769,2.1,1e+06,0,0,0,35,"2018-04-05",309,25,2018,83,"COMMUNICATION","Free","Communication","1.1.4","5.0 and up","2018-04",0,0,1,7
+"AG Contacts, Lite edition",6,4.5,185,3.7,5000,0,0,0,35,"2018-05-18",2587,15,2018,84,"COMMUNICATION","Free","Communication","8.05.18.14250","4.0.3 and up","2018-05",0,0,3,2
+"AG Contacts, Premium edition",6,4.5,88,3.7,500,1,4.99,0,35,"2018-05-18",2587,15,2018,84,"COMMUNICATION","Paid","Communication","8.05.18.14250","4.0.3 and up","2018-05",0,0,3,1
+"AK Phone",6,4.4,9,4.2,5000,0,0,0,35,"2017-05-29",1827,7,2017,72,"COMMUNICATION","Free","Communication","3.8.8","2.2 and up","2017-05",0,0,3,2
+"All Email Providers",6,4.1,20901,7.3,1e+06,0,0,0,35,"2018-04-03",2173,17,2018,83,"COMMUNICATION","Free","Communication","5.0.9","4.1 and up","2018-04",35,5,2,7
+"AntennaPict ß",6,4.3,15439,2.2,1e+06,0,0,0,35,"2016-11-07",1015,8,2016,66,"COMMUNICATION","Free","Communication","2.0.0","2.3 and up","2016-11",0,0,2,7
+"Antillean Gold Telegram (original version)",6,4.4,2939,17,1e+05,0,0,0,35,"2018-07-16",1088,17,2018,86,"COMMUNICATION","Free","Communication","2.1","4.1 and up","2018-07",0,0,3,5
+"AT&T Call Protect",6,4.2,6454,15,5e+06,0,0,0,35,"2018-05-03",653,25,2018,84,"COMMUNICATION","Free","Communication","1.5.13-3598","5.0 and up","2018-05",0,0,2,8
+"AU Call Blocker - Block Unwanted Calls Texts 2018",6,4.2,16,3.3,1000,0,0,0,35,"2018-04-24",201,17,2018,83,"COMMUNICATION","Free","Communication","1.0.4","4.1 and up","2018-04",0,0,2,1
+"AudioBT: BT audio GPS/SMS/Text",6,3.4,198,0.219,50000,0,0,0,35,"2017-02-21",1655,13,2017,69,"COMMUNICATION","Free","Communication","3.2.1","4.0 and up","2017-02",0,0,0,4
+"AZ Browser. Private & Download",6,4.4,1520,5.2,1e+05,0,0,0,35,"2016-12-31",592,20,2016,67,"COMMUNICATION","Free","Communication","1.4","4.4 and up","2016-12",0,0,3,5
+"Baby Monitor AV",6,3.3,1434,9.5,1e+05,0,0,0,35,"2014-03-06",466,8,2014,34,"COMMUNICATION","Free","Communication","1.2.5","2.3 and up","2014-03",0,0,0,5
+"BD Data Plan (3G & 4G)",6,4.4,10341,6.9,5e+05,0,0,0,35,"2018-07-05",2230,17,2018,86,"COMMUNICATION","Free","Communication","5.2.4","4.1 and up","2018-07",0,0,3,5
+"BD Dialer",6,4.1,29,13,10000,0,0,0,35,"2018-07-09",777,17,2018,86,"COMMUNICATION","Free","Communication","1.8.3","4.1 and up","2018-07",0,0,2,4
+"BD Internet Packages (Updated)",6,4,474,3,50000,0,0,0,35,"2016-08-05",8,13,2016,63,"COMMUNICATION","Free","Communication","0.0.5","4.0 and up","2016-08",0,0,1,4
+"BD Live Call",6,4.4,7,0.308,5000,0,0,0,35,"2016-09-06",250,3,2016,64,"COMMUNICATION","Free","Communication","1.01","2.0 and up","2016-09",0,0,3,2
+"Bee'ah Employee App",6,4,4,5.4,100,0,0,1,35,"2017-12-24",1250,25,2017,79,"COMMUNICATION","Free","Communication","2.26.5.0","5.0 and up","2017-12",0,0,1,1
+"Best Auto Call Recorder Free",6,3.7,7,4.3,500,0,0,0,35,"2017-10-02",1088,17,2017,77,"COMMUNICATION","Free","Communication","2.1","4.1 and up","2017-10",0,0,0,1
+"Best Browser BD social networking",6,4.8,6,21,10,0,0,0,35,"2018-07-04",1014,17,2018,86,"COMMUNICATION","Free","Communication","2.0","4.1 and up","2018-07",0,0,3,0
+"BF Browser by Betfilter - Stop Gambling Today!",6,3,39,4.6,10000,0,0,0,35,"2017-09-04",592,15,2017,76,"COMMUNICATION","Free","Communication","1.4","4.0.3 and up","2017-09",0,0,0,4
+"BH Mail",6,3.4,7,6,1000,0,0,0,35,"2018-04-03",2283,15,2018,83,"COMMUNICATION","Free","Communication","5.403","4.0.3 and up","2018-04",0,0,0,1
+"Bluetooth Auto Connect",6,3.9,20829,1.9,5e+06,0,0,0,35,"2017-11-17",2059,10,2017,78,"COMMUNICATION","Free","Communication","4.5.4","3.0 and up","2017-11",0,0,1,8
+"Browser 4G",6,4.3,192948,6.6,1e+07,0,0,0,35,"2018-06-19",1506,14,2018,85,"COMMUNICATION","Free","Communication","24.6.6","4.0.3 - 7.1.1","2018-06",6,34,2,9
+"BS-Mobile",6,5,1,0.683,50,0,0,0,35,"2015-09-03",16,8,2015,52,"COMMUNICATION","Free","Communication","0.1","2.3 and up","2015-09",0,0,3,0
+"BT MeetMe with Dolby Voice",6,3.6,437,12,1e+05,0,0,0,35,"2018-07-13",1399,25,2018,86,"COMMUNICATION","Free","Communication","2.66.5","5.0 and up","2018-07",0,0,0,5
+"BT Messenger",6,3.9,97,0.598,50000,0,0,0,35,"2015-05-15",113,7,2015,48,"COMMUNICATION","Free","Communication","1.0","2.2 and up","2015-05",0,0,1,4
+"BT One Phone Mobile App",6,3.5,33,2.7,10000,0,0,0,35,"2017-09-18",1224,17,2017,76,"COMMUNICATION","Free","Communication","2.2.6","4.1 and up","2017-09",0,0,0,4
+"BT One Voice mobile access",6,4,32,0.437,5000,0,0,0,35,"2015-07-30",2753,2,2015,50,"COMMUNICATION","Free","Communication","Version 1.6","1.6 and up","2015-07",0,0,1,2
+"BV",6,5,3,1.6,100,0,0,0,35,"2016-08-04",111,10,2016,63,"COMMUNICATION","Free","Communication","1,01","3.0 and up","2016-08",0,0,3,1
+"C W Browser",6,4.4,14,17,100,0,0,0,35,"2017-10-28",113,13,2017,77,"COMMUNICATION","Free","Communication","1.0","4.0 and up","2017-10",0,0,3,1
+"Call Blocker - Blacklist, SMS Blocker",6,4.2,30350,3.7,1e+06,0,0,0,35,"2018-01-16",840,17,2018,80,"COMMUNICATION","Free","Communication","10.0.0","4.1 and up","2018-01",0,0,2,7
+"Call Blocker & Blacklist",6,4,6,4.2,1000,0,0,0,35,"2018-07-13",1581,13,2018,86,"COMMUNICATION","Free","Communication","3.1.0","4.0 and up","2018-07",0,0,1,1
+"Call Control - Call Blocker",6,4.4,93825,11,5e+06,0,0,0,35,"2018-07-05",1180,17,2018,86,"COMMUNICATION","Free","Communication","2.17.3","4.1 and up","2018-07",37,3,3,8
+"Call Free – Free Call",6,4.3,30209,15,5e+06,0,0,0,35,"2018-07-28",557,17,2018,86,"COMMUNICATION","Free","Communication","1.3.4","4.1 and up","2018-07",40,0,2,8
+"CallApp: Caller ID, Blocker & Phone Call Recorder",6,4.4,483565,20,1e+07,0,0,0,35,"2018-07-29",527,17,2018,86,"COMMUNICATION","Free","Communication","1.286","4.1 and up","2018-07",39,1,3,9
+"Caller ID & Call Block - DU Caller",6,4.6,93930,14,5e+06,0,0,0,35,"2018-08-01",1916,18,2018,87,"COMMUNICATION","Free","Communication","4.0.8","4.2 and up","2018-08",0,0,3,8
+"Caller ID +",6,4,9498,0.118,1e+06,0,0,0,35,"2016-06-07",2246,8,2016,61,"COMMUNICATION","Free","Communication","5.28.0","2.3 and up","2016-06",39,1,1,7
+"Calls & Text by Mo+",6,4.2,83239,14,5e+06,0,0,0,35,"2018-04-19",1552,13,2018,83,"COMMUNICATION","Free","Communication","3.0.4","4.0 and up","2018-04",74,6,2,8
+"Cb browser",6,5,5,3.7,50,0,0,0,35,"2018-04-02",113,13,2018,83,"COMMUNICATION","Free","Communication","1.0","4.0 and up","2018-04",0,0,3,0
+"CB On Mobile",6,4.1,901,0.323,1e+05,0,0,1,35,"2017-04-26",207,13,2017,71,"COMMUNICATION","Free","Communication","1.0.5","4.0 and up","2017-04",0,0,2,5
+"CB Radio Chat - for friends!",6,4,17998,7.9,1e+06,0,0,1,35,"2018-03-27",1389,13,2018,82,"COMMUNICATION","Free","Communication","2.6.3","4.0 and up","2018-03",0,0,1,7
+"CF Chat: Connecting Friends",6,3.4,5,2.4,100,0,0,1,35,"2016-04-27",592,8,2016,59,"COMMUNICATION","Free","Communication","1.4","2.3 and up","2016-04",0,0,0,1
+"Channel 19",6,3.7,916,12,1e+05,0,0,1.5,35,"2018-07-13",1224,17,2018,86,"COMMUNICATION","Free","Communication","2.2.6","4.1 and up","2018-07",0,0,0,5
+"chat dz",6,5,8,29,100,0,0,1,35,"2018-03-14",113,17,2018,82,"COMMUNICATION","Free","Communication","1.0","4.1 and up","2018-03",0,0,3,1
+"chomp SMS",6,4.3,335646,8.3,1e+07,0,0,0,35,"2018-07-26",2524,8,2018,86,"COMMUNICATION","Free","Communication","7.21","2.3 and up","2018-07",0,0,2,9
+"CJ Browser - Fast & Private",6,4.2,5,15,100,0,0,0,35,"2017-11-07",113,13,2017,78,"COMMUNICATION","Free","Communication","1.0","4.0 and up","2017-11",0,0,2,1
+"CJ DVD Rentals",6,1,5,13,100,0,0,0,35,"2017-10-06",113,17,2017,77,"COMMUNICATION","Free","Communication","1.0","4.1 and up","2017-10",0,0,0,1
+"ClanHQ",6,2.7,560,37,10000,0,0,0,35,"2018-07-25",182,20,2018,86,"COMMUNICATION","Free","Communication","1.0.21","4.4 and up","2018-07",0,0,0,4
+"ClanPlay: Community and Tools for Gamers",6,4.8,34443,27,1e+06,0,0,1,35,"2018-06-28",386,25,2018,85,"COMMUNICATION","Free","Communication","1.14.3","5.0 and up","2018-06",0,0,3,7
+"CM Transfer - Share any files with friends nearby",6,4.6,71740,5.8,5e+06,0,0,0,35,"2018-06-27",1062,13,2018,85,"COMMUNICATION","Free","Communication","2.0.7.0014","4.0 and up","2018-06",0,0,3,8
+"Contacts+",6,4.2,190613,11,1e+07,0,0,0,35,"2018-07-31",2328,15,2018,86,"COMMUNICATION","Free","Communication","5.85.1","4.0.3 and up","2018-07",2,38,2,9
+"Council Voting Calculator",6,3.9,33,3.4,5000,0,0,0,35,"2017-01-06",1261,17,2017,68,"COMMUNICATION","Free","Communication","2.3.0","4.1 and up","2017-01",0,0,1,2
+"Cricket Visual Voicemail",6,3.9,13698,5.1,1e+07,0,0,0,35,"2018-07-02",1651,17,2018,86,"COMMUNICATION","Free","Communication","3.2.0.100171","4.1 and up","2018-07",0,40,1,9
+"CS Browser | #1 & BEST BROWSER",6,3.8,52,2.1,1000,0,0,0,35,"2015-08-28",1014,10,2015,51,"COMMUNICATION","Free","Communication","2.0","3.0 and up","2015-08",0,0,0,1
+"CS Browser Beta",6,4.3,125,53,5000,0,0,0,35,"2017-10-16",2474,17,2017,77,"COMMUNICATION","Free","Communication","60.0.3112.3046279","4.1 and up","2017-10",0,0,2,2
+"CS Customizer",6,3.7,25,3.7,1000,0,0,0,35,"2017-02-06",438,10,2017,69,"COMMUNICATION","Free","Communication","1.2.11","3.0 and up","2017-02",0,0,0,1
+"CV-RECORD Pro",6,2.3,42,6,1000,1,0.99,0,35,"2017-01-12",207,17,2017,68,"COMMUNICATION","Paid","Communication","1.0.5","4.1 and up","2017-01",0,0,0,1
+"CW Beacon for Ham Radio",6,4.8,10,0.516,100,1,1.49,0,35,"2015-01-22",2726,2,2015,44,"COMMUNICATION","Paid","Communication","KM","1.6 and up","2015-01",0,0,3,1
+"CW Studio ®",6,3.8,9,0.78,100,1,0.99,0,35,"2015-05-19",424,9,2015,48,"COMMUNICATION","Paid","Communication","1.2","2.3.3 and up","2015-05",0,0,0,1
+"Cy Messenger",6,4.5,4,8.1,100,0,0,0,35,"2014-08-30",534,9,2014,39,"COMMUNICATION","Free","Communication","1.3.0","2.3.3 and up","2014-08",0,0,3,1
+"Daum Mail - Next Mail",6,4.3,41420,19,5e+06,0,0,0,35,"2018-06-21",1650,13,2018,85,"COMMUNICATION","Free","Communication","3.2.0","4.0 and up","2018-06",0,0,2,8
+"Deaf - Hearing chat device H",6,4.4,9,0.051,500,1,3.99,0,35,"2017-02-08",1782,7,2017,69,"COMMUNICATION","Paid","Communication","3.6","2.2 and up","2017-02",0,0,3,1
+"Discord - Chat for Gamers",6,4.5,305347,39,1e+07,0,0,1,35,"2018-07-27",2506,17,2018,86,"COMMUNICATION","Free","Communication","7.1.8","4.1 and up","2018-07",0,0,3,9
+"DK Browser",6,4,1,2.4,10,0,0,0,35,"2017-04-25",113,18,2017,71,"COMMUNICATION","Free","Communication","1.0","4.2 and up","2017-04",0,0,1,0
+"DM for WhatsApp",6,4.4,25,2.9,5000,0,0,0,35,"2018-06-03",53,20,2018,85,"COMMUNICATION","Free","Communication","0.3.7","4.4 and up","2018-06",0,0,3,2
+"DM Tracker",6,3.5,11,5.2,1000,0,0,0,35,"2018-07-26",1023,19,2018,86,"COMMUNICATION","Free","Communication","2.0.1","4.3 and up","2018-07",0,0,0,1
+"DMR BrandMeister Tool",6,3.3,78,2.5,10000,0,0,0,35,"2018-03-31",2044,27,2018,82,"COMMUNICATION","Free","Communication","4.5","6.0 and up","2018-03",0,0,0,4
+"DU Browser—Browse fast & fun",6,4.3,1133501,4.7,1e+07,0,0,0,35,"2016-04-01",2425,13,2016,59,"COMMUNICATION","Free","Communication","6.4.0.4","4.0 and up","2016-04",0,40,2,9
+"DW Contacts & Phone & Dialer",6,4.3,21186,10,1e+06,0,0,0,35,"2018-08-04",2750,32,2018,87,"COMMUNICATION","Free","Communication","Varies with device","Varies with device","2018-08",0,0,2,7
+"Eg Call",6,4.2,91,6,10000,0,0,0,35,"2017-02-26",1825,7,2017,69,"COMMUNICATION","Free","Communication","3.8.6","2.2 and up","2017-02",0,0,2,4
+"EJ messenger",6,5,1,25,10,0,0,1,35,"2017-10-18",113,13,2017,77,"COMMUNICATION","Free","Communication","1.0","4.0 and up","2017-10",0,0,3,0
+"Email TypeApp - Mail App",6,4.6,183374,44,1e+06,0,0,0,35,"2018-08-01",813,17,2018,87,"COMMUNICATION","Free","Communication","1.9.4.74","4.1 and up","2018-08",40,0,3,7
+"EP RSS Reader",6,3.8,4,0.892,100,0,0,0,35,"2018-07-16",101,15,2018,86,"COMMUNICATION","Free","Communication","0.99","4.0.3 and up","2018-07",0,0,0,1
+"Everbridge",6,3.1,497,36,1e+05,0,0,0,35,"2018-07-17",2629,20,2018,86,"COMMUNICATION","Free","Communication","8.6.2","4.4 and up","2018-07",0,0,0,5
+"ExDialer - Dialer & Contacts",6,4.2,125232,2.7,1e+07,0,0,0,35,"2017-03-05",1011,5,2017,70,"COMMUNICATION","Free","Communication","196","2.1 and up","2017-03",11,29,2,9
+"ExDialer PRO Key",6,4.5,5474,0.017,1e+05,1,3.99,0,35,"2014-01-15",2642,5,2014,32,"COMMUNICATION","Paid","Communication","81","2.1 and up","2014-01",0,0,3,5
+"EZ Wifi Notification",6,4.3,260,0.193,10000,0,0,0,35,"2014-08-11",756,7,2014,39,"COMMUNICATION","Free","Communication","1.8","2.2 and up","2014-08",0,0,2,4
+"FC Browser - Focus Privacy Browser",6,4.1,26,4.6,1000,0,0,0,35,"2017-11-24",113,25,2017,78,"COMMUNICATION","Free","Communication","1.0","5.0 and up","2017-11",0,0,2,1
+"Feel Performer",6,2.2,62,34,10000,0,0,0,35,"2018-04-09",1048,17,2018,83,"COMMUNICATION","Free","Communication","2.0.3","4.1 and up","2018-04",0,0,0,4
+"Firefox Focus: The privacy browser",6,4.4,36880,4,1e+06,0,0,0,35,"2018-07-06",2218,25,2018,86,"COMMUNICATION","Free","Communication","5.2","5.0 and up","2018-07",16,64,3,7
+"Free Wi-fi HotspoT",6,4.1,382,2.3,50000,0,0,0,35,"2018-07-20",1335,13,2018,86,"COMMUNICATION","Free","Communication","2.5","4.0 and up","2018-07",0,0,2,4
+"Free WiFi Connect",6,3.9,167229,9.7,1e+07,0,0,0,35,"2018-03-31",2591,17,2018,82,"COMMUNICATION","Free","Communication","8.1","4.1 and up","2018-03",0,0,1,9
+"FreedomPop Messaging Phone/SIM",6,3.6,9894,39,5e+05,0,0,0,35,"2018-07-26",1500,17,2018,86,"COMMUNICATION","Free","Communication","23.01.1265.0712","4.1 and up","2018-07",0,0,0,5
+"Full Screen Caller ID",6,4.2,104990,10,5e+06,0,0,0,35,"2018-05-15",1760,15,2018,84,"COMMUNICATION","Free","Communication","3.5.0","4.0.3 and up","2018-05",9,31,2,8
+"Ghostery Privacy Browser",6,4.1,13100,2.2,1e+06,0,0,0,35,"2018-03-20",601,15,2018,82,"COMMUNICATION","Free","Communication","1.4.1.0","4.0.3 and up","2018-03",40,0,2,7
+"GO Notifier",6,4.2,124346,0.695,1e+07,0,0,0,35,"2014-07-06",1423,3,2014,38,"COMMUNICATION","Free","Communication","2.8","2.0 and up","2014-07",6,34,2,9
+"Ham DX Cluster & Spots Finder",6,4.5,115,2.8,5000,0,0,0,35,"2016-07-15",613,17,2016,62,"COMMUNICATION","Free","Communication","1.4.4","4.1 and up","2016-07",0,0,3,2
+"Ham Radio Prefixes",6,3.7,218,3.7,10000,0,0,0,35,"2014-07-12",362,8,2014,38,"COMMUNICATION","Free","Communication","1.12","2.3 and up","2014-07",0,0,0,4
+"Hangouts Dialer - Call Phones",6,4,122498,0.079,1e+07,0,0,0,35,"2015-09-02",20,15,2015,52,"COMMUNICATION","Free","Communication","0.1.100944346","4.0.3 and up","2015-09",40,0,1,9
+"Have your say on Europe",6,3.8,19,21,500,0,0,0,35,"2018-04-19",280,17,2018,83,"COMMUNICATION","Free","Communication","1.1.0","4.1 and up","2018-04",0,0,0,1
+"HipChat - beta version",6,4.1,1035,20,50000,0,0,0,35,"2018-08-07",1675,17,2018,87,"COMMUNICATION","Free","Communication","3.20.001","4.1 and up","2018-08",0,0,2,4
+"Hiya - Caller ID & Block",6,4.4,177703,13,1e+07,0,0,1.5,35,"2018-07-25",2597,25,2018,86,"COMMUNICATION","Free","Communication","8.1.2-6310","5.0 and up","2018-07",40,0,3,9
+"Inbox.eu",6,3.7,98,9.7,10000,0,0,0,35,"2018-07-11",2432,19,2018,86,"COMMUNICATION","Free","Communication","6.4.7","4.3 and up","2018-07",0,0,0,4
+"IZ2UUF Morse Koch CW",6,4.6,649,0.837,50000,0,0,0,35,"2013-08-08",134,5,2013,27,"COMMUNICATION","Free","Communication","1.0.013","2.1 and up","2013-08",0,0,3,4
+"Jazz Wi-Fi",6,3.4,49,4,10000,0,0,0,35,"2017-02-10",16,8,2017,69,"COMMUNICATION","Free","Communication","0.1","2.3 and up","2017-02",0,0,0,4
+"JusTalk - Free Video Calls and Fun Video Chat",6,4.6,191032,26,5e+06,0,0,0,35,"2018-08-04",2519,15,2018,87,"COMMUNICATION","Free","Communication","7.2.29","4.0.3 and up","2018-08",0,0,3,8
+"K-9 Mail",6,4.2,88427,5.1,5e+06,0,0,0,35,"2018-01-06",2283,15,2018,80,"COMMUNICATION","Free","Communication","5.403","4.0.3 and up","2018-01",0,0,2,8
+"K-9 Material (unofficial)",6,4.4,64,4.5,5000,0,0,1,35,"2017-03-27",2238,25,2017,70,"COMMUNICATION","Free","Communication","5.206","5.0 and up","2017-03",0,0,3,2
+"Koch Morse Trainer Pro",6,4.6,94,1.1,1000,1,2.49,0,35,"2015-02-14",1099,7,2015,45,"COMMUNICATION","Paid","Communication","2.1.1","2.2 and up","2015-02",0,0,3,1
+"Learn Morse Code - G0HYN Learn Morse",6,4,27,0.6,5000,0,0,0,35,"2018-05-08",2152,7,2018,84,"COMMUNICATION","Free","Communication","5.0","2.2 and up","2018-05",0,0,1,2
+"Lightning Web Browser",6,4.1,12578,2.3,5e+05,0,0,0,35,"2017-07-10",2047,13,2017,74,"COMMUNICATION","Free","Communication","4.5.1","4.0 and up","2017-07",0,0,2,5
+"Lite for Facebook Messenger",6,4.3,76498,4.3,1e+06,0,0,1,35,"2018-06-20",2415,32,2018,85,"COMMUNICATION","Free","Communication","6.3.2","Varies with device","2018-06",0,0,2,7
+"LokLok: Draw on a Lock Screen",6,4.1,14766,16,5e+05,0,0,1,35,"2017-09-20",88,15,2017,76,"COMMUNICATION","Free","Communication","0.81 beta","4.0.3 and up","2017-09",0,0,2,5
+"love sms good morning",6,4.2,10,3.1,5000,0,0,0,35,"2016-04-28",113,8,2016,59,"COMMUNICATION","Free","Communication","1.0","2.3 and up","2016-04",0,0,2,2
+"M star Dialer",6,3.5,400,4.2,1e+05,0,0,0,35,"2017-03-20",1827,7,2017,70,"COMMUNICATION","Free","Communication","3.8.8","2.2 and up","2017-03",0,0,0,5
+"m:go BiH",6,3.2,559,6,10000,0,0,0,35,"2018-07-25",1725,10,2018,86,"COMMUNICATION","Free","Communication","3.4","3.0 and up","2018-07",0,0,0,4
+"mail.co.uk Mail",6,4.2,21,8.7,5000,0,0,0,35,"2018-07-24",280,15,2018,86,"COMMUNICATION","Free","Communication","1.1.0","4.0.3 and up","2018-07",0,0,2,2
+"Mail1Click - Secure Mail",6,4.1,255,1.6,10000,0,0,0,35,"2017-04-11",1260,7,2017,71,"COMMUNICATION","Free","Communication","2.3","2.2 and up","2017-04",0,0,2,4
+"Messaging+ SMS, MMS Free",6,4.1,28238,17,1e+06,0,0,0,35,"2018-08-02",2138,8,2018,87,"COMMUNICATION","Free","Communication","4.98","2.3 and up","2018-08",0,0,2,7
+"Messenger for SMS",6,4.3,125257,17,1e+07,0,0,1,35,"2018-06-06",789,17,2018,85,"COMMUNICATION","Free","Communication","1.8.9","4.1 and up","2018-06",0,0,2,9
+"Microsoft Edge",6,4.3,27187,66,5e+06,0,0,0,35,"2018-07-28",2144,20,2018,86,"COMMUNICATION","Free","Communication","42.0.0.2059","4.4 and up","2018-07",0,0,2,8
+"Mircules DX Cluster Lite",6,4.5,51,21,5000,0,0,0,35,"2016-05-10",1522,17,2016,60,"COMMUNICATION","Free","Communication","3.0","4.1 and up","2016-05",0,0,3,2
+"Morse Code Reader",6,3.9,1436,0.02,1e+05,0,0,0,35,"2013-08-26",113,2,2013,27,"COMMUNICATION","Free","Communication","1.0","1.6 and up","2013-08",0,0,1,5
+"Morse Decoder for Ham Radio",6,3.7,166,2,5000,1,4.99,0,35,"2017-03-14",677,8,2017,70,"COMMUNICATION","Paid","Communication","1.52","2.3 and up","2017-03",0,0,0,2
+"Morse Machine for Ham Radio",6,4.8,341,9.6,5000,1,0.99,0,35,"2015-02-20",2766,3,2015,45,"COMMUNICATION","Paid","Communication","iu4","2.0 and up","2015-02",0,0,3,2
+"Morse Trainer for Ham Radio",6,4.6,265,2.6,10000,1,2.99,0,35,"2018-01-06",1254,8,2018,80,"COMMUNICATION","Paid","Communication","2.28","2.3 and up","2018-01",0,0,3,4
+"Mr. Number-Block calls & spam",6,4.2,177263,13,1e+07,0,0,1.5,35,"2018-07-13",2186,25,2018,86,"COMMUNICATION","Free","Communication","5.1.2-6310","5.0 and up","2018-07",0,0,2,9
+"My BF App",6,4.1,141,9.9,50000,0,0,0,35,"2017-12-19",1014,13,2017,79,"COMMUNICATION","Free","Communication","2.0","4.0 and up","2017-12",0,0,2,4
+"My magenta",6,3.9,42370,37,1e+06,0,0,0,35,"2018-06-25",2547,25,2018,85,"COMMUNICATION","Free","Communication","7.5.1","5.0 and up","2018-06",0,0,1,7
+"My Tele2",6,4.3,158679,8.8,5e+06,0,0,0,35,"2018-08-03",1301,20,2018,87,"COMMUNICATION","Free","Communication","2.4.1","4.4 and up","2018-08",0,0,2,8
+"My Vodacom SA",6,3.7,25021,61,5e+06,0,0,0,35,"2018-06-26",2689,19,2018,85,"COMMUNICATION","Free","Communication","9.9.0","4.3 and up","2018-06",0,0,0,8
+"My Vodafone (GR)",6,3.8,12667,34,1e+06,0,0,0,35,"2018-08-01",2061,19,2018,87,"COMMUNICATION","Free","Communication","4.5.5.1-2090AL-REL","4.3 and up","2018-08",0,0,0,7
+"mysms SMS Text Messaging Sync",6,4.3,37320,8.4,1e+06,0,0,0,35,"2018-07-30",2436,15,2018,86,"COMMUNICATION","Free","Communication","6.5.1","4.0.3 and up","2018-07",0,0,2,7
+"N-Com Wizard",6,3.3,960,3.8,50000,0,0,0,35,"2017-09-21",1107,9,2017,76,"COMMUNICATION","Free","Communication","2.1.2","2.3.3 and up","2017-09",0,0,0,4
+"Newton Mail - Email App for Gmail, Outlook, IMAP",6,4,122595,30,1e+06,0,0,0,35,"2018-07-19",2688,25,2018,86,"COMMUNICATION","Free","Communication","9.8.376","5.0 and up","2018-07",0,0,1,7
+"Ninesky Browser",6,4.2,42925,2.8,1e+06,0,0,0,35,"2017-08-27",2372,8,2017,75,"COMMUNICATION","Free","Communication","6.1","2.3 and up","2017-08",0,0,2,7
+"Omlet Chat",6,3.9,40751,35,1e+07,0,0,1,35,"2016-11-04",1227,15,2016,66,"COMMUNICATION","Free","Communication","2.2.7600","4.0.3 and up","2016-11",0,0,1,9
+"Orfox: Tor Browser for Android",6,4.2,44233,31,1e+07,0,0,0,35,"2018-07-02",2716,15,2018,86,"COMMUNICATION","Free","Communication","Fennec-52.9.0esr/TorBrowser-7.5-1/Orfox-1.5.4-RC-1","4.0.3 and up","2018-07",0,0,2,9
+"PHONE for Google Voice & GTalk",6,4.3,72065,13,1e+06,0,0,0,35,"2018-04-18",1562,13,2018,83,"COMMUNICATION","Free","Communication","3.0.7","4.0 and up","2018-04",0,0,2,7
+"PlacarTv Futebol Ao Vivo",6,4.1,2063,4.5,1e+05,0,0,0,35,"2018-06-03",189,13,2018,85,"COMMUNICATION","Free","Communication","1.0.3","4.0 and up","2018-06",0,0,2,5
+"Pocket Prefix Plus",6,4.5,192,15,10000,0,0,0,35,"2018-02-12",2790,10,2018,81,"COMMUNICATION","Free","Communication","v2.6.0","3.0 and up","2018-02",0,0,3,4
+"Portable Wi-Fi hotspot",6,3.9,138129,2.1,1e+07,0,0,0,35,"2018-05-06",660,8,2018,84,"COMMUNICATION","Free","Communication","1.5.2.4-23","2.3 and up","2018-05",0,0,1,9
+"Portable Wi-Fi hotspot Free",6,4,1711,2.1,1e+05,0,0,0,35,"2018-01-11",467,8,2018,80,"COMMUNICATION","Free","Communication","1.2.5.4-11","2.3 and up","2018-01",0,0,1,5
+"Portable Wi-Fi hotspot Premium",6,3.7,481,0.42,10000,1,0.99,0,35,"2015-12-16",596,8,2015,55,"COMMUNICATION","Paid","Communication","1.4.0.2","2.3 and up","2015-12",0,0,0,4
+"pretty Easy privacy p=p",6,3.7,21,20,500,1,0.99,0,35,"2018-07-30",147,25,2018,86,"COMMUNICATION","Paid","Communication","1.0.100rc1.withoutKeysync","5.0 and up","2018-07",0,0,0,1
+"QRZ Assistant",6,4.2,1044,3.5,1e+05,0,0,0,35,"2018-05-30",1014,20,2018,84,"COMMUNICATION","Free","Communication","2.0","4.4 and up","2018-05",0,0,2,5
+"ReadyOp DT",6,4.6,8,1.1,1000,0,0,0,35,"2018-07-06",211,9,2018,86,"COMMUNICATION","Free","Communication","1.0.56","2.3.3 and up","2018-07",0,0,3,1
+"Remote EX for NISSAN",6,2.3,223,1,5000,1,1.49,0,35,"2014-07-26",532,10,2014,38,"COMMUNICATION","Paid","Communication","1.3","3.0 and up","2014-07",0,0,0,2
+"Ring",6,3.9,517,35,10000,0,0,0,35,"2018-08-06",1492,20,2018,87,"COMMUNICATION","Free","Communication","20180805","4.4 and up","2018-08",0,0,1,4
+"RocketDial Dialer & Contacts",6,4.4,32254,5.5,1e+06,0,0,0,35,"2017-12-04",1839,5,2017,79,"COMMUNICATION","Free","Communication","3.9.7","2.1 and up","2017-12",0,0,3,7
+"Safest Call Blocker",6,4.4,27540,3.7,1e+06,0,0,0,35,"2018-01-05",512,13,2018,80,"COMMUNICATION","Free","Communication","1.26.001","4.0 and up","2018-01",0,0,3,7
+"Sat-Fi Voice",6,3.4,37,14,1000,0,0,0,35,"2014-11-21",1203,7,2014,42,"COMMUNICATION","Free","Communication","2.2.1.5","2.2 and up","2014-11",0,0,0,1
+"Should I Answer?",6,4.8,237468,8.8,1e+06,0,0,0,35,"2018-07-26",1482,13,2018,86,"COMMUNICATION","Free","Communication","2018.1.715","4.0 and up","2018-07",0,0,3,7
+"Skype Lite - Free Video Call & Chat",6,4.2,33053,22,5e+06,0,0,0,35,"2018-07-31",710,15,2018,86,"COMMUNICATION","Free","Communication","1.60.0.31354-release","4.0.3 and up","2018-07",0,0,2,8
+"Smart Wi-Fi Hotspot PRO",6,3.7,197,0.957,10000,1,2.99,0,35,"2016-02-10",113,7,2016,57,"COMMUNICATION","Paid","Communication","1.0","2.2 and up","2016-02",0,0,0,4
+"SW-100.tch by Callstel",6,4,1926,0.716,1e+06,0,0,0,35,"2015-12-16",547,7,2015,55,"COMMUNICATION","Free","Communication","1.3.20","2.2 and up","2015-12",0,0,1,7
+"Sync.ME – Caller ID & Block",6,4.5,205739,17,5e+06,0,0,0,35,"2018-07-26",2059,17,2018,86,"COMMUNICATION","Free","Communication","4.5.4","4.1 and up","2018-07",0,0,3,8
+"T-Mobile DIGITS",6,3,1820,33,1e+05,0,0,0,35,"2018-02-15",319,20,2018,81,"COMMUNICATION","Free","Communication","1.1.50","4.4 and up","2018-02",0,0,0,5
+"Talkatone: Free Texts, Calls & Phone Number",6,4.1,132014,25,1e+07,0,0,0,35,"2018-07-18",2372,18,2018,86,"COMMUNICATION","Free","Communication","6.1","4.2 and up","2018-07",0,0,2,9
+"Text SMS",6,4.5,349384,8.2,1e+07,0,0,0,35,"2018-07-24",1755,15,2018,86,"COMMUNICATION","Free","Communication","3.47","4.0.3 and up","2018-07",0,0,3,9
+"Tiny Call Confirm",6,4.1,22782,0.351,1e+06,0,0,0,35,"2015-03-25",1975,7,2015,46,"COMMUNICATION","Free","Communication","4.2.0","2.2 and up","2015-03",0,0,2,7
+"TouchPal Keyboard - Fun Emoji & Android Keyboard",6,4.4,615381,37,1e+07,0,0,1.5,35,"2018-08-02",2462,15,2018,87,"COMMUNICATION","Free","Communication","6.7.9.1","4.0.3 and up","2018-08",0,0,3,9
+"TownWiFi | Wi-Fi Everywhere",6,3.9,2372,58,5e+05,0,0,0,35,"2018-08-02",1978,18,2018,87,"COMMUNICATION","Free","Communication","4.2.1","4.2 and up","2018-08",0,0,1,5
+"TracFone My Account",6,3.6,20769,18,1e+06,0,0,0,35,"2018-07-11",2736,17,2018,86,"COMMUNICATION","Free","Communication","R6.0.3","4.1 and up","2018-07",0,0,0,7
+"Traffic signs BD",6,4.4,7,5.3,500,0,0,0,35,"2015-10-08",113,17,2015,53,"COMMUNICATION","Free","Communication","1.0","4.1 and up","2015-10",0,0,3,1
+"U - Webinars, Meetings & Messenger",6,4.1,6601,31,5e+05,0,0,0,35,"2018-07-02",2086,17,2018,86,"COMMUNICATION","Free","Communication","4.7.0","4.1 and up","2018-07",0,0,2,5
+"Video Caller Id",6,4.2,15287,17,1e+06,0,0,0,35,"2018-01-24",1214,15,2018,80,"COMMUNICATION","Free","Communication","2.2.245","4.0.3 and up","2018-01",0,0,2,7
+"Virtual Walkie Talkie",6,3.8,21785,2.5,1e+06,0,0,0,35,"2015-08-13",627,8,2015,51,"COMMUNICATION","Free","Communication","1.41","2.3 and up","2015-08",0,0,0,7
+"Vonage Mobile® Call Video Text",6,4.1,29208,23,1e+06,0,0,0,35,"2016-09-28",1456,9,2016,64,"COMMUNICATION","Free","Communication","2.9.8","2.3.3 and up","2016-09",0,0,2,7
+"Web Browser",6,4.2,10965,2.3,5e+05,0,0,0,35,"2015-02-02",1014,10,2015,45,"COMMUNICATION","Free","Communication","2.0","3.0 and up","2015-02",0,0,2,5
+"Web Browser & Explorer",6,4,36901,6.6,5e+06,0,0,0,35,"2018-07-04",905,14,2018,86,"COMMUNICATION","Free","Communication","11.8.6","4.0.3 - 7.1.1","2018-07",0,0,1,8
+"Web Browser for Android",6,4.1,55098,4.3,1e+06,0,0,0,35,"2018-06-20",1192,13,2018,85,"COMMUNICATION","Free","Communication","2.2","4.0 and up","2018-06",0,0,2,7
+"WeFi - Free Fast WiFi Connect & Find Wi-Fi Map",6,4,13469,5.1,1e+06,0,0,0,35,"2018-06-05",2088,13,2018,85,"COMMUNICATION","Free","Communication","4.7.0.2200000","4.0 and up","2018-06",0,0,1,7
+"WhatsApp Business",6,4.4,136662,32,1e+07,0,0,0,35,"2018-07-30",1183,15,2018,86,"COMMUNICATION","Free","Communication","2.18.116","4.0.3 and up","2018-07",0,0,3,9
+"WhatsCall Free Global Phone Call App & Cheap Calls",6,4.6,1130966,27,1e+07,0,0,0,35,"2018-06-06",800,13,2018,85,"COMMUNICATION","Free","Communication","1.9.1.013","4.0 and up","2018-06",0,0,3,9
+"Whoscall - Caller ID & Block",6,4.4,552441,29,1e+07,0,0,0,35,"2018-08-01",2391,17,2018,87,"COMMUNICATION","Free","Communication","6.19.1","4.1 and up","2018-08",0,0,3,9
+"Wi-Fi Auto-connect",6,3.8,15036,0.253,1e+06,0,0,0,35,"2015-08-01",426,2,2015,51,"COMMUNICATION","Free","Communication","1.2.0","1.6 and up","2015-08",0,0,0,7
+"WiFi Access Point (hotspot)",6,3.9,684,0.061,1e+05,0,0,0,35,"2015-05-14",300,8,2015,48,"COMMUNICATION","Free","Communication","1.1.2","2.3 and up","2015-05",0,0,1,5
+"WiFi Tether Router",6,4.2,5599,1.3,1e+05,1,2.9,0,35,"2018-07-02",2404,2,2018,86,"COMMUNICATION","Paid","Communication","6.2.7","1.6 and up","2018-07",0,0,2,5
+"X Browser",6,4,142,2.5,50000,0,0,0,35,"2017-12-31",287,13,2017,79,"COMMUNICATION","Free","Communication","1.1.1","4.0 and up","2017-12",0,0,1,4
+"Your Freedom VPN Client",6,4,74497,5.3,5e+06,0,0,0,35,"2018-05-19",1488,13,2018,84,"COMMUNICATION","Free","Communication","20180518-01","4.0 and up","2018-05",0,0,1,8

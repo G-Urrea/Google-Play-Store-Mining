@@ -768,7 +768,7 @@ markDecile <- function(x) {
 }
 
 addQD <-function(x) {
-  x <- merge(x, data.frame(App=x$App, Rating_Q=markQuartile(x$Rating), Installs_D=markDecile(x$Installs)), by="App")
+  x <- merge(x, data.frame(App=x$App, Rating_Q=markQuartile(x$Rating), Installs_Q=markQuartile(x$Installs)), by="App")
 }
 
 games <- addQD(games)
@@ -782,21 +782,21 @@ productivity <- addQD(productivity)
 social <- addQD(social)
 travel <- addQD(travel)
 
-write.csv(travel, "dataset_modificado/travel.csv", row.names = FALSE)
-write.csv(social, "dataset_modificado/social.csv", row.names = FALSE)
-write.csv(productivity, "dataset_modificado/productivity.csv", row.names = FALSE)
-write.csv(photogrphy, "dataset_modificado/photo.csv", row.names = FALSE)
-write.csv(games, "dataset_modificado/games.csv", row.names = FALSE)
-write.csv(tools, "dataset_modificado/tools.csv", row.names = FALSE)
-write.csv(magazines, "dataset_modificado/magazines.csv", row.names = FALSE)
-write.csv(family, "dataset_modificado/family.csv", row.names = FALSE)
-write.csv(communication, "dataset_modificado/communication.csv", row.names = FALSE)
-write.csv(video_players, "dataset_modificado/video.csv", row.names = FALSE)
+write.csv(travel, "dataset_modificado/travel.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(social, "dataset_modificado/social.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(productivity, "dataset_modificado/productivity.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(photogrphy, "dataset_modificado/photo.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(games, "dataset_modificado/games.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(tools, "dataset_modificado/tools.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(magazines, "dataset_modificado/magazines.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(family, "dataset_modificado/family.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(communication, "dataset_modificado/communication.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(video_players, "dataset_modificado/video.csv", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
 ```{r, echo=FALSE, results='hide'}
 ex_GPur <- ex_GPur[ex_GPur$App %in% ex_GP$App,]
-write.csv(ex_GPur, "dataset_modificado/UserReview.csv", row.names = FALSE)
+write.csv(ex_GPur, "dataset_modificado/UserReview.csv", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
 ```{r, echo=FALSE, results='hide'}
@@ -837,7 +837,7 @@ addQ13 <- function(x, y) {
 
 clusdt <- addQ13(clusdt, ex_GPur)
 
-write.csv(clusdt, "dataset_modificado/DataPregunta2_1.csv", row.names = FALSE)
+write.csv(clusdt, "dataset_modificado/DataPregunta2_1.csv", row.names = FALSE, fileEncoding = "UTF-8")
 ```
 
 ### Preprocesamiento
@@ -873,7 +873,7 @@ La clasificación en base a resseñas se divide en dos partes. Primero se evalua
 
 Para la segunda parte se evaluan los datos de 'Apps/Reviews' para clasificar los cuartiles y deciles de rating y descargas. Para este caso no se subdivide por categoría debido a la menor cantidad de aplicaciones que contiene el dataframe.
 
-Para todas las clasificaciones mencionadas se utlizan los modelos de árbol de decisión, KNN y naive bayes. Para evaluar los resultados de la clasificación se hará uso de cross validation con distribución 70/30 entre datos de entrenamiento y prueba, y considerarán las métricas: exactitud, error, precisión, recall y F1, se considerará también una curva ROC.
+Para todas las clasificaciones mencionadas se utlizan los modelos de árbol de decisión, KNN y naive bayes. Para evaluar los resultados de la clasificación se hará uso de cross validation con distribución 70/30 entre datos de entrenamiento y prueba, y considerarán las métricas: exactitud, precisión, recall y F1.
 
 ### Clustering
 

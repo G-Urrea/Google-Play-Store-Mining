@@ -836,8 +836,14 @@ addQ13 <- function(x, y) {
 }
 
 clusdt <- addQ13(clusdt, ex_GPur)
+clusdt <- addQD(clusdt)
 
 write.csv(clusdt, "dataset_modificado/DataPregunta2_1.csv", row.names = FALSE, fileEncoding = "UTF-8")
+```
+
+```{r, echo=FALSE, results='hide'}
+length(unique(clusdt$Genres))
+length(unique(clusdt$Category))
 ```
 
 ### Preprocesamiento

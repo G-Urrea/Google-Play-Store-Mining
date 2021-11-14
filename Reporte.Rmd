@@ -540,17 +540,19 @@ Para todas las clasificaciones mencionadas se utlizan los modelos de árbol de d
 
 ### Clustering
 
+La pregunta 2 se abordará por medio de clustering.
+
 Sobre los datos de 'Apps/Reviews' se aplican los siguentes métodos: _K_-means, con valores de _k_ obtenidos según optimos observables en un gráfico de codo; clustering jerárquico aglomerativo, con criterios _complete_, _average_, _single_ y _ward_; y DBSCAN con valores de _eps_ y _minPts_ dados por la distancia media a los _k_ vecinos y el doble de la dimensionalidad del dataset respectivamente, ambos valores se toman como base y se variarán según los resultados.
 
-Se tendrán dos enfoques para evaluar los clusters.
-
-La primera se centra en los propios datos usados para crear los clusters, es decir el de las reviews. Los resultados se evaluan en base a cohesión (SSE) y coeficiente de Silhouette. Para visualizar los resultados se reduce la dimensionalidad con el método _principal component analisys_, de modo que sea posible crear un gráfico de disperción. También se estudia la distribución de loss atributos en los clusters resultantes, en específico las medias y cuartiles.
+Se tendrán dos enfoques para evaluar los clusters. La primera se centra en los propios datos usados para crear los clusters, es decir el de las reviews. Los resultados se evaluan en base a cohesión (SSE) y coeficiente de Silhouette. Para visualizar los resultados se reduce la dimensionalidad con el método _principal component analisys_, de modo que sea posible crear un gráfico de disperción. También se estudia la distribución de loss atributos en los clusters resultantes, en específico las medias y cuartiles.
 
 Para este caso se podrían aplicar más filtros y dividir los datos en subconjuntos más homogéneos (según número de descargas, categorías, content rating, ect.) sin embargo, el dataset actual ya es demasiado pequeño (607 filas).
 
-La segunda opción es evaluar la posibilidad de que, por medio de sus reviews, se logre caracterizar las aplicaciones según datos externos a esta, como lo son la categoría o el rating. En este caso se evaluan los resultados comprobando las diferencias y similitudes de las aplicaciones de los clusters resultantes, según sus atributos en el dataframe 'Apps'. Para ello se considera que fracción de categorías, géneros y content rating se encuentran en cada cluster, junto con el porcentanje de la clase mayoritaria en cada caso. Se considerará también la media de rating de cada cluster.
+La segunda opción es evaluar la posibilidad de que, por medio de sus reviews, se logre caracterizar las aplicaciones según datos externos a esta, como lo son la categoría o el rating. En este caso se evaluan los resultados comprobando las diferencias y similitudes de las aplicaciones de los clusters resultantes, según sus atributos en el dataframe 'Apps'. Para ello se considera que fracción de categorías, géneros y content rating se encuentran en cada cluster, junto con el porcentanje de la clase mayoritaria en cada caso. Se considerará también la media de rating de cada cluster. Estos resultados también pueden ser útiles para responder la pregunta 3.
 
 Para ambos casos se evalua también con medida de información mutua, comparando los clusters con distintos atributos del dataset.
+
+Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el dataset 'Apps'. Si se encuentran clusters consistentes, se repite la parte de clasificación sobre estos datos. 
 
 ## Contribucion (no actualizado)
 

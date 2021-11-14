@@ -1,5 +1,5 @@
 ---
-title: "CC5206 Introducción a la Minería de Datos: Reporte Hito 1"
+title: "CC5206 Introducción a la Minería de Datos: Reporte Hito 2"
 author: "Integrantes: Benjamín Farías, Tomás Calderón, Diego León, Joaquín Moraga"
 output: html_document
 ---
@@ -868,28 +868,41 @@ Las preguntas 1 y 3 son problemas de predicción, por lo tanto para estas recurr
 
 __Aplicaciones:__
 
-- Se seleccionan las columnas "Rating", "Reviews", "Size", "Type" y "Content.Rating" para clasificar las descagas según deciles (pregunta 1).
-- Se clasifica el rating según cuartiles con los mismo atributos, reemplazando "Rating" por "Installs" (Pregunta 3).
-- No se concidera el género debido a que pueden existir combinaciones categoría/género no contempladas en los datos.
-- Se repiten las clasificaciones de descargas y rating para apliciones de pago, incluyendo el precio en los atributos a evaluar (extrayendo outliers).
+Se seleccionan las columnas "Rating", "Reviews", "Size", "Type" y "Content.Rating" para clasificar las descagas según cuartiles (pregunta 1). Se clasifica el rating según cuartiles con los mismo atributos, reemplazando "Rating" por "Installs" (Pregunta 3). No se concidera el género debido a que pueden existir combinaciones categoría/género no contempladas en los datos.
+
+Se repiten las clasificaciones de descargas y rating para apliciones de pago, incluyendo el precio en los atributos a evaluar (extrayendo outliers).
 
 __Reseñas:__
 
-La clasificación en base a resseñas se divide en dos partes. Primero se evaluará la posibilidad de extrar información del comentario de las reviews. Para ello se vectoriza el texto y luego se reduce la dimensionalidad por medio de _Latent semantic analysis_. Se utilizan los datos del texto para clasificar los "scores". En la vectorización del texto no se consideran _stop words_, ya que palabras comunmente categorizadas como tal podrían aportar información para el nivel de subjetividad o facilidad de lectura.
+La clasificación en base a resseñas se divide en dos partes. Primero se evaluará la posibilidad de extrar información del comentario de las reviews. Para ello se vectoriza el texto y luego se reduce la dimensionalidad por medio de _Latent semantic analysis_. Se utilizan los datos del texto para clasificar "sentiment_polarity", "sentiment_subjectivity" y "spelling_quality". En la vectorización del texto no se consideran _stop words_, ya que palabras comunmente categorizadas como tal podrían aportar información para el nivel de subjetividad o facilidad de lectura.
 
 Para la segunda parte se evaluan los datos de 'Apps/Reviews' para clasificar los cuartiles y deciles de rating y descargas. Para este caso no se subdivide por categoría debido a la menor cantidad de aplicaciones que contiene el dataframe.
 
-Para todas las clasificaciones mencionadas se utlizan los modelos de árbol de decisión, KNN y naive bayes. Para evaluar los resultados de la clasificación se hará uso de cross validation con distribución 70/30 entre datos de entrenamiento y prueba, y considerarán las métricas: exactitud, precisión, recall y F1.
+Para todas las clasificaciones mencionadas se utlizan los modelos de árbol de decisión, KNN, naive bayes y support vector machines. Para evaluar los resultados de la clasificación se hará uso de cross validation con distribución 80/20 entre datos de entrenamiento y prueba, y considerarán las métricas: exactitud, precisión, recall y F1.
 
 ### Clustering
 
-Sobre estos datos se aplican los siguentes métodos: _K_-means, con valores de _k_ obtenidos según optimos observables en un gráfico de codo; clustering jerárquico aglomerativo, con criterios _complete_, _average_, _single_ y _ward_; y DBSCAN con valores de _eps_ y _minPts_ seleccionados según __[inserte método de selección]__.
+Sobre los datos de 'Apps/Reviews' se aplican los siguentes métodos: _K_-means, con valores de _k_ obtenidos según optimos observables en un gráfico de codo; clustering jerárquico aglomerativo, con criterios _complete_, _average_, _single_ y _ward_; y DBSCAN con valores de _eps_ y _minPts_ dados por la distancia media a los _k_ vecinos y el doble de la dimensionalidad del dataset respectivamente, ambos valores se toman como base y se variarán según los resultados.
 
-Se busca caracterizar a las aplicaciones a través de sus reviews, lo cual se puede interpretar de dos maneras. La primera es a nivel "individual", en el sentido que es independiente clasificaciones previas de las aplicaciones como género o categoría, y se centra integramente en caracterizar la aplicación según las reseñas que recibe, esperando obtener resultados del tipo "la aplicación _A_ recibe comentarios del tipo _B_". Para este caso se podrían aplicar más filtros y dividir los datos en subconjuntos más homogéneos (según número de descargas, categorías, content rating, ect.) sin embargo, el dataset actual ya es demasiado pequeño (607 filas).
+Se tendrán dos enfoques para evaluar los clusters.
 
-Los resultados se evaluan en base a cohesión (SSE), separació (BSS) y coeficiente de Silhouette. Para visualizar los resultados se reduce la dimensionalidad con el método _principal component analisys_, de modo que sea posible crear un gráfico de disperción. También se estudia la distribución de loss atributos en los clusters resultantes, en específico las medias y cuartiles.
+La primera se centra en los propios datos usados para crear los clusters, es decir el de las reviews. Los resultados se evaluan en base a cohesión (SSE) y coeficiente de Silhouette. Para visualizar los resultados se reduce la dimensionalidad con el método _principal component analisys_, de modo que sea posible crear un gráfico de disperción. También se estudia la distribución de loss atributos en los clusters resultantes, en específico las medias y cuartiles.
 
-La segunda opción es evaluar la posibilidad de que, por medio de sus reviews, se logre caracterizar las aplicaciones según datos externos a esta, como lo son la categoría o el rating. En este caso se evaluan los resultados comprobando las diferencias y similitudes de las aplicaciones de los clusters resultantes, según sus atributos en el dataframe 'Apps'. __[Insertar método para evualuar similitud y diferencia]__
+Para este caso se podrían aplicar más filtros y dividir los datos en subconjuntos más homogéneos (según número de descargas, categorías, content rating, ect.) sin embargo, el dataset actual ya es demasiado pequeño (607 filas).
+
+La segunda opción es evaluar la posibilidad de que, por medio de sus reviews, se logre caracterizar las aplicaciones según datos externos a esta, como lo son la categoría o el rating. En este caso se evaluan los resultados comprobando las diferencias y similitudes de las aplicaciones de los clusters resultantes, según sus atributos en el dataframe 'Apps'. Para ello se considera que fracción de categorías, géneros y content rating se encuentran en cada cluster, junto con el porcentanje de la clase mayoritaria en cada caso. Se considerará también la media de rating de cada cluster. Estos resultados también pueden ser útiles para responder la pregunta 3.
+
+Para ambos casos se evalua también con medida de información mutua, comparando los clusters con distintos atributos del dataset.
+
+Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el dataset 'Apps'. Si se encuentran clusters consistentes, se repite la parte de clasificación sobre estos datos. 
+
+## Contribucion (no actualizado)
+
+- Benjamin Farias: Exploración de datos, limpieza, creación de tablas por genero y categoría, y cruce de tablas
+- Diego León: Motivación, Preguntas, Aporte de presentación e informe.
+- Tomás Calderon: Exploración de datos con boxplots y scatterplots, preguntas; (presentación) Presentar ejemplos de graficos y las preguntas (editado)
+- Joaquin Moraga: Motivación, Aporte a informe y presentación, Presentación slides de motivación y exploración de datos - apps
+- Germán Urrea: Exploración y limpieza de tabla reviews, escribir y presentar sobre esto mismo
 
 
 

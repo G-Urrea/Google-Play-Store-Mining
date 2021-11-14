@@ -1,6 +1,6 @@
 ---
 title: "CC5206 Introducción a la Minería de Datos: Reporte Hito 2"
-author: "Integrantes: Benjamín Farías, Tomás Calderón, Diego León, Joaquín Moraga"
+author: "Integrantes: Benjamín Farías, Tomás Letelier, Diego León, Joaquín Moraga"
 output: html_document
 ---
 
@@ -558,7 +558,7 @@ Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el d
 
 - Benjamin Farias: Exploración de datos, limpieza, creación de tablas por genero y categoría, y cruce de tablas
 - Diego León: Motivación, Preguntas, Aporte de presentación e informe.
-- Tomás Calderon: Exploración de datos con boxplots y scatterplots, preguntas; (presentación) Presentar ejemplos de graficos y las preguntas (editado)
+- Tomás Letelier: Exploración de datos con boxplots y scatterplots, preguntas; (presentación) Presentar ejemplos de graficos y las preguntas (editado)
 - Joaquin Moraga: Motivación, Aporte a informe y presentación, Presentación slides de motivación y exploración de datos - apps
 - Germán Urrea: Exploración y limpieza de tabla reviews, escribir y presentar sobre esto mismo
 

@@ -1,0 +1,147 @@
+---
+title: "Exploración de dataset de usuarios"
+output: html_notebook
+---
+
+
+```{r}
+library(plyr) 
+library(dplyr)
+```
+
+```{r}
+reviews <- read.csv("dataset/extended_googleplaystore_user_reviews.csv", encoding = 'UTF-8')
+```
+Extended Google PlayStore user reviews
+```{r}
+print(paste("Columnas : ", ncol(reviews)))
+print(paste("Filas : ", nrow(reviews)))
+```
+
+Contiene 64295 filas correspondientes a reseñas de los usuarios sobre las aplicaciones. 
+La primera columna indica la aplicación, la segunda contiene el texto de la review y las 31 restantes muestran datos del texto, tales como el número de caracteres o si la reseña es positiva o negativa. 
+```{r}
+colnames(reviews)
+```
+
+Las columnas de la 3 a la 16 contienen datos numéricos sobre el texto, del número de caracteres, número de palabras, número de espacios, etc.
+
+Las columnas de la 17 a la 33 contienen distintas estadísticas sobre la clasificación, la calidad de la reseña, etc
+
+
+Se empieza filtrando las columnas que no son de interés, en este caso, de la 5 a la 17.
+
+```{r}
+reviews_filter1 <-reviews[,c(1:4,17:33)]
+```
+Las columnas restantes son
+```{r}
+colnames(reviews_filter1)
+```
+```{r}
+head(reviews_filter1[, c("App", "sentiment_polarity_score","original_Sentiment_Polarity", "sentiment_polarity", "sentiment_polarity_summarised", "original_Sentiment" )])
+```
+
+Las columnas "sentiment_polarity_score" y "original_Sentiment_Polarity" contienen valores continuos entre -1 y 1, que representan el grado de negatividad, si es cercano a <0, o positividad, si es >0, de la review. Ambas columnas presentan valores muy similares
+
+Las columnas "sentiment_polarity" y "sentiment_polarity_summarised" y "original_Sentiment" describen "sentiment_polarity_score" categóricamente, aunque "sentiment_polarity" describe con un mayor detalle, dado que las reseñas tienen niveles como "Quite Positive" o "Pretty Positive, mientras que las otras 2 se quedan en "Positive".
+
+
+```{r}
+head(reviews_filter1[, c("App", "sentiment_subjectivity_score","original_Sentiment_Subjectivity", "sentiment_subjectivity", "sentiment_subjectivity_summarised")])
+```
+
+Las columnas "sentiment_subjectivity_score" y "original_Sentiment_Subjectivity" contienen valores continuos de 0 a 1, que indican el grado de objetividad, si es cercano a 0, o subjetividad, si es cercano a 1, de la review.
+Ambas columnas presentan valores muy similares. 
+Las columnas "sentiment_subjectivity" y "sentiment_subjectivity_summarised" describen la medida categóricamente, aunque "sentiment_subjectivity" lo hace con un mayor detalle.
+
+```{r}
+head(reviews_filter1[, c("App", "spelling_quality_score", "spelling_quality_summarised", "ease_of_reading_score", "ease_of_reading_summarised", "grammar_check_score", "grammar_check")])
+```
+
+La columna "spelling_quality_score" contiene valores continuos de 0 a 1, que tan mal, si es cercano a 0, o bien, si es cercano a 1, escrita está la review. Las columnas "spelling_quality" y "spelling_quality_summarised" describen la variable categóricamente, siendo la primera una versión más detallada de la segunda.
+
+La columna "ease_of_reading_score" contiene valores continuos de -1570.79 a 206.84, que tan difícil, si es <0, o fácil, si es >0, de leer es la review. Las columnas "ease_of_reading_quality" y "ease_of_reading_summarised" describen la variable categóricamente, siendo la primera una versión más detallada de la segunda.
+
+La columna "grammar_check_score" cuenta el total de errores gramaticales de la reseña, presentando la columna "grammar_check" estos mismos valores, pero en palabras.
+
+
+A continuación se cuenta la cantidad de reviews vacías
+```{r}
+sum(reviews_filter1$Translated_Review=="")
+```
+26868 filas no contienen información de texto, lo que lleva a estadísticas con valores NA.
+
+Se filtran filas sin texto, junto a las columnas que entregan información redundante (valores repetidos o sin tanto detalle).
+```{r}
+reviews_filter2 <- reviews_filter1[reviews_filter1$Translated_Review!="", ]
+reviews_filter2 <- select(reviews_filter2,
+                          -c("original_Sentiment_Polarity", "sentiment_polarity_summarised", "original_Sentiment",
+                          "original_Sentiment_Subjectivity","sentiment_subjectivity_summarised",
+                             "spelling_quality_summarised","ease_of_reading_summarised","grammar_check"))
+head(reviews_filter2)
+```
+```{r}
+print(paste("Filas después de la limpieza: ", nrow(reviews_filter2)))
+print(paste("Columnas después de la limpieza: ", ncol(reviews_filter2)))
+```
+Un vistazo al dataframe nos muestra que aún hay valores vacíos en la columna correspondiente a "ease_of_reading_quality"
+```{r}
+count(reviews_filter2, c("ease_of_reading_quality"))
+```
+
+Por suerte, dado el "ease_of_reading_quality_score" se pueden rellenar los datos faltantes de esa columna, dado que el score es el score de flesch, se puede crear una función para pasar a variable categorica el score 
+
+```{r}
+flesch <- function(score) {
+  # Función que retorna la facilidad de lectura en base al puntaje de flesch
+  calification <-""
+  v <-c("Very Confusing", "Difficult" ,"Fairly Difficult","Standard","Fairly Easy","Easy", "Very Easy")
+  if (score < 30){
+    calification <- v[1]
+    }
+  else if (score<50){
+    calification <- v[2]
+  }
+  else if (score<60){
+    calification <- v[3]
+  }
+  
+  else if(score<70){
+    calification <-v[4]
+  }
+  
+  else if(score<80){
+    calification <- v[5]
+  }
+  
+  else if (score <90){
+    calification <- v[6]
+  }
+  else{
+    calification <-v[7]
+  }
+  return(calification)
+}
+
+flesch(35)
+```
+
+Se procede a rellenar la columna
+```{r}
+head(reviews_filter2[reviews_filter2$ease_of_reading_quality=="",]) # Se muestran los datos faltantes
+head(reviews_filter2)
+
+eorq = reviews_filter2$ease_of_reading_quality
+eorq <- sapply(reviews_filter2$ease_of_reading_score, function(x) flesch(x)[])
+
+reviews_filter2$ease_of_reading_quality<-eorq
+head(reviews_filter2)
+head(reviews_filter2[reviews_filter2$ease_of_reading_quality=="",]) # ver si hay datos faltantes
+```
+
+Con esto el dataset ya está limpio
+
+```{r}
+write.csv(reviews_filter2,"dataset_modificado\\dataset-usuarios.csv", row.names = FALSE)
+```

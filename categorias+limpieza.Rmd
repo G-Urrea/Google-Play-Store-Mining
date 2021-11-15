@@ -1,0 +1,58 @@
+---
+title: "categorias+limpieza"
+output: html_document
+---
+
+
+```{r}
+library(plyr) 
+library(dplyr)
+```
+
+
+```{r}
+limpieza<-read.csv("dataset_modificado/dataset-usuarios.csv", encoding = 'UTF-8')
+gp<-read.csv("dataset_modificado/GooglePlaystore.csv", encoding = 'UTF-8')
+
+limpieza$Category <- -1
+
+limpieza$Rating<- -1.0
+limpieza$Installs<- -1
+```
+
+
+
+```{r}
+for (a in gp$App){
+  for(b in which(limpieza$App ==a)){
+    
+    limpieza[b,]$Category<-gp[gp$App==a,]$Category
+
+    limpieza[b,]$Rating<-gp[gp$App==a,]$Rating
+    limpieza[b,]$Installs<-gp[gp$App==a,]$Installs
+  }
+  
+  
+}
+
+print("We good boys")
+```
+
+
+
+
+```{r}
+
+  limpieza_categorias<-limpieza[limpieza$Category != -1,]
+
+  limpieza_categorias<-limpieza[limpieza$Rating. != -1.0,]
+  limpieza_categorias<-limpieza[limpieza$Installs != -1,]
+
+  
+  write.csv(limpieza_categorias,"dataset_modificado\\dataset-usuarios-categorias.csv", row.names = FALSE)
+
+```
+
+
+
+

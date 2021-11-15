@@ -4,20 +4,8 @@ output: html_notebook
 ---
 
 ```{r}
-setwd("C:/Users/faria/OneDrive/Documentos/Tareas/GitHub/Google-Play-Store-Mining")
-```
-```{r}
-#library(reshape)
-library(tidyverse)
-```
-```{r}
-ex_GP<-read.csv("extended_googleplaystore.csv")
-ex_GPur<-read.csv("extended_googleplaystore_user_reviews.csv")
-#GP<-read.csv("googleplaystore.csv")
-#GPur<-read.csv("googleplaystore_user_reviews.csv")
-#ptr<-read.csv("profiled_Translated_Review.csv")
-```
-```{r}
+ex_GP<-read.csv("dataset/extended_googleplaystore.csv")
+ex_GPur<-read.csv("dataset/extended_googleplaystore_user_reviews.csv")
 #summary(ex_GP)
 #summary(ex_GPur)
 ```

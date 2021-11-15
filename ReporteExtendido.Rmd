@@ -23,6 +23,18 @@ ex_GP<-read.csv("dataset/extended_googleplaystore.csv", as.is =F , encoding="UTF
 ex_GPur<-read.csv("dataset/extended_googleplaystore_user_reviews.csv", encoding = "UTF-8")
 ```
 
+```{r}
+fn <- function(dt, n) {
+  nn <- c()
+  for (i in seq(1,n)) {
+    nn <- c(nn, is.numeric(dt[1,i]))
+  }
+  nn
+}
+
+data2 <- ex_GP[,fn(ex_GP, 23)]
+```
+
 Para iniciar la exploración de datos, se seleccionan las tablas más relevantes. Originalmente el dataset contenía 5 tablas, sin embargo 2 de estas corresponden a versiones extendidas del resto, por lo que el contenido útil se reduce a 2 dataframes, uno con información de las aplicaciones y otro de las reseñas. En adelante nos referiremos a estas como ‘Apps’ y ‘Reviews’ respectivamente.
 
 ### Apps
@@ -896,13 +908,12 @@ Para ambos casos se evalua también con medida de información mutua, comparando
 
 Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el dataset 'Apps'. Si se encuentran clusters consistentes, se repite la parte de clasificación sobre estos datos. 
 
-## Contribucion (no actualizado)
+## Contribucion
 
-- Benjamin Farias: Exploración de datos, limpieza, creación de tablas por genero y categoría, y cruce de tablas
-- Diego León: Motivación, Preguntas, Aporte de presentación e informe.
-- Tomás Letelier: Exploración de datos con boxplots y scatterplots, preguntas; (presentación) Presentar ejemplos de graficos y las preguntas (editado)
-- Joaquin Moraga: Motivación, Aporte a informe y presentación, Presentación slides de motivación y exploración de datos - apps
-- Germán Urrea: Exploración y limpieza de tabla reviews, escribir y presentar sobre esto mismo
+- Benjamin Farias: reporte (mejora hito 1), propuesta experimental, experimento preliminar.
+- Diego León: Reformulación preguntas (mejora Hito 1), Propuestas experimentales, Aporte de presentación.
+- Tomás Letelier: Continuacion de exploracion de datos, Scatterplots, Aporte de la presentación.
+- Joaquin Moraga: Propuesta experimental, aporte en la presentación.
 
 
 

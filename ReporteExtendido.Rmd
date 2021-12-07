@@ -705,11 +705,11 @@ ggplot(cur[order(cur$sentiment_polarity_score, decreasing=TRUE),][1:15,])+
 
 Basado en lo explicado en las secciones de motivación y análisis exploratorio surgen las siguientes preguntas/problemas que se podrían responder usando la refactorización de los datos para poder entender de mejor manera el comportamiento de las descargas de aplicaciones. Las preguntas son las siguientes:
 
-- __1: __¿Es posible predecir la cantidad de descargas de una aplicación, en base al público dirigido y las funcionalidades que la aplicación ofrece al público?¿Se puede hacer la misma preducción con los datos de las reviews?¿Es posible también predecir el rating?
+- __1: __¿Es posible predecir la cantidad de descargas de una aplicación, en base a los datos disponibles en Google Play?¿Se puede hacer la misma preducción con los datos de las reviews?
 
 - __2: __¿Es posible caracterizar tipos de aplicaciones respecto a los reviews recibidos por los usuarios? 
 
-- __3: __¿Existen características específicas de las aplicaciones que permitan tener mejor o peor aprobación del público?
+- __3: __¿Existen características específicas de las aplicaciones que permitan tener mejor o peor aprobación del público?¿Es posible predecir el rating?
 
 ## Propuesta Metodológica Experimental Inicial
 

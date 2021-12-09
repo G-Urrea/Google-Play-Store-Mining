@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Integrantes: Benjamín Farías, Tomás Calderón, Diego León, Joaquín Moraga" />
+<meta name="author" content="Integrantes: Benjamín Farías, Tomás Letelier, Diego León, Joaquín Moraga" />
 
 
 <title>CC5206 Introducción a la Minería de Datos: Reporte Hito 2</title>
@@ -165,7 +165,7 @@ pre code {
 
 
 <h1 class="title toc-ignore">CC5206 Introducción a la Minería de Datos: Reporte Hito 2</h1>
-<h4 class="author">Integrantes: Benjamín Farías, Tomás Calderón, Diego León, Joaquín Moraga</h4>
+<h4 class="author">Integrantes: Benjamín Farías, Tomás Letelier, Diego León, Joaquín Moraga</h4>
 
 </div>
 
@@ -179,6 +179,15 @@ pre code {
 </div>
 <div id="exploracion-de-datos" class="section level2">
 <h2>Exploracion de Datos</h2>
+<pre class="r"><code>fn &lt;- function(dt, n) {
+  nn &lt;- c()
+  for (i in seq(1,n)) {
+    nn &lt;- c(nn, is.numeric(dt[1,i]))
+  }
+  nn
+}
+
+data2 &lt;- ex_GP[,fn(ex_GP, 23)]</code></pre>
 <p>Para iniciar la exploración de datos, se seleccionan las tablas más relevantes. Originalmente el dataset contenía 5 tablas, sin embargo 2 de estas corresponden a versiones extendidas del resto, por lo que el contenido útil se reduce a 2 dataframes, uno con información de las aplicaciones y otro de las reseñas. En adelante nos referiremos a estas como ‘Apps’ y ‘Reviews’ respectivamente.</p>
 <div id="apps" class="section level3">
 <h3>Apps</h3>
@@ -283,9 +292,9 @@ pre code {
 <h2>Preguntas y problemas</h2>
 <p>Basado en lo explicado en las secciones de motivación y análisis exploratorio surgen las siguientes preguntas/problemas que se podrían responder usando la refactorización de los datos para poder entender de mejor manera el comportamiento de las descargas de aplicaciones. Las preguntas son las siguientes:</p>
 <ul>
-<li><p><strong>1: </strong>¿Es posible predecir la cantidad de descargas de una aplicación, en base al público dirigido y las funcionalidades que la aplicación ofrece al público?¿Se puede hacer la misma preducción con los datos de las reviews?¿Es posible también predecir el rating?</p></li>
+<li><p><strong>1: </strong>¿Es posible predecir la cantidad de descargas de una aplicación, en base a los datos disponibles en Google Play?¿Se puede hacer la misma preducción con los datos de las reviews?</p></li>
 <li><p><strong>2: </strong>¿Es posible caracterizar tipos de aplicaciones respecto a los reviews recibidos por los usuarios?</p></li>
-<li><p><strong>3: </strong>¿Existen características específicas de las aplicaciones que permitan tener mejor o peor aprobación del público?</p></li>
+<li><p><strong>3: </strong>¿Existen características específicas de las aplicaciones que permitan tener mejor o peor aprobación del público?¿Es posible predecir el rating?</p></li>
 </ul>
 </div>
 <div id="propuesta-metodológica-experimental-inicial" class="section level2">
@@ -322,14 +331,13 @@ pre code {
 <p>Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el dataset ‘Apps’. Si se encuentran clusters consistentes, se repite la parte de clasificación sobre estos datos.</p>
 </div>
 </div>
-<div id="contribucion-no-actualizado" class="section level2">
-<h2>Contribucion (no actualizado)</h2>
+<div id="contribucion" class="section level2">
+<h2>Contribucion</h2>
 <ul>
-<li>Benjamin Farias: Exploración de datos, limpieza, creación de tablas por genero y categoría, y cruce de tablas</li>
-<li>Diego León: Motivación, Preguntas, Aporte de presentación e informe.</li>
-<li>Tomás Calderon: Exploración de datos con boxplots y scatterplots, preguntas; (presentación) Presentar ejemplos de graficos y las preguntas (editado)</li>
-<li>Joaquin Moraga: Motivación, Aporte a informe y presentación, Presentación slides de motivación y exploración de datos - apps</li>
-<li>Germán Urrea: Exploración y limpieza de tabla reviews, escribir y presentar sobre esto mismo</li>
+<li>Benjamin Farias: reporte (mejora hito 1), propuesta experimental, experimento preliminar.</li>
+<li>Diego León: Reformulación preguntas (mejora Hito 1), Propuestas experimentales, Aporte de presentación.</li>
+<li>Tomás Letelier: Continuacion de exploracion de datos, Scatterplots, Aporte de la presentación.</li>
+<li>Joaquin Moraga: Propuesta experimental, aporte en la presentación.</li>
 </ul>
 </div>
 

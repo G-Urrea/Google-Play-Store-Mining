@@ -729,6 +729,8 @@ contonum <- function(cr) {
 pex_GP <- ex_GP[ex_GP$Content.Rating != 'Unrated' & !is.na(ex_GP$Size) & !is.na(ex_GP$Rating),]
 pex_GP$Content.Rating <- contonum(pex_GP$Content.Rating)
 
+pex_GP <- pex_GP[pex_GP$Rating > 2.5,]
+
 video_players <- pex_GP[pex_GP$Category==31,]
 travel <- pex_GP[pex_GP$Category==30,]
 tools <- pex_GP[pex_GP$Category==29,]
@@ -741,12 +743,12 @@ family <- pex_GP[pex_GP$Category==11,]
 communication <- pex_GP[pex_GP$Category==6,]
 
 video_players <- video_players[video_players$Installs<50000000,]
-travel <- travel[travel$Installs<10000000,]
-tools <- tools[tools$Installs<100000000,]
-social <- social[social$Installs<10000000,]
+travel <- travel[travel$Installs<5000000,]
+tools <- tools[tools$Installs<50000000,]
+social <- social[social$Installs<5000000,]
 productivity <- productivity[productivity$Installs<50000000,]
 photogrphy <- photogrphy[photogrphy$Installs<500000,]
-magazines <- magazines[magazines$Installs<10000000,]
+magazines <- magazines[magazines$Installs<5000000,]
 games <- games[games$Installs<50000000,]
 family <- family[family$Installs<10000000,]
 communication <- communication[communication$Installs<50000000,]
@@ -813,6 +815,7 @@ write.csv(ex_GPur, "dataset_modificado/UserReview.csv", row.names = FALSE, fileE
 
 ```{r, echo=FALSE, results='hide'}
 clusdt <- cur[cur$Translated_Review > 28,]
+clusdt <- clusdt[clusdt$Rating > 2.5,]
 
 clusdt$spaces_count <- clusdt$spaces_count/clusdt$characters_count
 clusdt$alpha_numeric_count <- clusdt$alpha_numeric_count/clusdt$characters_count

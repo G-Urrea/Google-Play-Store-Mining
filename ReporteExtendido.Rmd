@@ -879,11 +879,11 @@ Se agregan los cuartiles 1 y 3 de los "scores". También se eliminan outliers de
 
 ### Clasificación
 
-Las preguntas 1 y 3 son problemas de predicción, por lo tanto para estas recurriremos a modelos de clasificación.
+Las preguntas 1 y 3 son problemas de predicción, por lo tanto para estas recurriremos a modelos de clasificación. Para poder clasificar se discretiza la variable a predecir según cuartiles (después de extraer outliers). De este modo se consiguen tamién clases balanceadas, ya que cada una contiene el 25% de las aplicaciones.
 
 __Aplicaciones:__
 
-Se seleccionan las columnas "Rating", "Reviews", "Size", "Type" y "Content.Rating" para clasificar las descagas según cuartiles (pregunta 1). Se clasifica el rating según cuartiles con los mismo atributos, reemplazando "Rating" por "Installs" (Pregunta 3). No se concidera el género debido a que pueden existir combinaciones categoría/género no contempladas en los datos.
+Se considera el rating, número de reseñas, peso, publico objetivo y si es de pago o no para clasificar las descagas según cuartiles (pregunta 1). Se clasifica el rating según cuartiles con los mismo atributos, reemplazando "Rating" por "Installs" (Pregunta 3). No se concidera el género debido a que pueden existir combinaciones categoría/género no contempladas en los datos.
 
 Se repiten las clasificaciones de descargas y rating para apliciones de pago, incluyendo el precio en los atributos a evaluar (extrayendo outliers).
 
@@ -909,7 +909,60 @@ La segunda opción es evaluar la posibilidad de que, por medio de sus reviews, s
 
 Para ambos casos se evalua también con medida de información mutua, comparando los clusters con distintos atributos del dataset.
 
-Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el dataset 'Apps'. Si se encuentran clusters consistentes, se repite la parte de clasificación sobre estos datos. 
+Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el dataset 'Apps'. Si se encuentran clusters consistentes, se repite la parte de clasificación sobre estos datos.
+
+## Procedimiento Experimental
+
+Para cada pregunta se realiza una segunda selección y reducción de atributos, en la que se normalizan datos, remueven outliers, evalua correlación, filtra según clusters y se reduce la dimensionalidad de los datos del texto.
+
+A partir de las matrices de correlación se obtuvo que:
+
+- Type y Price tienen correlación casi nula con la mayoría de atributos salvo entre sí mismos, cosa esperable dado que type indica si el precio es 0 o no.
+- Rating tiene correlación de 0.32 y 0.325 con la polaridad y la subjetividad respectivamente.
+- La cantidad de oraciones, palabras, caracteres, palabras repetidas, caracteres no alfanuméricos y sintagma nominal tienen correlaciones de entre -0.5 y -0.4 con la polaridad y facilidad de lectura.
+- La correlación entre género y categoría es 0.8, reforcando la decisión de filtrar únicamente por categoría.
+- La correlación de Rating con el resto de atributos de 'Apps' es cercana a 0.
+- El número de descargas y reviews tienen correlación de 0.6.
+- Gran parte de los "conteos" (número de palabras, caracteres, etc.) tienen alta correlación entre sí.
+- Los cuartiles 1 y 3 de polaridad, subjetividad, facilidad de lectura y calidad de escritura, a excepción del tercer cuartil de calidad de lectura, están altamente correlacionados con sus respectivas medias. Por lo tanto, se descarta la idea de utilizar estos valores.
+
+Se econtró también que el número de descarga sigue una distribución tal que es reemplazable por una variable discreta, obtenida mediante clustering.
+
+## Resultados
+
+### Análisis de Texto
+
+A partir del texto de las reviews, en general, la polaridad se logra clasificar mejor que la polaridad y la calidad de lectura, y la support vector machine obtiene mejores resultados para los 3 casos.
+
+Para la SVM, en la clasificación de polaridad, todas las métricas son un poco mayores a 0.7, menos recall y f1 macro que están por debajo de 0.5 y 0.6 respectivamente. En las clasificaciones de subjetividad y calidad se obtiene valores inferiores a 0.6 y 0.5.
+
+### Pregunta 1
+
+Sobre el dataset dividido por categorías, con el número de reviews como input, el desempeño del árbol de decisión es significativamente mayor a los otros 3 modelos, con valores cercanos a 0.7 en las 7 métricas evaluadas.
+
+Sobre las aplicaciones de pago la precisión y valores micro del árbol se reducen al intervalo 0.6-0.7, y los macro al intervalo 0.5-0.6, mientras que el desmpeño de _Naive Bayes_ sube hasta los mismos valores que el árbol.
+
+Para la clasificación de descargas según reviews los 4 modelos tienen un desempeño similar, todos con valores por menores a 0.5.
+
+La clasificación sobre el cruce de datos obtiene resultados similares a los del dataset dividido en categorías.
+
+Clasificando los clusters de descargas en vez de cuartiles, el desempeño del árbol se ve disminuido y el de SVM y KNN aumenta al intervalo 0.6-0.7 en precisión y medidas micro, y 0.3-0.4 en macro.
+
+## Pregunta 2
+
+
+
+## Pregunta 3
+
+Sobre el dataset dividido por categorías, el desempeño de los 4 modelos varía ligeramente, todos con valores menores a 0.4 en las 7 métricas evaluadas. Lo mismo ocurre sobre las aplicaciones de pago, al tratar de clasificar rating según reviews y sobre el cruce de tablas, aunque variando en cada caso que modelo lo hace mejor o peor.
+
+Al dividir el dataset según clusters de descargas se consigue la precisión y medidas micro de los modelos, menos del árbol, superen por poco a 0.4.
+
+## Conclusiones
+
+- __Pregunta 1:__ No es posible predecir el número de descargas con los métodos evaluados.
+- __Pregunta 2:__ 
+- __Pregunta 3:__ No es posible predecir el rating con los métodos evaluados.
 
 ## Contribucion
 

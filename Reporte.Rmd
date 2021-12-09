@@ -522,11 +522,11 @@ Se agregan los cuartiles 1 y 3 de los "scores". También se eliminan outliers de
 
 ### Clasificación
 
-Las preguntas 1 y 3 son problemas de predicción, por lo tanto para estas recurriremos a modelos de clasificación.
+Las preguntas 1 y 3 son problemas de predicción, por lo tanto para estas recurriremos a modelos de clasificación. Para poder clasificar se discretiza la variable a predecir según cuartiles (después de extraer outliers). De este modo se consiguen tamién clases balanceadas, ya que cada una contiene el 25% de las aplicaciones.
 
 __Aplicaciones:__
 
-Se seleccionan las columnas "Rating", "Reviews", "Size", "Type" y "Content.Rating" para clasificar las descagas según cuartiles (pregunta 1). Se clasifica el rating según cuartiles con los mismo atributos, reemplazando "Rating" por "Installs" (Pregunta 3). No se concidera el género debido a que pueden existir combinaciones categoría/género no contempladas en los datos.
+Se considera el rating, número de reseñas, peso, publico objetivo y si es de pago o no para clasificar las descagas según cuartiles (pregunta 1). Se clasifica el rating según cuartiles con los mismo atributos, reemplazando "Rating" por "Installs" (Pregunta 3). No se concidera el género debido a que pueden existir combinaciones categoría/género no contempladas en los datos.
 
 Se repiten las clasificaciones de descargas y rating para apliciones de pago, incluyendo el precio en los atributos a evaluar (extrayendo outliers).
 

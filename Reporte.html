@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Integrantes: Benjamín Farías, Tomás Calderón, Diego León, Joaquín Moraga" />
+<meta name="author" content="Integrantes: Benjamín Farías, Tomás Letelier, Diego León, Joaquín Moraga" />
 
 
 <title>CC5206 Introducción a la Minería de Datos: Reporte Hito 2</title>
@@ -165,7 +165,7 @@ pre code {
 
 
 <h1 class="title toc-ignore">CC5206 Introducción a la Minería de Datos: Reporte Hito 2</h1>
-<h4 class="author">Integrantes: Benjamín Farías, Tomás Calderón, Diego León, Joaquín Moraga</h4>
+<h4 class="author">Integrantes: Benjamín Farías, Tomás Letelier, Diego León, Joaquín Moraga</h4>
 
 </div>
 
@@ -278,9 +278,9 @@ pre code {
 </div>
 <div id="clasificación" class="section level3">
 <h3>Clasificación</h3>
-<p>Las preguntas 1 y 3 son problemas de predicción, por lo tanto para estas recurriremos a modelos de clasificación.</p>
+<p>Las preguntas 1 y 3 son problemas de predicción, por lo tanto para estas recurriremos a modelos de clasificación. Para poder clasificar se discretiza la variable a predecir según cuartiles (después de extraer outliers). De este modo se consiguen tamién clases balanceadas, ya que cada una contiene el 25% de las aplicaciones.</p>
 <p><strong>Aplicaciones:</strong></p>
-<p>Se seleccionan las columnas “Rating”, “Reviews”, “Size”, “Type” y “Content.Rating” para clasificar las descagas según cuartiles (pregunta 1). Se clasifica el rating según cuartiles con los mismo atributos, reemplazando “Rating” por “Installs” (Pregunta 3). No se concidera el género debido a que pueden existir combinaciones categoría/género no contempladas en los datos.</p>
+<p>Se considera el rating, número de reseñas, peso, público objetivo y si es de pago o no para clasificar las descagas según cuartiles (pregunta 1). Se clasifica el rating según cuartiles con los mismo atributos, reemplazando “Rating” por “Installs” (Pregunta 3). No se concidera el género debido a que pueden existir combinaciones categoría/género no contempladas en los datos.</p>
 <p>Se repiten las clasificaciones de descargas y rating para apliciones de pago, incluyendo el precio en los atributos a evaluar (extrayendo outliers).</p>
 <p><strong>Reseñas:</strong></p>
 <p>La clasificación en base a resseñas se divide en dos partes. Primero se evaluará la posibilidad de extrar información del comentario de las reviews. Para ello se vectoriza el texto y luego se reduce la dimensionalidad por medio de <em>Latent semantic analysis</em>. Se utilizan los datos del texto para clasificar “sentiment_polarity”, “sentiment_subjectivity” y “spelling_quality”. En la vectorización del texto no se consideran <em>stop words</em>, ya que palabras comunmente categorizadas como tal podrían aportar información para el nivel de subjetividad o facilidad de lectura.</p>
@@ -289,22 +289,70 @@ pre code {
 </div>
 <div id="clustering" class="section level3">
 <h3>Clustering</h3>
+<p>La pregunta 2 se abordará por medio de clustering.</p>
 <p>Sobre los datos de ‘Apps/Reviews’ se aplican los siguentes métodos: <em>K</em>-means, con valores de <em>k</em> obtenidos según optimos observables en un gráfico de codo; clustering jerárquico aglomerativo, con criterios <em>complete</em>, <em>average</em>, <em>single</em> y <em>ward</em>; y DBSCAN con valores de <em>eps</em> y <em>minPts</em> dados por la distancia media a los <em>k</em> vecinos y el doble de la dimensionalidad del dataset respectivamente, ambos valores se toman como base y se variarán según los resultados.</p>
-<p>Se tendrán dos enfoques para evaluar los clusters.</p>
-<p>La primera se centra en los propios datos usados para crear los clusters, es decir el de las reviews. Los resultados se evaluan en base a cohesión (SSE) y coeficiente de Silhouette. Para visualizar los resultados se reduce la dimensionalidad con el método <em>principal component analisys</em>, de modo que sea posible crear un gráfico de disperción. También se estudia la distribución de loss atributos en los clusters resultantes, en específico las medias y cuartiles.</p>
+<p>Se tendrán dos enfoques para evaluar los clusters. La primera se centra en los propios datos usados para crear los clusters, es decir el de las reviews. Los resultados se evaluan en base a cohesión (SSE) y coeficiente de Silhouette. Para visualizar los resultados se reduce la dimensionalidad con el método <em>principal component analisys</em>, de modo que sea posible crear un gráfico de disperción. También se estudia la distribución de loss atributos en los clusters resultantes, en específico las medias y cuartiles.</p>
 <p>Para este caso se podrían aplicar más filtros y dividir los datos en subconjuntos más homogéneos (según número de descargas, categorías, content rating, ect.) sin embargo, el dataset actual ya es demasiado pequeño (607 filas).</p>
-<p>La segunda opción es evaluar la posibilidad de que, por medio de sus reviews, se logre caracterizar las aplicaciones según datos externos a esta, como lo son la categoría o el rating. En este caso se evaluan los resultados comprobando las diferencias y similitudes de las aplicaciones de los clusters resultantes, según sus atributos en el dataframe ‘Apps’. Para ello se considera que fracción de categorías, géneros y content rating se encuentran en cada cluster, junto con el porcentanje de la clase mayoritaria en cada caso. Se considerará también la media de rating de cada cluster.</p>
+<p>La segunda opción es evaluar la posibilidad de que, por medio de sus reviews, se logre caracterizar las aplicaciones según datos externos a esta, como lo son la categoría o el rating. En este caso se evaluan los resultados comprobando las diferencias y similitudes de las aplicaciones de los clusters resultantes, según sus atributos en el dataframe ‘Apps’. Para ello se considera que fracción de categorías, géneros y content rating se encuentran en cada cluster, junto con el porcentanje de la clase mayoritaria en cada caso. Se considerará también la media de rating de cada cluster. Estos resultados también pueden ser útiles para responder la pregunta 3.</p>
 <p>Para ambos casos se evalua también con medida de información mutua, comparando los clusters con distintos atributos del dataset.</p>
+<p>Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el dataset ‘Apps’. Si se encuentran clusters consistentes, se repite la parte de clasificación sobre estos datos.</p>
 </div>
 </div>
-<div id="contribucion-no-actualizado" class="section level2">
-<h2>Contribucion (no actualizado)</h2>
+<div id="procedimiento-experimental" class="section level2">
+<h2>Procedimiento Experimental</h2>
+<p>Para cada pregunta se realiza una segunda selección y reducción de atributos, en la que se normalizan datos, remueven outliers, evalua correlación, filtra según clusters y se reduce la dimensionalidad de los datos del texto.</p>
+<p>A partir de las matrices de correlación se obtuvo que:</p>
 <ul>
-<li>Benjamin Farias: Exploración de datos, limpieza, creación de tablas por genero y categoría, y cruce de tablas</li>
-<li>Diego León: Motivación, Preguntas, Aporte de presentación e informe.</li>
-<li>Tomás Calderon: Exploración de datos con boxplots y scatterplots, preguntas; (presentación) Presentar ejemplos de graficos y las preguntas (editado)</li>
-<li>Joaquin Moraga: Motivación, Aporte a informe y presentación, Presentación slides de motivación y exploración de datos - apps</li>
-<li>Germán Urrea: Exploración y limpieza de tabla reviews, escribir y presentar sobre esto mismo</li>
+<li>Type y Price tienen correlación casi nula con la mayoría de atributos salvo entre sí mismos, cosa esperable dado que type indica si el precio es 0 o no.</li>
+<li>Rating tiene correlación de 0.32 y 0.325 con la polaridad y la subjetividad respectivamente.</li>
+<li>La cantidad de oraciones, palabras, caracteres, palabras repetidas, caracteres no alfanuméricos y sintagma nominal tienen correlaciones de entre -0.5 y -0.4 con la polaridad y facilidad de lectura.</li>
+<li>La correlación entre género y categoría es 0.8, reforcando la decisión de filtrar únicamente por categoría.</li>
+<li>La correlación de Rating con el resto de atributos de ‘Apps’ es cercana a 0.</li>
+<li>El número de descargas y reviews tienen correlación de 0.6.</li>
+<li>Gran parte de los “conteos” (número de palabras, caracteres, etc.) tienen alta correlación entre sí.</li>
+<li>Los cuartiles 1 y 3 de polaridad, subjetividad, facilidad de lectura y calidad de escritura, a excepción del tercer cuartil de calidad de lectura, están altamente correlacionados con sus respectivas medias. Por lo tanto, se descarta la idea de utilizar estos valores.</li>
+</ul>
+<p>Se econtró también que el número de descarga sigue una distribución tal que es reemplazable por una variable discreta, obtenida mediante clustering.</p>
+</div>
+<div id="resultados" class="section level2">
+<h2>Resultados</h2>
+<div id="análisis-de-texto" class="section level3">
+<h3>Análisis de Texto</h3>
+<p>A partir del texto de las reviews, en general, la polaridad se logra clasificar mejor que la polaridad y la calidad de lectura, y la support vector machine obtiene mejores resultados para los 3 casos.</p>
+<p>Para la SVM, en la clasificación de polaridad, todas las métricas son un poco mayores a 0.7, menos recall y f1 macro que están por debajo de 0.5 y 0.6 respectivamente. En las clasificaciones de subjetividad y calidad se obtiene valores inferiores a 0.6 y 0.5.</p>
+</div>
+<div id="pregunta-1" class="section level3">
+<h3>Pregunta 1</h3>
+<p>Sobre el dataset dividido por categorías, con el número de reviews como input, el desempeño del árbol de decisión es significativamente mayor a los otros 3 modelos, con valores cercanos a 0.7 en las 7 métricas evaluadas.</p>
+<p>Sobre las aplicaciones de pago la precisión y valores micro del árbol se reducen al intervalo 0.6-0.7, y los macro al intervalo 0.5-0.6, mientras que el desmpeño de <em>Naive Bayes</em> sube hasta los mismos valores que el árbol.</p>
+<p>Para la clasificación de descargas según reviews los 4 modelos tienen un desempeño similar, todos con valores por menores a 0.5.</p>
+<p>La clasificación sobre el cruce de datos obtiene resultados similares a los del dataset dividido en categorías.</p>
+<p>Clasificando los clusters de descargas en vez de cuartiles, el desempeño del árbol se ve disminuido y el de SVM y KNN aumenta al intervalo 0.6-0.7 en precisión y medidas micro, y 0.3-0.4 en macro.</p>
+</div>
+</div>
+<div id="pregunta-2" class="section level2">
+<h2>Pregunta 2</h2>
+</div>
+<div id="pregunta-3" class="section level2">
+<h2>Pregunta 3</h2>
+<p>Sobre el dataset dividido por categorías, el desempeño de los 4 modelos varía ligeramente, todos con valores menores a 0.4 en las 7 métricas evaluadas. Lo mismo ocurre sobre las aplicaciones de pago, al tratar de clasificar rating según reviews y sobre el cruce de tablas, aunque variando en cada caso que modelo lo hace mejor o peor.</p>
+<p>Al dividir el dataset según clusters de descargas se consigue la precisión y medidas micro de los modelos, menos del árbol, superen por poco a 0.4.</p>
+</div>
+<div id="conclusiones" class="section level2">
+<h2>Conclusiones</h2>
+<ul>
+<li><strong>Pregunta 1:</strong> No es posible predecir el número de descargas con los métodos evaluados.</li>
+<li><strong>Pregunta 2:</strong></li>
+<li><strong>Pregunta 3:</strong> No es posible predecir el rating con los métodos evaluados.</li>
+</ul>
+</div>
+<div id="contribucion" class="section level2">
+<h2>Contribucion</h2>
+<ul>
+<li>Benjamin Farias: reporte (mejora hito 1), propuesta experimental, experimento preliminar.</li>
+<li>Diego León: Reformulación preguntas (mejora Hito 1), Propuestas experimentales, Aporte de presentación.</li>
+<li>Tomás Letelier: Continuacion de exploracion de datos, Scatterplots, Aporte de la presentación.</li>
+<li>Joaquin Moraga: Propuesta experimental, aporte en la presentación.</li>
 </ul>
 </div>
 <div id="anexo" class="section level2">

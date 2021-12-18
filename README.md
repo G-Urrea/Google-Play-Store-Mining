@@ -78,9 +78,9 @@ Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el d
 
 Más detalles sobre las metodologías usadas y un segundo análisis y reducción de atributos se encuentra en los respectivos notebooks de cada pregunta, donde se desarrollan los experimentos correspondientes.
 
-## Contribucion
+## Contribucion (Hito 3)
 
-- Benjamin Farias: reporte (mejora hito 1), propuesta experimental, experimento preliminar.
+- Benjamin Farias: Noteboooks de los experimentos, presentación.
 - Diego León: Reformulación preguntas (mejora Hito 1), Propuestas experimentales, Aporte de presentación.
 - Tomás Letelier: Continuacion de exploracion de datos, Scatterplots, Aporte de la presentación.
 - Joaquin Moraga: Propuesta experimental, aporte en la presentación.

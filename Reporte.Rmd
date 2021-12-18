@@ -1,5 +1,5 @@
 ---
-title: "CC5206 Introducción a la Minería de Datos: Reporte Hito 2"
+title: "CC5206 Introducción a la Minería de Datos: Reporte Hito 3"
 author: "Integrantes: Benjamín Farías, Tomás Letelier, Diego León, Joaquín Moraga"
 output: html_document
 ---
@@ -522,11 +522,11 @@ Se agregan los cuartiles 1 y 3 de los "scores". También se eliminan outliers de
 
 ### Clasificación
 
-Las preguntas 1 y 3 son problemas de predicción, por lo tanto para estas recurriremos a modelos de clasificación.
+Las preguntas 1 y 3 son problemas de predicción, por lo tanto para estas recurriremos a modelos de clasificación. Para poder clasificar se discretiza la variable a predecir según cuartiles (después de extraer outliers). De este modo se consiguen tamién clases balanceadas, ya que cada una contiene el 25% de las aplicaciones.
 
 __Aplicaciones:__
 
-Se seleccionan las columnas "Rating", "Reviews", "Size", "Type" y "Content.Rating" para clasificar las descagas según cuartiles (pregunta 1). Se clasifica el rating según cuartiles con los mismo atributos, reemplazando "Rating" por "Installs" (Pregunta 3). No se concidera el género debido a que pueden existir combinaciones categoría/género no contempladas en los datos.
+Se considera el rating, número de reseñas, peso, público objetivo y si es de pago o no para clasificar las descagas según cuartiles (pregunta 1). Se clasifica el rating según cuartiles con los mismo atributos, reemplazando "Rating" por "Installs" (Pregunta 3). No se concidera el género debido a que pueden existir combinaciones categoría/género no contempladas en los datos.
 
 Se repiten las clasificaciones de descargas y rating para apliciones de pago, incluyendo el precio en los atributos a evaluar (extrayendo outliers).
 
@@ -552,15 +552,120 @@ La segunda opción es evaluar la posibilidad de que, por medio de sus reviews, s
 
 Para ambos casos se evalua también con medida de información mutua, comparando los clusters con distintos atributos del dataset.
 
-Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el dataset 'Apps'. Si se encuentran clusters consistentes, se repite la parte de clasificación sobre estos datos. 
+Adicionalmente, se realiza clustering con los métodos ya mencionados sobre el dataset 'Apps'. Si se encuentran clusters consistentes, se repite la parte de clasificación sobre estos datos.
+
+## Procedimiento Experimental
+
+Para cada pregunta se realiza una segunda selección y reducción de atributos, en la que se normalizan datos, remueven outliers, evalua correlación, filtra según clusters y se reduce la dimensionalidad de los datos del texto.
+
+A partir de las matrices de correlación se obtuvo que:
+
+- Type y Price tienen correlación casi nula con la mayoría de atributos salvo entre sí mismos, cosa esperable dado que type indica si el precio es 0 o no.
+- Rating tiene correlación de 0.32 y 0.325 con la polaridad y la subjetividad respectivamente.
+- La cantidad de oraciones, palabras, caracteres, palabras repetidas, caracteres no alfanuméricos y sintagma nominal tienen correlaciones de entre -0.5 y -0.4 con la polaridad y facilidad de lectura.
+- La correlación entre género y categoría es 0.8, reforcando la decisión de filtrar únicamente por categoría.
+- La correlación de Rating con el resto de atributos de 'Apps' es cercana a 0.
+- El número de descargas y reviews tienen correlación de 0.6.
+- Gran parte de los "conteos" (número de palabras, caracteres, etc.) tienen alta correlación entre sí.
+- Los cuartiles 1 y 3 de polaridad, subjetividad, facilidad de lectura y calidad de escritura, a excepción del tercer cuartil de calidad de lectura, están altamente correlacionados con sus respectivas medias. Por lo tanto, se descarta la idea de utilizar estos valores.
+
+Se econtró también que el número de descarga sigue una distribución tal que es reemplazable por una variable discreta, obtenida mediante clustering.
+
+## Resultados
+
+### Análisis de Texto
+
+A partir del texto de las reviews, en general, la polaridad se logra clasificar mejor que la polaridad y la calidad de lectura, y la support vector machine obtiene mejores resultados para los 3 casos.
+
+Para la SVM, en la clasificación de polaridad, todas las métricas son un poco mayores a 0.7, menos recall y f1 macro que están por debajo de 0.5 y 0.6 respectivamente. En las clasificaciones de subjetividad y calidad se obtiene valores inferiores a 0.6 y 0.5.
+### Pregunta 1
+
+Sobre el dataset dividido por categorías, con el número de reviews como input, el desempeño del árbol de decisión es significativamente mayor a los otros 3 modelos, con valores cercanos a 0.7 en las 7 métricas evaluadas.
+
+Sobre las aplicaciones de pago la precisión y valores micro del árbol se reducen al intervalo 0.6-0.7, y los macro al intervalo 0.5-0.6, mientras que el desmpeño de _Naive Bayes_ sube hasta los mismos valores que el árbol.
+
+Para la clasificación de descargas según reviews los 4 modelos tienen un desempeño similar, todos con valores por menores a 0.5.
+
+La clasificación sobre el cruce de datos obtiene resultados similares a los del dataset dividido en categorías.
+
+Clasificando los clusters de descargas en vez de cuartiles, el desempeño del árbol se ve disminuido y el de SVM y KNN aumenta al intervalo 0.6-0.7 en precisión y medidas micro, y 0.3-0.4 en macro.
+
+## Pregunta 2
+
+Primero, con respecto a K-Means, se realiza un gráfico de SSE versus número de clusters, con tal de identificar un buen número de estos en el "codo" de este gráfico. A partir de este se decide que un número apropiado de clusters resulta ser entre 4 y 8, debido a la menor variación de SSE entre estos puntos.
+
+Al realizar K-Means con estos números de clusters se puede observar como para 4 y 5 clusters se realiza una separación de grupos bastante identificable. Además de esto, es para estas cantidades de clusters que se obtienen los mejores coeficientes de Silhouette.
+
+Para ambos casos, se observan las distribuciones de los distintos atributos en cada cluster, donde se puede apreciar una notable diferenciación de estos entre cada grupo.
+
+Luego, para el método de DBScan, se realizan varios intentos de clustering para distintos hiperparametros. Sin embargo, este método no es capaz de generar buenas agrupaciones, debido a que solo identifica un solo cluster de información y uno de ruido. Esto se debe a que los datos están muy cercanos entre sí.
+
+Por último, utilizando clustering jerárquico aglomerativo, se nota que sólo 3 métodos consiguen resultados coherentes y visualizarles. Tales son los enfoques “ward”, “complete”, y “average”. Siguiendo el corte indicado por los gráficos entregados por cada método, se observan coeficientes de Silhouette bastante parecidos, y cercanos a 0,2. El mejor rendimiento, en base a este coeficiente, lo obtiene el método “ward”, obteniendo siempre valores ligeramente mayores a 0,2. 
+
+
+## Pregunta 3
+
+Sobre el dataset dividido por categorías, el desempeño de los 4 modelos varía ligeramente, todos con valores menores a 0.4 en las 7 métricas evaluadas. Lo mismo ocurre sobre las aplicaciones de pago, al tratar de clasificar rating según reviews y sobre el cruce de tablas, aunque variando en cada caso que modelo lo hace mejor o peor.
+
+Al dividir el dataset según clusters de descargas se consigue la precisión y medidas micro de los modelos, menos del árbol, superen por poco a 0.4.
+
+## Conclusiones
+
+### Pregunta 1
+
+No es posible predecir el número de descargas con los métodos evaluados.Esto se puede deber a que para el caso de todas las aplicaciones usamos la cantidad de reviews, su rating, el tamaño de esta y el precio asociado para intentar predecir los resultados, mismo caso pasa para aplicaciones pagadas, si bien estos atributos son relevantes, no logran capturar las funcionalidades presentes en las aplicaciones sino más bien refleja la popularidad de esta.
+
+Para el caso del uso de los datos presentes en Review analizamos atributos de polaridad, subjetividad y calidad de escritura de la review más que el contenido que expresa esta por lo que el mensaje que intenta comunicar a los usuarios no es capturado completamente en el modelo y eso se puede notar debido al poco puntaje F1 obtenido para los modelos cercano a 0,4.
+
+Por último para el caso de cruce entre apps y reviews los resultados de puntaje son muy similares aunque los entregan modelos distintos para el caso de solo examinar la tabla de apps por lo que se puede notar el poco impacto generado por los atributos de polaridad, subjetividad y calidad de escritura presente en reviews.
+
+
+### Pregunta 2
+
+El comportamiento obtenido se observa para todos los enfoques, y para todas las características de la aplicación, como lo son la categoría, el género, o el público dirigido, y es un comportamiento bastante esperable teniendo en cuenta ciertos factores. Primero que nada, existen 33 categorías distintas, 67 géneros distintos, por lo que intentar distinguir a 3, 4, o 6 clusters con una categoría o un género, es una tarea bastante complicada. Además de esto, los atributos utilizados para realizar el clustering se refieren netamente a características del texto de la review, y por tanto, existe nula consideración de a lo que se refiere el contenido de la review. Estudiando sólo parámetros como la subjetividad, la polaridad, o el conteo de caracteres de un comentario, no se debiera contar con ningún recurso para poder estimar alguna característica de la aplicación. 
+
+Tal comportamiento se ve claramente reflejado en los resultados obtenidos, pues, tanto para K-means, como para clustering jerárquico aglomerativo, obtienen coeficientes de Silhouette cercanos parecidos a 0, lo que quiere decir que en general, los datos de un cluster en realidad están en el borde de dos clusters. Sin embargo, es importante notar que según los resultados, se pueden caracterizar las apps como "aplicaciones que reciben cierto tipo de review", pero no se puede definir del todo los tipos de aplicaciones, y por tanto, no se responde positivamente la pregunta planteada desde un principio.
+
+### Pregunta 3
+
+No es posible predecir el rating con los métodos evaluados. De manera muy similar a la pregunta 1 se usa clasificación para resolver el problema en este caso al estudiar los atributos de cantidad de reviews, cantidad de descargas, el tamaño de esta y el rating de clasificación (corresponde a la edad del público dirigido de la app). Los datos anteriormente mencionados son datos mixtos que si bien se relacionan con la posibilidad de predecir el rating como lo son las descargas y la cantidad de reviews, los otros atributos de tamaño y clasificación de edad causan ruido en el análisis de esto. Este mismo problema se sigue reflejando solo para las aplicaciones pagadas.
+
+Al igual que en la pregunta 1 se estudian los atributos de puntajes presente en la tabla Review y los datos presentes de igual manera no logran representar la opinión de los usuarios por lo que los resultados estudiando estas variables alcanzan su F1 score máximo de 0.35 aprox siendo bastante bajo.
+
+Finalmente para el cruce de las tablas entre apps y reviews los resultados obtenidos usando los distintos modelos en general son bastante bajos esto pues los resultados de el estudio de apps y reviews por si solos también entregan resultados de baja calidad.
+
+Esto puede suceder ya que como se nombró anteriormente se presentan variables que pueden aportar a predecir el rating como descargas y numero de reviews pero tambien se presentan muchas variables que sólo generan ruido para el modelo haciendo que la predicción no sea acertada.
+
+
+
+## Limitaciones y recomendaciones futuras
+
+Durante la implementación de los experimentos para poder llevar a cabo las consultas planteadas, ciertas limitaciones técnicas acotaron los resultados del trabajo realizado.
+
+Una de las primeras limitantes fue la presencia de varios atributos nulos en filas dentro del dataset, esto provocaba que no se pudiera analizar la totalidad de los datos pues ciertos atributos que se deseaban estudiar eran nulos, además a la hora de realizar experimentos usando un cruce entre las tablas, los nulos lograron que los registros totales de aplicaciones se reducirán de manera considerable haciendo que el espectro de estudio sea mucho menor.
+
+Otra limitante que se encontraba presente es la de atributos que no aportan mucha información al estudio como la versión de la aplicación, la última fecha de actualización y la versión de android a la cual va dirigida entre otras variables más “técnicas”. Esto generó que el dataset se presenta con una cantidad de atributos más reducida a la esperada para los estudios
+
+El último limitante identificado es el desconocimiento técnico para poder extraer características de texto y así poder analizar de mejor manera las reviews escritas ya que estas eran una fuente directa de feedback de los usuarios que contiene información valiosa para los estudios
+
+
+Como proyecciones a futuro se recomienda intentar complementar los datos presentes en este dataset de la google play store con datos de otras tiendas de aplicaciones como la app store de apple o la store presente en móviles huawei. Esto para ampliar el espectro a estudiar y así obtener más resultados de más datos.
+
+También se puede realizar estudios propios para ciertas aplicaciones, por ejemplo encontrar el top 10 de categorías de aplicaciones y mediante una encuesta obtener información de usuarios relacionadas a estas categorías y reflejar estos datos en el dataset para asi tener mas atributos relevantes para el estudio
+
+Otra sugerencia es no estudiar todas las apps presentes sino las que cumplen ciertas condiciones, como menos nulo presentes y tengan una cantidad de descargas y/o reviews y/o rating considerable para así obtener información más específica evitando nulos.
+
+Por último se aconseja usar alguna técnica de extracción de datos para texto como el modelo de Bag of Words para obtener la cantidad de veces que se usan ciertas frases en un texto para así identificar la cantidad de palabras positivas como “Good”, “Nice”, “Buena” y palabras negativas como “Bad”, “Terrible”, “Awful” y así hacerse una mejor idea del contenido de la review.
+
+
 
 ## Contribucion
 
-- Benjamin Farias: reporte (mejora hito 1), propuesta experimental, experimento preliminar.
-- Diego León: Reformulación preguntas (mejora Hito 1), Propuestas experimentales, Aporte de presentación.
-- Tomás Letelier: Continuacion de exploracion de datos, Scatterplots, Aporte de la presentación.
-- Joaquin Moraga: Propuesta experimental, aporte en la presentación.
+- Benjamin Farias: Notebooks de los experimentos, presentación.
+- Diego León : Resultados y conclusiones pregunta 2. Aporte de presentación. Aporte de informe.
+- Tomás Letelier: Presentacion, Resultados y conclusiones pregunta 2, Aporte de informe
+- Joaquin moraga: Presentación. Limitaciones y Propuestas a futuro. Conclusiones
 
 ## Anexo
 
-Link github del proyecto: https://github.com/G-Urrea/Google-Play-Store-Mining
+Link github del proyecto: https://github.com/jmoragav/Google-Play-Store-Mining

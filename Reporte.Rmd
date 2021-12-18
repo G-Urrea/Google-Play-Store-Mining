@@ -578,6 +578,7 @@ Se econtró también que el número de descarga sigue una distribución tal que 
 A partir del texto de las reviews, en general, la polaridad se logra clasificar mejor que la polaridad y la calidad de lectura, y la support vector machine obtiene mejores resultados para los 3 casos.
 
 Para la SVM, en la clasificación de polaridad, todas las métricas son un poco mayores a 0.7, menos recall y f1 macro que están por debajo de 0.5 y 0.6 respectivamente. En las clasificaciones de subjetividad y calidad se obtiene valores inferiores a 0.6 y 0.5.
+
 ### Pregunta 1
 
 Sobre el dataset dividido por categorías, con el número de reviews como input, el desempeño del árbol de decisión es significativamente mayor a los otros 3 modelos, con valores cercanos a 0.7 en las 7 métricas evaluadas.
@@ -590,7 +591,7 @@ La clasificación sobre el cruce de datos obtiene resultados similares a los del
 
 Clasificando los clusters de descargas en vez de cuartiles, el desempeño del árbol se ve disminuido y el de SVM y KNN aumenta al intervalo 0.6-0.7 en precisión y medidas micro, y 0.3-0.4 en macro.
 
-## Pregunta 2
+### Pregunta 2
 
 Primero, con respecto a K-Means, se realiza un gráfico de SSE versus número de clusters, con tal de identificar un buen número de estos en el "codo" de este gráfico. A partir de este se decide que un número apropiado de clusters resulta ser entre 4 y 8, debido a la menor variación de SSE entre estos puntos.
 
@@ -603,7 +604,7 @@ Luego, para el método de DBScan, se realizan varios intentos de clustering para
 Por último, utilizando clustering jerárquico aglomerativo, se nota que sólo 3 métodos consiguen resultados coherentes y visualizarles. Tales son los enfoques “ward”, “complete”, y “average”. Siguiendo el corte indicado por los gráficos entregados por cada método, se observan coeficientes de Silhouette bastante parecidos, y cercanos a 0,2. El mejor rendimiento, en base a este coeficiente, lo obtiene el método “ward”, obteniendo siempre valores ligeramente mayores a 0,2. 
 
 
-## Pregunta 3
+### Pregunta 3
 
 Sobre el dataset dividido por categorías, el desempeño de los 4 modelos varía ligeramente, todos con valores menores a 0.4 en las 7 métricas evaluadas. Lo mismo ocurre sobre las aplicaciones de pago, al tratar de clasificar rating según reviews y sobre el cruce de tablas, aunque variando en cada caso que modelo lo hace mejor o peor.
 

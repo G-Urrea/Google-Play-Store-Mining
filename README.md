@@ -80,7 +80,7 @@ Más detalles sobre las metodologías usadas y un segundo análisis y reducción
 
 ## Contribucion (Hito 3)
 
-- Benjamin Farias: Noteboooks de los experimentos, presentación.
+- Benjamin Farias: Notebooks de los experimentos, presentación.
 - Diego León: Reformulación preguntas (mejora Hito 1), Propuestas experimentales, Aporte de presentación.
 - Tomás Letelier: Continuacion de exploracion de datos, Scatterplots, Aporte de la presentación.
 - Joaquin Moraga: Propuesta experimental, aporte en la presentación.

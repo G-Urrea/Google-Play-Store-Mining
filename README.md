@@ -83,4 +83,5 @@ Más detalles sobre las metodologías usadas y un segundo análisis y reducción
 - Benjamín Farías: Notebooks de los experimentos, presentación.
 - Diego León: Reformulación preguntas (mejora Hito 1), Propuestas experimentales, Aporte de presentación.
 - Tomás Letelier: Continuacion de exploracion de datos, Scatterplots, Aporte de la presentación.
-- Joaquin Moraga: Propuesta experimental, aporte en la presentación.
+- Joaquin Moraga: Presentacion, Informe conclusiones, limitaciones y proyecciones a futuro
+
